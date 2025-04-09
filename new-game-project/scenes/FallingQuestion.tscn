@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cam84mvw4u5kt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fnnc"]
+size = Vector2(934, 86.5)
+
+[node name="FallingQuestion" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(466, 749.75)
+shape = SubResource("RectangleShape2D_6fnnc")
