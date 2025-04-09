@@ -10,7 +10,8 @@
 script = ExtResource("1_00tan")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(469, 396.5)
+position = Vector2(664.5, 549.5)
+scale = Vector2(1.42134, 1.38588)
 texture = ExtResource("1_7biu0")
 
 [node name="OperationGenerator" type="Node2D" parent="."]
@@ -18,26 +19,34 @@ position = Vector2(469, 419.5)
 script = ExtResource("2_l1v76")
 
 [node name="QuestionLabel" type="Label" parent="."]
-offset_left = 470.0
-offset_top = 421.5
-offset_right = 510.0
-offset_bottom = 444.5
-scale = Vector2(3.04, 1.32)
+offset_left = 1452.0
+offset_top = 70.0
+offset_right = 1492.0
+offset_bottom = 93.0
+scale = Vector2(7.04, 2.68)
 
 [node name="InputField" type="LineEdit" parent="."]
-offset_left = 469.0
-offset_top = 446.5
-offset_right = 537.563
-offset_bottom = 477.5
+offset_left = 1493.0
+offset_top = 795.0
+offset_right = 1561.56
+offset_bottom = 826.0
+scale = Vector2(2.31579, 2.0303)
 
 [node name="SubmitButton" type="Button" parent="."]
-offset_left = 470.0
-offset_top = 476.5
-offset_right = 531.0
-offset_bottom = 507.5
+offset_left = 1505.0
+offset_top = 866.0
+offset_right = 1566.0
+offset_bottom = 897.0
+scale = Vector2(2.31579, 2.0303)
 text = "Enviar"
 icon = SubResource("ViewportTexture_l1v76")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
