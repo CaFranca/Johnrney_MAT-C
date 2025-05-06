@@ -2,7 +2,7 @@ extends Node2D
 
 var question = ""
 var answer = 0
-var speed = 250.0
+var speed = 100.0
 var answered = false
 
 signal question_failed
