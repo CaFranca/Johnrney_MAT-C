@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 var question = ""
 var answer = 0
@@ -8,17 +8,11 @@ var answered = false
 signal question_failed
 
 @onready var label = $Label
-@onready var area = $Area2D  # acessa o Area2D para conectar
 
 func _ready():
 	label.text = question
-	area.body_entered.connect(_on_Area2D_body_entered)  # conecta o sinal manualmente aqui
 
-func _process(delta):
+func _physics_process(delta):
 	if not answered:
-		position.y += speed * delta
-
-func _on_Area2D_body_entered(body):
-	if not answered:
-		emit_signal("question_failed")
-		queue_free()
+		velocity = Vector2(0, speed)
+		move_and_slide()

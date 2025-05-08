@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8quaugkapyry"]
+[gd_scene load_steps=6 format=3 uid="uid://c8quaugkapyry"]
 
-[ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/Show_Operations.gd" id="1_00tan"]
+[ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/Show_operation.gd" id="1_00tan"]
 [ext_resource type="Texture2D" uid="uid://c4ikplght8awa" path="res://assets/Free Pixel Art Forest/Preview/Background.png" id="1_7biu0"]
 [ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/operation_generator.gd" id="2_l1v76"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l1v76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1v76"]
+size = Vector2(819.5, 51)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_00tan")
@@ -19,11 +22,11 @@ position = Vector2(469, 419.5)
 script = ExtResource("2_l1v76")
 
 [node name="QuestionLabel" type="Label" parent="."]
-offset_left = 870.0
+offset_left = 859.0
 offset_top = 149.0
-offset_right = 897.0
+offset_right = 1109.0
 offset_bottom = 172.0
-scale = Vector2(7.04, 2.68)
+scale = Vector2(1.49, 1.49)
 
 [node name="InputField_for_answer" type="LineEdit" parent="."]
 offset_left = 853.465
@@ -32,6 +35,7 @@ offset_right = 1009.99
 offset_bottom = 509.0
 scale = Vector2(2.31579, 2.0303)
 placeholder_text = "Digite sua resposta"
+keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
@@ -56,6 +60,14 @@ text = "Voltar para o menu"
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="FailZone" type="Area2D" parent="."]
+position = Vector2(-1, 515)
+scale = Vector2(0.998313, 2.98522)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FailZone"]
+position = Vector2(411.137, 46.108)
+shape = SubResource("RectangleShape2D_l1v76")
 
 [connection signal="text_submitted" from="InputField_for_answer" to="." method="_on_input_field_for_answer_text_submitted"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
