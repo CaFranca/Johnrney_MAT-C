@@ -4,15 +4,13 @@ extends Node2D
 @onready var question_label = $QuestionLabel
 @onready var input_field = $InputField_for_answer
 @onready var submit_button = $SubmitButton
+@onready var fail_zone = $FailZone
 
 var falling_question_scene = preload("res://scenes/FallingQuestion.tscn")
 var active_questions: Array = []
 
 func _ready():
-	print("InputField:", input_field)
-	print("QuestionLabel:", question_label)
-	print("SubmitButton:", submit_button)
-	print("OperationGenerator:", generator)
+	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	randomize()
 	generate_new_question()
 	submit_button.pressed.connect(_on_submit_button_pressed)
@@ -87,6 +85,14 @@ func _on_input_field_for_answer_text_submitted(new_text):
 func _on_question_failed(question):
 	active_questions.erase(question)
 	update_ui("Uma conta caiu sem resposta!")
+	
+func _on_fail_zone_body_entered(body):
+	print("Algo colidiu com a fail zone: ", body)
+	if body is CharacterBody2D and body.has_method("emit_signal"):
+		body.emit_signal("question_failed")
+		body.queue_free()
+
+
 
 func _on_spawn_timer_timeout():
 	generate_new_question()
