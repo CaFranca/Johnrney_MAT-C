@@ -19,34 +19,46 @@ position = Vector2(469, 419.5)
 script = ExtResource("2_l1v76")
 
 [node name="QuestionLabel" type="Label" parent="."]
-offset_left = 870.0
+offset_left = 859.0
 offset_top = 149.0
-offset_right = 897.0
+offset_right = 886.0
 offset_bottom = 172.0
-scale = Vector2(7.04, 2.68)
+scale = Vector2(5.84, 1.52)
 
-[node name="InputField" type="LineEdit" parent="."]
-offset_left = 891.0
-offset_top = 557.0
-offset_right = 959.562
-offset_bottom = 588.0
+[node name="InputField_for_answer" type="LineEdit" parent="."]
+offset_left = 853.465
+offset_top = 478.0
+offset_right = 1009.99
+offset_bottom = 509.0
 scale = Vector2(2.31579, 2.0303)
+placeholder_text = "Digite sua resposta"
+keep_editing_on_text_submit = true
+emoji_menu_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="SubmitButton" type="Button" parent="."]
-offset_left = 903.0
-offset_top = 628.0
-offset_right = 964.0
-offset_bottom = 659.0
+offset_left = 923.0
+offset_top = 547.0
+offset_right = 984.0
+offset_bottom = 578.0
 scale = Vector2(2.31579, 2.0303)
 text = "Enviar"
 icon = SubResource("ViewportTexture_l1v76")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="return_to_menu" type="Button" parent="."]
+offset_left = 867.0
+offset_top = 619.0
+offset_right = 1026.19
+offset_bottom = 650.0
+scale = Vector2(1.695, 1.695)
+text = "Voltar para o menu"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
+[connection signal="text_submitted" from="InputField_for_answer" to="." method="_on_input_field_for_answer_text_submitted"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="return_to_menu" to="." method="_on_return_to_menu_pressed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
