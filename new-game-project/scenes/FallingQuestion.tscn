@@ -1,22 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://cam84mvw4u5kt"]
+[gd_scene load_steps=4 format=3 uid="uid://cam84mvw4u5kt"]
 
 [ext_resource type="Script" uid="uid://cei62wjdxx6nf" path="res://scripts/FallingQuestion.gd" id="1_842bt"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1rf4"]
+size = Vector2(40, 23)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_842bt"]
-size = Vector2(1275.77, 51)
+size = Vector2(813.99, 51)
 
 [node name="FallingQuestion" type="CharacterBody2D"]
 script = ExtResource("1_842bt")
 
-[node name="Label" type="Label" parent="."]
+[node name="pergunta" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 11.5)
+shape = SubResource("RectangleShape2D_f1rf4")
+debug_color = Color(0, 0.6, 0.701961, 0.568627)
+
 [node name="FailZone" type="Area2D" parent="."]
-position = Vector2(-4, 504)
+position = Vector2(-1, 503)
 scale = Vector2(0.998313, 2.98522)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FailZone"]
-position = Vector2(639.271, 46.108)
+position = Vector2(408.381, 46.108)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_842bt")

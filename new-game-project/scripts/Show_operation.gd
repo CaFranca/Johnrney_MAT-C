@@ -10,6 +10,7 @@ var falling_question_scene = preload("res://scenes/FallingQuestion.tscn")
 var active_questions: Array = []
 
 func _ready():
+	MusicController.get_node("AudioStreamPlayer").stop() #Para de tocar a musica
 	randomize()
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	generate_new_question()
@@ -103,4 +104,6 @@ func _on_spawn_timer_timeout():
 	generate_new_question()
 
 func _on_return_to_menu_pressed() -> void:
+	$buttonclick.play()
+	await $buttonclick.finished
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
