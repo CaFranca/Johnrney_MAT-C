@@ -4,21 +4,25 @@ extends Node2D
 @onready var question_label = $QuestionLabel
 @onready var input_field = $InputField_for_answer
 @onready var submit_button = $SubmitButton
-@onready var fail_zone = $FailZone
+@onready var fail_zone = $FallingQuestion/FailZone
 
 var falling_question_scene = preload("res://scenes/FallingQuestion.tscn")
 var active_questions: Array = []
 
 func _ready():
-	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	randomize()
+	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	generate_new_question()
-	submit_button.pressed.connect(_on_submit_button_pressed)
-	input_field.text_submitted.connect(_on_input_field_for_answer_text_submitted)
+
+var selected_mode: String = "add"  # Modo padrão
+
+func set_mode(mode: String):
+	selected_mode = mode
+
 
 # Gera uma nova operação e instancia a pergunta na cena
 func generate_new_question():
-	var operation = generator.generate_operation()
+	var operation = generator.generate_operation(selected_mode)  # Passa o modo
 	var question = falling_question_scene.instantiate()
 	question.question = operation["question"]
 	question.answer = operation["answer"]
@@ -29,6 +33,7 @@ func generate_new_question():
 	active_questions.append(question)
 
 	update_ui('Responda a operação correta!')
+
 
 # Verifica se a resposta do jogador está correta
 func check_answer():

@@ -1,7 +1,7 @@
 extends Control
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
+	get_tree().change_scene_to_file("res://scenes/Selection_mode_menu.tscn")
 
 func _on_credits_pressed() -> void:
 	pass # Replace with function body.

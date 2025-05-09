@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://52surrlki5s"]
+[gd_scene load_steps=7 format=3 uid="uid://cb2d8drfxcdqe"]
 
-[ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://duvib0msduhck" path="res://scripts/Selection_mode_menu.gd" id="1_ah60l"]
+[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="2_n28nh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
 
@@ -66,21 +66,21 @@ _data = {
 &"reveal": SubResource("Animation_ekxnf")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="Select_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ekxnf")
+script = ExtResource("1_ah60l")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 2
 offset_left = -19.9999
 offset_right = 1300.0
 offset_bottom = 720.0
-texture = ExtResource("1_l6cm7")
+texture = ExtResource("2_n28nh")
 expand_mode = 2
 stretch_mode = 3
 
@@ -107,29 +107,56 @@ size_flags_horizontal = 6
 [node name="game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="sum" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
-text = "Iniciar"
+text = "Soma \"+\""
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 
-[node name="credits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="minus" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Creditos
-"
+text = "Menos \"-\""
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 
-[node name="quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="times" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Sair"
+text = "Vezes \"X\""
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+
+[node name="div" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Divisão \"/\""
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+
+[node name="all" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Todos"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+
+[node name="back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Voltar"
 
 [node name="Animação" type="AnimationPlayer" parent="."]
 libraries = {
@@ -137,6 +164,9 @@ libraries = {
 }
 autoplay = "reveal"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/sum" to="." method="_on_sum_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/minus" to="." method="_on_minus_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/times" to="." method="_on_times_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/div" to="." method="_on_div_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/all" to="." method="_on_all_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
