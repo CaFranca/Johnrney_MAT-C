@@ -1,0 +1,5 @@
+res://scenes/mode_gameplay.tscn
+res://scenes/main_menu.tscn
+res://scenes/Selection_mode_menu.tscn
+res://scenes/FallingQuestion.tscn
+res://assets/audio/autoload/Menu_MusicController.tscn
