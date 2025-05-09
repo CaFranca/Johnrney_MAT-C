@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cam84mvw4u5kt"]
+
+[ext_resource type="Script" uid="uid://cei62wjdxx6nf" path="res://scripts/FallingQuestion.gd" id="1_842bt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1rf4"]
+size = Vector2(70, 23)
+
+[node name="FallingQuestion" type="CharacterBody2D"]
+script = ExtResource("1_842bt")
+
+[node name="pergunta" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(35, 11.5)
+shape = SubResource("RectangleShape2D_f1rf4")
+debug_color = Color(0, 0.6, 0.701961, 0.568627)

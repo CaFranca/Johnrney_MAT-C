@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://jgxekmxrsyyn"]
+
+[ext_resource type="AudioStream" uid="uid://dmm5471qbes4g" path="res://assets/audio/music/menu/main_menu.ogg" id="1_4fbef"]
+
+[node name="MusicController" type="Node"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_4fbef")
+volume_db = -38.0
+autoplay = true
+parameters/looping = true
