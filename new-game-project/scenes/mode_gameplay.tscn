@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8quaugkapyry"]
+[gd_scene load_steps=8 format=3 uid="uid://c8quaugkapyry"]
 
 [ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/Show_operation.gd" id="1_0d5ff"]
 [ext_resource type="Texture2D" uid="uid://c4ikplght8awa" path="res://assets/Free Pixel Art Forest/Preview/Background.png" id="2_1o26h"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="5_1o26h"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l1v76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o26h"]
+size = Vector2(821.385, 46.8192)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0d5ff")
@@ -62,6 +65,16 @@ autostart = true
 
 [node name="FallingQuestion" parent="." instance=ExtResource("4_wr2py")]
 position = Vector2(6, 2)
+
+[node name="FailZone" type="Area2D" parent="."]
+position = Vector2(4, 505)
+scale = Vector2(0.998313, 2.98522)
+gravity = 979.275
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FailZone"]
+position = Vector2(409.691, 48.1984)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_1o26h")
 
 [node name="buttonclick" type="AudioStreamPlayer" parent="."]
 process_priority = 1

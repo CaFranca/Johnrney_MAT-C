@@ -4,7 +4,7 @@ extends Node2D
 @onready var question_label = $QuestionLabel
 @onready var input_field = $InputField_for_answer
 @onready var submit_button = $SubmitButton
-@onready var fail_zone = $FallingQuestion/FailZone
+@onready var fail_zone = $FailZone
 
 var falling_question_scene = preload("res://scenes/FallingQuestion.tscn")
 var active_questions: Array = []
