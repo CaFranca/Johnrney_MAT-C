@@ -61,7 +61,7 @@ scale = Vector2(1.695, 1.695)
 text = "Voltar para o menu"
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 autostart = true
 
 [node name="FallingQuestion" parent="." instance=ExtResource("4_wr2py")]

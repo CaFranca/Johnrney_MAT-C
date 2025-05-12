@@ -24,16 +24,39 @@ func generate_operation(mode: String = "add") -> Dictionary:
 			operation_type = "/"
 		"add_sub":
 			operation_type = ["+", "-"].pick_random()
+			a = randi() % 50
+			b = randi() % 50
 		"add_mul":
 			operation_type = ["+", "*"].pick_random()
+			match operation_type:
+				"+":
+					a = randi() % 50
+					b = randi() % 50
+				"*":
+					a = randi() % 10
+					b = randi() % 10
 		"sub_div":
 			operation_type = ["-", "/"].pick_random()
+			match operation_type:
+				"-":
+					a = randi() % 50
+					b = randi() % 50
+				"/":
+					a = randi() % 10
+					b = randi() % 10
 		"mul_div":
 			operation_type = ["*", "/"].pick_random()
-		"all":
 			a = randi() % 10
 			b = randi() % 10
+		"all":
 			operation_type = ["+", "-", "*", "/"].pick_random()
+			match operation_type:
+				"+", "-":
+					a = randi() % 50
+					b = randi() % 50
+				"*", "/":
+					a = randi() % 10
+					b = randi() % 10
 
 	var question = ""
 	var answer = 0
@@ -53,10 +76,12 @@ func generate_operation(mode: String = "add") -> Dictionary:
 			question = "%d × %d = ?" % [a, b]
 			answer = a * b
 		"/":
-			b = b if b != 0 else 1
-			var result = a * b  # Garante divisão exata
+			a = randi() % 10
+			b = (randi() % 9) + 1  # Garante b entre 1 e 9
+			var result = a * b     # result fica entre 0 e 81
 			question = "%d ÷ %d = ?" % [result, b]
 			answer = result / b
+
 
 	return {
 		"question": question,

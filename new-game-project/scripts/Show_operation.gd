@@ -5,15 +5,24 @@ extends Node2D
 @onready var input_field = $InputField_for_answer
 @onready var submit_button = $SubmitButton
 @onready var fail_zone = $FailZone
+@onready var spawn_timer = $SpawnTimer
+
 
 var falling_question_scene = preload("res://scenes/FallingQuestion.tscn")
 var active_questions: Array = []
 
 func _ready():
-	MusicController.get_node("AudioStreamPlayer").stop() #Para de tocar a musica
+	MusicController.get_node("AudioStreamPlayer").stop()
 	randomize()
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
-	generate_new_question()
+
+	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+
+	generate_new_question()  # Gera a primeira pergunta imediatamente
+	spawn_timer.start()      # Depois inicia o timer para as próximas
+
+
+
 
 var selected_mode: String = "add"  # Modo padrão
 
