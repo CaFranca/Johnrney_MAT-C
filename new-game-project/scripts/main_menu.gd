@@ -2,10 +2,6 @@ extends Control
 
 @onready var button_click=$buttonclick
 
-func _ready():
-	var player = MusicController.get_node("AudioStreamPlayer") #pegando a musica, esta em autoload
-	if not player.playing:
-		player.play() #tocando a musica
 
 func _on_start_pressed() -> void:
 	print("Botão start clicado")
@@ -47,3 +43,7 @@ func _on_cavibezz_pressed() -> void:
 func _on_cavibezz_mouse_entered() -> void:
 	$mouse_entered.play()
 	await $mouse_entered.finished
+
+
+func _on_musica_toggled(toggled_on: bool) -> void:
+	MusicController.toggle_music(toggled_on)

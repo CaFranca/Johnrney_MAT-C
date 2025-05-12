@@ -163,9 +163,19 @@ volume_db = -20.0
 stream = ExtResource("4_12ngo")
 volume_db = -20.0
 
+[node name="Musica2" type="CheckButton" parent="."]
+offset_left = 910.0
+offset_top = 477.0
+offset_right = 1061.0
+offset_bottom = 508.0
+scale = Vector2(2.425, 2.425)
+button_pressed = true
+text = "Musica Menu"
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/sum" to="." method="_on_sum_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/minus" to="." method="_on_minus_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/times" to="." method="_on_times_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/div" to="." method="_on_div_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/all" to="." method="_on_all_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="Musica2" to="." method="_on_musica_2_toggled"]

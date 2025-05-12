@@ -4,10 +4,8 @@ var gameplay_scene = preload("res://scenes/mode_gameplay.tscn")
 @onready var button_click=$buttonclick
 
 func _ready():
-	var player = MusicController.get_node("AudioStreamPlayer") #pegando a musica, esta em autoload
+	await get_tree().process_frame
 
-	if not player.playing:
-		player.play() #tocando a musica
 func _start_game_with_mode(mode: String) -> void:
 	button_click.play()
 	await button_click.finished
@@ -48,3 +46,6 @@ func _on_back_pressed() -> void:
 	await button_click.finished
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
+
+func _on_musica_2_toggled(toggled_on: bool) -> void:
+	MusicController.toggle_music(toggled_on)

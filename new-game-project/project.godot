@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 run/size/viewport_width=1280
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 MusicController="*res://assets/audio/autoload/Menu_MusicController.tscn"

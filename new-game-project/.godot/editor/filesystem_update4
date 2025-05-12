@@ -6,3 +6,7 @@ res://scenes/FallingQuestion.tscn
 res://assets/audio/autoload/Menu_MusicController.tscn
 res://scripts/Show_operation.gd
 res://scripts/FallingQuestion.gd
+res://default_bus_layout.tres
+res://scripts/main_menu.gd
+res://scripts/Selection_mode_menu.gd
+res://scripts/menu_music_controller.gd
