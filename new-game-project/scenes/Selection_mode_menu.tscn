@@ -76,9 +76,11 @@ stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_right = 0.42
 anchor_bottom = 1.0
+offset_left = -200.0
+offset_right = -200.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.999997, 0.99)
@@ -100,8 +102,8 @@ layout_mode = 2
 [node name="sum" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
-text = "Soma \"+\""
+theme_override_font_sizes/font_size = 50
+text = "Adição \"+\""
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -110,7 +112,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 [node name="minus" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Menos \"-\""
+theme_override_font_sizes/font_size = 50
+text = "Subtração \"-\""
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -118,6 +121,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 
 [node name="times" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Vezes \"X\""
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -127,7 +131,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 [node name="div" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 50
 text = "Divisão \"/\""
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -137,6 +141,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 [node name="all" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
 text = "Todos"
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -146,6 +151,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 [node name="back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
 text = "Voltar"
 
 [node name="Animação" type="AnimationPlayer" parent="."]
