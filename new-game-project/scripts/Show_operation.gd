@@ -16,7 +16,6 @@ func _ready():
 	MusicController.get_node("AudioStreamPlayer").stop()
 	randomize()
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
-
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 
 	generate_new_question()  # Gera a primeira pergunta imediatamente

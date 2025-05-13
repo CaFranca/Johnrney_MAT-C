@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/operation_generator.gd" id="3_jcpkf"]
 [ext_resource type="PackedScene" uid="uid://cam84mvw4u5kt" path="res://scenes/FallingQuestion.tscn" id="4_wr2py"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="5_1o26h"]
-[ext_resource type="AudioStream" uid="uid://b5bhjxjuu3u3a" path="res://assets/audio/music/gameplay/Teste - MatC (6).mp3" id="6_jcpkf"]
-[ext_resource type="AudioStream" uid="uid://cmnvc0vxixtau" path="res://assets/audio/sfx/gameplay/cassio.ogg" id="7_wr2py"]
+[ext_resource type="AudioStream" uid="uid://uxxlolem0vs4" path="res://assets/audio/music/gameplay/Teste - MatC (5).mp3" id="6_wr2py"]
+[ext_resource type="AudioStream" uid="uid://b2mhui4d0mu71" path="res://assets/audio/sfx/gameplay/hit_the_correct_answer.ogg" id="7_wr2py"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l1v76"]
 
@@ -83,8 +83,9 @@ stream = ExtResource("5_1o26h")
 volume_db = -20.0
 
 [node name="ost" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_jcpkf")
+stream = ExtResource("6_wr2py")
 volume_db = -20.0
+autoplay = true
 
 [node name="right_answer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wr2py")
