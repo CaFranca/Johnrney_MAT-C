@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgbswtjolbw28"]
+
+[ext_resource type="Script" uid="uid://bb0xsgkllvpx0" path="res://scripts/menu/config/h_slider.gd" id="1_buyn0"]
+
+[node name="HSlider" type="HSlider"]
+offset_right = 8.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_buyn0")
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

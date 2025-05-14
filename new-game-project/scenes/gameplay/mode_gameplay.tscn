@@ -355,15 +355,18 @@ shape = SubResource("RectangleShape2D_1o26h")
 process_priority = 1
 stream = ExtResource("5_1o26h")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="ost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_t0mm7")
 volume_db = -20.0
 autoplay = true
+bus = &"music"
 parameters/looping = false
 
 [node name="right_answer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wr2py")
+bus = &"sfx"
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

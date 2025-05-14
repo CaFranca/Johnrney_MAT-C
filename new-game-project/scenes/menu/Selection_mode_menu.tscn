@@ -66,6 +66,7 @@ grow_vertical = 2
 script = ExtResource("1_hbq5r")
 
 [node name="background" type="TextureRect" parent="."]
+visible = false
 layout_mode = 2
 offset_left = -19.9999
 offset_right = 1300.0
@@ -164,10 +165,12 @@ autoplay = "reveal"
 process_priority = 1
 stream = ExtResource("3_4sgra")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a86st")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="Musica2" type="CheckButton" parent="."]
 visible = false

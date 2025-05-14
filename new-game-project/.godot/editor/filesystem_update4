@@ -1,0 +1,13 @@
+res://scripts/menu/options.gd
+res://scenes/menu/options.tscn
+res://scenes/menu/main_menu.tscn
+res://scenes/menu/Selection_mode_menu.tscn
+res://assets/audio/autoload/Menu_MusicController.tscn
+res://scripts/menu/menu_music_controller.gd
+res://assets/audio/bus/default.tres
+res://scripts/menu/main_menu.gd
+res://scenes/menu/config/options.tscn
+res://scripts/menu/config/h_slider.gd
+res://scenes/menu/config/h_slider.tscn
+res://scenes/gameplay/FallingQuestion.tscn
+res://scenes/gameplay/mode_gameplay.tscn

@@ -3,7 +3,7 @@ extends Control
 @onready var button_click=$buttonclick
 
 func _ready() -> void:
-	#MusicController.toggle_music(true)
+	MusicController.play()
 	pass
 
 func _on_start_pressed() -> void:
@@ -55,7 +55,7 @@ func _on_cavibezz_mouse_entered() -> void:
 func _on_options_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	get_tree().change_scene_to_file("res://scenes/menu/options.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/config/options.tscn")
 
 
 func _on_options_mouse_entered() -> void:

@@ -18,7 +18,7 @@ run/size/viewport_width=1280
 
 [audio]
 
-buses/default_bus_layout=""
+buses/default_bus_layout="uid://bi8yfkiql2x7s"
 
 [autoload]
 
@@ -28,4 +28,4 @@ MusicController="*res://assets/audio/autoload/Menu_MusicController.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
