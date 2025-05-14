@@ -1,0 +1,6 @@
+res://assets/audio/autoload/Menu_MusicController.tscn::353f8bf014548db53251b0beee0e7368::1747182554::res://.godot/exported/133200997/export-0faf4f344e750fb34d309fde6bbe9fcd-Menu_MusicController.scn
+res://scenes/gameplay/FallingQuestion.tscn::c6a2c991ddd160088b85a673d4119388::1747182561::res://.godot/exported/133200997/export-9f5a6b1afc56798990a5eacb41273d0e-FallingQuestion.scn
+res://scenes/gameplay/mode_gameplay.tscn::6aec5e79796293c5d9609e1873997b01::1747183593::res://.godot/exported/133200997/export-a98f940db39d037c27b9838101064969-mode_gameplay.scn
+res://scenes/menu/main_menu.tscn::a17ee296ee14344bb0d4759c4e273663::1747183566::res://.godot/exported/133200997/export-9ae7820dfc5b492c0424e6a9127ac776-main_menu.scn
+res://scenes/menu/Selection_mode_menu.tscn::46fd4f090313d679cb4ac525b7862479::1747183567::res://.godot/exported/133200997/export-8e28a6b587588b7ce2e1702ee4607e1e-Selection_mode_menu.scn
+res://scenes/player/Player.tscn::96afbebc0005df06c71d0ba07e4a0c9b::1747183567::res://.godot/exported/133200997/export-a4e9bb150591131ae307f440fab940ce-Player.scn

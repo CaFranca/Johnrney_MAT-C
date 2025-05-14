@@ -7,12 +7,14 @@ extends Node2D
 @onready var fail_zone = $FailZone
 @onready var spawn_timer = $SpawnTimer
 @onready var correct_song = $right_answer
+@onready var animation= $player_sprite
 
 
 var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
 var active_questions: Array = []
 
 func _ready():
+	animation.play("Run_Up")
 	MusicController.get_node("AudioStreamPlayer").stop()
 	randomize()
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
@@ -41,7 +43,7 @@ func generate_new_question():
 	question.connect("question_failed", _on_question_failed.bind(question))
 	add_child(question)
 	active_questions.append(question)
-
+	animation.play("Run_Up")
 	update_ui('Responda a operação correta!')
 
 
@@ -70,10 +72,11 @@ func check_answer():
 			input_field.grab_focus()        # Reaplica o foco mantem o local de envio selecionado
 			
 			correct_song.play()
+			animation.play("Run_Down")
 			update_ui("Correto!")
 			
 			return
-
+	animation.play("Fall")
 	update_ui("Nenhuma operação corresponde.")
 	input_field.text = ""
 
@@ -104,6 +107,7 @@ func _on_question_failed(question):
 	update_ui("Uma conta caiu sem resposta!")
 	
 func _on_fail_zone_body_entered(body):
+	animation.play("Fall")
 	print("Algo colidiu com a fail zone: ", body)
 	if body is CharacterBody2D and body.has_method("emit_signal"):
 		body.emit_signal("question_failed")
