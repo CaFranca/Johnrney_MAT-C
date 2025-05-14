@@ -3,8 +3,8 @@ extends Control
 @onready var button_click=$buttonclick
 
 func _ready() -> void:
-	#MusicController.toggle_music(true)
-	pass
+	MusicController.play_music_for("menu")
+
 
 
 func _on_back_pressed() -> void:

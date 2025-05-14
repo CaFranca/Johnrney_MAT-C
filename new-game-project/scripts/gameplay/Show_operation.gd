@@ -15,7 +15,8 @@ var active_questions: Array = []
 
 func _ready():
 	animation.play("Run_Up")
-	MusicController.get_node("AudioStreamPlayer").stop()
+	MusicController.play_music_for("gameplay")
+
 	randomize()
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)

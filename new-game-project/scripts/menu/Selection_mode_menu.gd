@@ -5,6 +5,7 @@ var gameplay_scene = preload("res://scenes/gameplay/mode_gameplay.tscn")
 
 func _ready():
 	await get_tree().process_frame
+	MusicController.play_music_for("selection")  # ou "selection", "gameplay"
 
 func _start_game_with_mode(mode: String) -> void:
 	button_click.play()

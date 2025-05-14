@@ -11,3 +11,9 @@ res://scripts/menu/config/h_slider.gd
 res://scenes/menu/config/h_slider.tscn
 res://scenes/gameplay/FallingQuestion.tscn
 res://scenes/gameplay/mode_gameplay.tscn
+res://scripts/menu/Selection_mode_menu.gd
+res://scripts/gameplay/Show_operation.gd
+res://scripts/gameplay/FallingQuestion.gd
+res://scenes/menu/config/Menu_MusicController.tscn
+res://scripts/menu/config/options.gd
+res://resources/user_preference.gd
