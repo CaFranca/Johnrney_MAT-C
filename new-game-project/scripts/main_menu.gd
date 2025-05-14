@@ -2,6 +2,8 @@ extends Control
 
 @onready var button_click=$buttonclick
 
+func _ready() -> void:
+	MusicController.toggle_music(true)
 
 func _on_start_pressed() -> void:
 	print("Botão start clicado")
