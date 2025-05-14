@@ -78,6 +78,7 @@ grow_vertical = 2
 script = ExtResource("1_kiqgm")
 
 [node name="background" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = -19.9999
@@ -92,7 +93,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.086
 anchor_bottom = 1.0
-offset_right = 253.0
+offset_left = -2000.0
+offset_right = -1747.0
 grow_vertical = 2
 scale = Vector2(1, 0.99)
 theme_override_constants/margin_left = -20
@@ -167,10 +169,12 @@ autoplay = "reveal"
 process_priority = 1
 stream = ExtResource("3_xn6kt")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_isoef")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="Musica" type="CheckButton" parent="."]
 visible = false
