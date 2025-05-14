@@ -22,7 +22,7 @@ buses/default_bus_layout="uid://bi8yfkiql2x7s"
 
 [autoload]
 
-MusicController="*res://assets/audio/autoload/Menu_MusicController.tscn"
+MusicController="*res://globals/Menu_MusicController.tscn"
 
 [display]
 
