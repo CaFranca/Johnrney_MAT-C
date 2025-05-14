@@ -9,7 +9,7 @@ func _on_start_pressed() -> void:
 	print("Botão start clicado")
 	button_click.play()
 	await button_click.finished
-	get_tree().change_scene_to_file("res://scenes/Selection_mode_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/Selection_mode_menu.tscn")
 
 func _on_credits_pressed() -> void:
 	button_click.play()

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://52surrlki5s"]
 
-[ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="1_l6cm7"]
-[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_wu84c"]
-[ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_8ln24"]
+[ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/menu/main_menu.gd" id="1_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="2_hj162"]
+[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_xn6kt"]
+[ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_isoef"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
 
@@ -75,7 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ekxnf")
+script = ExtResource("1_kiqgm")
 
 [node name="background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -83,7 +83,7 @@ layout_mode = 2
 offset_left = -19.9999
 offset_right = 1300.0
 offset_bottom = 720.0
-texture = ExtResource("1_l6cm7")
+texture = ExtResource("2_hj162")
 expand_mode = 2
 stretch_mode = 3
 
@@ -156,11 +156,11 @@ autoplay = "reveal"
 
 [node name="buttonclick" type="AudioStreamPlayer" parent="."]
 process_priority = 1
-stream = ExtResource("3_wu84c")
+stream = ExtResource("3_xn6kt")
 volume_db = -20.0
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_8ln24")
+stream = ExtResource("4_isoef")
 volume_db = -20.0
 
 [node name="Musica" type="CheckButton" parent="."]

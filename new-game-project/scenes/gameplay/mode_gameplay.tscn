@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://c8quaugkapyry"]
 
-[ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/Show_operation.gd" id="1_0d5ff"]
+[ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/gameplay/Show_operation.gd" id="1_0d5ff"]
 [ext_resource type="Texture2D" uid="uid://c4ikplght8awa" path="res://assets/Free Pixel Art Forest/Preview/Background.png" id="2_1o26h"]
-[ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/operation_generator.gd" id="3_jcpkf"]
-[ext_resource type="PackedScene" uid="uid://cam84mvw4u5kt" path="res://scenes/FallingQuestion.tscn" id="4_wr2py"]
+[ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/gameplay/operation_generator.gd" id="3_jcpkf"]
+[ext_resource type="PackedScene" uid="uid://cam84mvw4u5kt" path="res://scenes/gameplay/FallingQuestion.tscn" id="4_wr2py"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="5_1o26h"]
 [ext_resource type="AudioStream" uid="uid://uxxlolem0vs4" path="res://assets/audio/music/gameplay/Teste - MatC (5).mp3" id="6_wr2py"]
 [ext_resource type="AudioStream" uid="uid://b2mhui4d0mu71" path="res://assets/audio/sfx/gameplay/hit_the_correct_answer.ogg" id="7_wr2py"]

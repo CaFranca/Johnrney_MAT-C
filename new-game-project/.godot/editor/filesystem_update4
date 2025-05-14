@@ -1,4 +1,8 @@
-res://scenes/main_menu.tscn
 res://scenes/mode_gameplay.tscn
-res://scripts/main_menu.gd
-res://scenes/Selection_mode_menu.tscn
+res://scenes/menu/main_menu.tscn
+res://scenes/gameplay/mode_gameplay.tscn
+res://scenes/menu/Selection_mode_menu.tscn
+res://scripts/Show_operation.gd
+res://scripts/menu/main_menu.gd
+res://scripts/menu/Selection_mode_menu.gd
+res://scripts/gameplay/Show_operation.gd

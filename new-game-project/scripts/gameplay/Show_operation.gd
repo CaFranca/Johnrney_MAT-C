@@ -9,7 +9,7 @@ extends Node2D
 @onready var correct_song = $right_answer
 
 
-var falling_question_scene = preload("res://scenes/FallingQuestion.tscn")
+var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
 var active_questions: Array = []
 
 func _ready():
@@ -117,4 +117,4 @@ func _on_spawn_timer_timeout():
 func _on_return_to_menu_pressed() -> void:
 	$buttonclick.play()
 	await $buttonclick.finished
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

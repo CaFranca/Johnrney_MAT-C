@@ -1,6 +1,6 @@
 extends Control
 
-var gameplay_scene = preload("res://scenes/mode_gameplay.tscn")
+var gameplay_scene = preload("res://scenes/gameplay/mode_gameplay.tscn")
 @onready var button_click=$buttonclick
 
 func _ready():
@@ -44,7 +44,7 @@ func _on_all_pressed() -> void:
 func _on_back_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 	
 
 func _on_musica_2_toggled(toggled_on: bool) -> void:

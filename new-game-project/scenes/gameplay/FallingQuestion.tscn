@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cam84mvw4u5kt"]
 
-[ext_resource type="Script" uid="uid://cei62wjdxx6nf" path="res://scripts/FallingQuestion.gd" id="1_842bt"]
+[ext_resource type="Script" uid="uid://cei62wjdxx6nf" path="res://scripts/gameplay/FallingQuestion.gd" id="1_842bt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1rf4"]
 size = Vector2(70, 23)

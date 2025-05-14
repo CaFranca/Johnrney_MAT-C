@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://jgxekmxrsyyn"]
 
 [ext_resource type="AudioStream" uid="uid://dmm5471qbes4g" path="res://assets/audio/music/menu/main_menu.ogg" id="1_4fbef"]
-[ext_resource type="Script" uid="uid://cak22pd7bfidv" path="res://scripts/menu_music_controller.gd" id="1_n7yh8"]
+[ext_resource type="Script" uid="uid://cak22pd7bfidv" path="res://scripts/menu/menu_music_controller.gd" id="1_n7yh8"]
+
 
 [node name="MusicController" type="Node"]
 script = ExtResource("1_n7yh8")
