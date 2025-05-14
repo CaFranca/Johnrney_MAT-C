@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/gameplay/operation_generator.gd" id="3_jcpkf"]
 [ext_resource type="PackedScene" uid="uid://cam84mvw4u5kt" path="res://scenes/gameplay/FallingQuestion.tscn" id="4_wr2py"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="5_1o26h"]
-[ext_resource type="AudioStream" uid="uid://uxxlolem0vs4" path="res://assets/audio/music/gameplay/Teste - MatC (5).mp3" id="6_wr2py"]
+[ext_resource type="AudioStream" uid="uid://b5bhjxjuu3u3a" path="res://assets/audio/music/gameplay/Teste - MatC (6).mp3" id="6_t0mm7"]
 [ext_resource type="AudioStream" uid="uid://b2mhui4d0mu71" path="res://assets/audio/sfx/gameplay/hit_the_correct_answer.ogg" id="7_wr2py"]
 [ext_resource type="Texture2D" uid="uid://cuwa1qjt7g2yn" path="res://assets/Player test/death.png" id="8_t0mm7"]
 [ext_resource type="Texture2D" uid="uid://211we30a2e3o" path="res://assets/Player test/idle.png" id="9_1ey6o"]
@@ -336,7 +336,7 @@ scale = Vector2(1.695, 1.695)
 text = "Voltar para o menu"
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.5
 autostart = true
 
 [node name="FallingQuestion" parent="." instance=ExtResource("4_wr2py")]
@@ -357,9 +357,10 @@ stream = ExtResource("5_1o26h")
 volume_db = -20.0
 
 [node name="ost" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_wr2py")
+stream = ExtResource("6_t0mm7")
 volume_db = -20.0
 autoplay = true
+parameters/looping = false
 
 [node name="right_answer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wr2py")
@@ -369,7 +370,9 @@ texture_filter = 1
 position = Vector2(418, 626)
 scale = Vector2(7.2, 7.2)
 sprite_frames = SubResource("SpriteFrames_3wsyr")
-animation = &"Run_Down"
+animation = &"Jump"
+frame = 1
+frame_progress = 0.719917
 
 [connection signal="text_submitted" from="InputField_for_answer" to="." method="_on_input_field_for_answer_text_submitted"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]

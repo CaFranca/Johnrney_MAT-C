@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var question = ""
 var answer = 0
-var speed = 50.0
+var speed = 70.0
 var answered = false
 
 signal question_failed

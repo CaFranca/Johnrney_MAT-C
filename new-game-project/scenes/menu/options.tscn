@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://52surrlki5s"]
+[gd_scene load_steps=9 format=3 uid="uid://jp4x3nww16ck"]
 
-[ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/menu/main_menu.gd" id="1_kiqgm"]
-[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="2_hj162"]
-[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_xn6kt"]
-[ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_isoef"]
+[ext_resource type="Script" uid="uid://ddhwumwo4l3tp" path="res://scripts/menu/options.gd" id="1_mhv7b"]
+[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="2_knos3"]
+[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_ut0dv"]
+[ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_ehon1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
 
@@ -68,14 +68,14 @@ _data = {
 &"reveal": SubResource("Animation_ekxnf")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="Options" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kiqgm")
+script = ExtResource("1_mhv7b")
 
 [node name="background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -83,7 +83,7 @@ layout_mode = 2
 offset_left = -19.9999
 offset_right = 1300.0
 offset_bottom = 720.0
-texture = ExtResource("2_hj162")
+texture = ExtResource("2_knos3")
 expand_mode = 2
 stretch_mode = 3
 
@@ -92,7 +92,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.086
 anchor_bottom = 1.0
-offset_right = 253.0
+offset_left = -2000.0
+offset_right = -1725.08
 grow_vertical = 2
 scale = Vector2(1, 0.99)
 theme_override_constants/margin_left = -20
@@ -110,13 +111,14 @@ size_flags_horizontal = 6
 [node name="game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Musics" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 95
 toggle_mode = true
-text = "Iniciar"
+button_pressed = true
+text = "Musica"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -126,8 +128,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
-text = "Creditos
-"
+text = "text here"
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -137,7 +138,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
-text = "Opções"
+text = "text here"
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -146,16 +147,16 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 [node name="cavibezz" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
-text = "Canal"
+text = "text here"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 
-[node name="quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
-text = "Sair"
+text = "Voltar"
 
 [node name="Animação" type="AnimationPlayer" parent="."]
 libraries = {
@@ -165,11 +166,11 @@ autoplay = "reveal"
 
 [node name="buttonclick" type="AudioStreamPlayer" parent="."]
 process_priority = 1
-stream = ExtResource("3_xn6kt")
+stream = ExtResource("3_ut0dv")
 volume_db = -20.0
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_isoef")
+stream = ExtResource("4_ehon1")
 volume_db = -20.0
 
 [node name="Musica" type="CheckButton" parent="."]
@@ -183,14 +184,7 @@ scale = Vector2(2.425, 2.425)
 button_pressed = true
 text = "Musica Menu"
 
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/Musics" to="." method="_on_musics_toggled"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/back" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="Musica" to="." method="_on_musica_toggled"]

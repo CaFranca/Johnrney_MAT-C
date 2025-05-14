@@ -9,10 +9,13 @@ size = Vector2(70, 23)
 script = ExtResource("1_842bt")
 
 [node name="pergunta" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -42.0
+offset_top = -25.0
+offset_right = -2.0
+offset_bottom = -2.0
+scale = Vector2(2.13073, 2.13073)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(35, 11.5)
+scale = Vector2(2.13073, 2.13073)
 shape = SubResource("RectangleShape2D_f1rf4")
 debug_color = Color(0, 0.6, 0.701961, 0.568627)

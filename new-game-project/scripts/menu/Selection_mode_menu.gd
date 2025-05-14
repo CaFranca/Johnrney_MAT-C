@@ -47,5 +47,5 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 	
 
-func _on_musica_2_toggled(toggled_on: bool) -> void:
-	MusicController.toggle_music(toggled_on)
+#func _on_Musica_toggled(toggled_on: bool) -> void:
+#	MusicController.toggle_music(toggled_on)

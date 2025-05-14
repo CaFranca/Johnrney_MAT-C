@@ -170,6 +170,7 @@ stream = ExtResource("4_a86st")
 volume_db = -20.0
 
 [node name="Musica2" type="CheckButton" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 910.0
 offset_top = 477.0
