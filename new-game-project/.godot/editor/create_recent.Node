@@ -1,5 +1,6 @@
-Camera2D
 AudioStreamPlayer2D
+AudioStreamPlayer
+Camera2D
 Label
 HSlider
 OptionButton

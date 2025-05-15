@@ -9,6 +9,7 @@ extends Node2D
 @onready var spawn_timer = $SpawnTimer
 @onready var correct_song = $player_sprite/right_answer
 @onready var animation = $player_sprite
+@onready var wrong_or_miss = $player_sprite/wrong
 
 # Cena das perguntas que caem (pré-carregada para performance)
 var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
@@ -79,6 +80,8 @@ func check_answer():
 
 	# Se nenhuma pergunta for respondida corretamente
 	animation.play("Fall")
+	wrong_or_miss.play()
+	
 	update_ui("Nenhuma operação corresponde.")
 	input_field.text = ""  # Limpa o campo
 
@@ -110,6 +113,7 @@ func _on_question_failed(question):
 # Quando algo colidir com a zona de falha
 func _on_fail_zone_body_entered(body):
 	animation.play("Fall")
+	wrong_or_miss.play()
 	print("Algo colidiu com a fail zone: ", body)
 
 	# Se for um corpo válido com o método de sinal, emite falha

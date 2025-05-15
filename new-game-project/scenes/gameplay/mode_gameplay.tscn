@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c8quaugkapyry"]
+[gd_scene load_steps=49 format=3 uid="uid://c8quaugkapyry"]
 
 [ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/gameplay/Show_operation.gd" id="1_0d5ff"]
 [ext_resource type="Texture2D" uid="uid://c4ikplght8awa" path="res://assets/Free Pixel Art Forest/Preview/Background.png" id="2_1o26h"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b2mhui4d0mu71" path="res://assets/audio/sfx/gameplay/hit_the_correct_answer.ogg" id="7_wr2py"]
 [ext_resource type="Texture2D" uid="uid://cuwa1qjt7g2yn" path="res://assets/Player test/death.png" id="8_t0mm7"]
 [ext_resource type="Texture2D" uid="uid://211we30a2e3o" path="res://assets/Player test/idle.png" id="9_1ey6o"]
+[ext_resource type="AudioStream" uid="uid://dm3fmi8xy28g0" path="res://assets/audio/sfx/gameplay/wrong_question_or_miss.ogg" id="10_1ey6o"]
 [ext_resource type="Texture2D" uid="uid://blui8uvbrxhcl" path="res://assets/Player test/run.png" id="10_lehme"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l1v76"]
@@ -371,6 +372,11 @@ sprite_frames = SubResource("SpriteFrames_3wsyr")
 animation = &"Jump"
 frame = 1
 frame_progress = 0.719917
+
+[node name="wrong" type="AudioStreamPlayer2D" parent="player_sprite"]
+stream = ExtResource("10_1ey6o")
+volume_db = -20.0
+bus = &"sfx"
 
 [node name="right_answer" type="AudioStreamPlayer2D" parent="player_sprite"]
 position = Vector2(-58.0556, -86.9445)
