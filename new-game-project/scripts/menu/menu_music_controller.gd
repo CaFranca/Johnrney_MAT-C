@@ -1,53 +1,67 @@
-extends Node  # Este nó gerencia a reprodução de músicas de fundo no jogo
+extends Node
 
-# Referência ao nó de reprodução de áudio
 @onready var player = $AudioStreamPlayer
 
-# Nome da faixa atual tocando
 var current_track_name := ""
-
-# Controle global para ativar/desativar a música
 var music_enabled := true
 
-# Dicionário que associa nomes de cenas/modos a arquivos de áudio
+# Lista de músicas aleatórias para gameplay
+var music_list = [
+	"res://assets/audio/music/gameplay/Teste - MatC (3).mp3",
+	"res://assets/audio/music/gameplay/Teste - MatC (4).mp3",
+	"res://assets/audio/music/gameplay/Teste - MatC (5).mp3",
+	"res://assets/audio/music/gameplay/Teste - MatC (6).mp3"
+]
+
+# Dicionário com trilhas fixas para outras cenas
 var music_tracks = {
-	"menu": preload("res://assets/audio/music/menu/main_menu.ogg"),
-	"selection": preload("res://assets/audio/music/gameplay/Teste - MatC (3).mp3"),
-	"gameplay": preload("res://assets/audio/music/gameplay/Teste - MatC (5).mp3")
+	"menu": preload("res://assets/audio/music/menu/main_menu.ogg")
 }
 
-# Toca a música correspondente ao nome da cena/modo passado como argumento
+func _ready():
+	randomize()  # Garante aleatoriedade real
+
+# Retorna uma música aleatória da lista
+func get_random_music() -> AudioStream:
+	var index = randi() % music_list.size()
+	return load(music_list[index])
+
+# Toca a música com base no nome da cena/modo
 func play_music_for(scene_name: String) -> void:
-	# Se a música estiver desativada, para o player
 	if not music_enabled:
 		player.stop()
 		return
 
-	# Se a música atual já for a certa e estiver tocando, não faz nada
 	if current_track_name == scene_name and player.playing:
 		return
 
-	# Se existe uma faixa correspondente, toca
-	if music_tracks.has(scene_name):
-		player.stream = music_tracks[scene_name]  # Define a faixa de áudio
-		player.play()  # Inicia a reprodução
-		current_track_name = scene_name  # Atualiza o nome da faixa atual
-	else:
-		push_warning("Música para '" + scene_name + "' não encontrada!")  # Alerta no console caso a chave não exista
+	var stream: AudioStream = null
 
-# Liga ou desliga a música globalmente
+	if scene_name == "gameplay":
+		stream = get_random_music()
+	elif music_tracks.has(scene_name):
+		stream = music_tracks[scene_name]
+	else:
+		push_warning("Música para '" + scene_name + "' não encontrada!")
+		return
+
+	player.stream = stream
+	player.play()
+	current_track_name = scene_name
+
+# Ativa ou desativa a música globalmente
 func toggle_music(enabled: bool) -> void:
 	music_enabled = enabled
-	if music_enabled:
-		play_music_for(current_track_name)  # Retoma a música atual se ativado
+	if enabled:
+		play_music_for(current_track_name)
 	else:
-		player.stop()  # Para a reprodução se desativado
+		player.stop()
 
-# Define o volume da música via Audio Bus chamado "Music"
-#func slide_bar(value: float) -> void:
-#	var bus_index = AudioServer.get_bus_index("Music")  # Busca o índice do bus de música
-#	if bus_index == -1:
-#		push_error("Bus 'Music' não encontrado!")  # Exibe erro se o bus não existir
-#		return
-#	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))  # Converte valor linear em dB e aplica
-#	AudioServer.set_bus_mute(bus_index, value < 0.01)  # Silencia se o valor for muito baixo
+# Função opcional para controle de volume (descomentável)
+# func slide_bar(value: float) -> void:
+#     var bus_index = AudioServer.get_bus_index("Music")
+#     if bus_index == -1:
+#         push_error("Bus 'Music' não encontrado!")
+#         return
+#     AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+#     AudioServer.set_bus_mute(bus_index, value < 0.01)

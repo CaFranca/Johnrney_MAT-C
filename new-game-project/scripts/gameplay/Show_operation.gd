@@ -7,7 +7,7 @@ extends Node2D
 @onready var submit_button = $SubmitButton
 @onready var fail_zone = $FailZone
 @onready var spawn_timer = $SpawnTimer
-@onready var correct_song = $right_answer
+@onready var correct_song = $player_sprite/right_answer
 @onready var animation = $player_sprite
 
 # Cena das perguntas que caem (pré-carregada para performance)
@@ -23,7 +23,7 @@ func _ready():
 
 	randomize()  # Garante aleatoriedade nas perguntas
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)  # Conecta evento de colisão com a zona de falha
-	spawn_timer.timeout.connect(_on_spawn_timer_timeout)  # Conecta o timer à função de gerar novas perguntas
+
 
 	generate_new_question()  # Gera a primeira pergunta
 	spawn_timer.start()  # Inicia o timer para continuar gerando perguntas

@@ -9,7 +9,7 @@ var gameplay_scene = preload("res://scenes/gameplay/mode_gameplay.tscn")
 # Executado ao iniciar a cena
 func _ready():
 	await get_tree().process_frame  # Espera o primeiro frame para evitar conflitos
-	MusicController.play_music_for("selection")  # Toca a música correspondente à tela de seleção
+	MusicController.play_music_for("menu")  # Toca a música correspondente à tela de seleção
 
 # Função que inicia o jogo com o modo matemático selecionado
 func _start_game_with_mode(mode: String) -> void:

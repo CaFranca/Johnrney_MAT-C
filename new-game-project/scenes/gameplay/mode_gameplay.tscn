@@ -360,13 +360,8 @@ bus = &"sfx"
 [node name="ost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_t0mm7")
 volume_db = -20.0
-autoplay = true
 bus = &"music"
 parameters/looping = false
-
-[node name="right_answer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_wr2py")
-bus = &"sfx"
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -376,6 +371,12 @@ sprite_frames = SubResource("SpriteFrames_3wsyr")
 animation = &"Jump"
 frame = 1
 frame_progress = 0.719917
+
+[node name="right_answer" type="AudioStreamPlayer2D" parent="player_sprite"]
+position = Vector2(-58.0556, -86.9445)
+scale = Vector2(0.138889, 0.138889)
+stream = ExtResource("7_wr2py")
+bus = &"sfx"
 
 [connection signal="text_submitted" from="InputField_for_answer" to="." method="_on_input_field_for_answer_text_submitted"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
