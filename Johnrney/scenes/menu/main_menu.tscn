@@ -78,7 +78,6 @@ grow_vertical = 2
 script = ExtResource("1_kiqgm")
 
 [node name="background" type="TextureRect" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = -19.9999
