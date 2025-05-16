@@ -1,3 +1,8 @@
+AnimationPlayer
+TextureRect
+HBoxContainer
+CanvasLayer
+AnimatedSprite2D
 CharacterBody2D
 StaticBody2D
 Node2D
@@ -7,5 +12,3 @@ AudioStreamPlayer
 Camera2D
 Label
 HSlider
-OptionButton
-CheckButton

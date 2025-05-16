@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cb2d8drfxcdqe"]
 
 [ext_resource type="Script" uid="uid://duvib0msduhck" path="res://scripts/menu/Selection_mode_menu.gd" id="1_hbq5r"]
-[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="2_o1o3e"]
+[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_images/meme-sheldon-cooper_.png" id="2_hbq5r"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_4sgra"]
 [ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_a86st"]
 
@@ -71,7 +71,7 @@ layout_mode = 2
 offset_left = -19.9999
 offset_right = 1300.0
 offset_bottom = 720.0
-texture = ExtResource("2_o1o3e")
+texture = ExtResource("2_hbq5r")
 expand_mode = 2
 stretch_mode = 3
 
