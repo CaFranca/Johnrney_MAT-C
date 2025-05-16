@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1747352914
+::res://::1747356518
 export_presets.cfg::TextFile/TextFile::-1::1747184751::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::28882781350851745::1745674768::1745674813::1::::<><><>0<>0<>30a58e9c007f65203c6e117330b1ad66<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://assets/::1747184909
@@ -53,29 +53,29 @@ idle.png::CompressedTexture2D/CompressedTexture2D::1950390783595140942::17471816
 Read Me.txt::TextFile/TextFile::-1::1747181692::0::1::::<><><>0<>0<><>::
 run.png::CompressedTexture2D/CompressedTexture2D::3200331268910606995::1747181692::1747182265::1::::<><><>0<>0<>b9cefcc09bf6cf72c454cae002252645<>res://.godot/imported/run.png-e9371294b2e2d03a98d530403efd45c8.ctex::
 walk.png::CompressedTexture2D/CompressedTexture2D::4008146680480623792::1747181692::1747182265::1::::<><><>0<>0<>d09004f0e20b1ac71ccef214cf831f0d<>res://.godot/imported/walk.png-91971eed57be1117c7e5e68184412a13.ctex::
-::res://globals/::1747350560
-Menu_MusicController.tscn::PackedScene::645490038115521309::1747350560::0::1::::<><><>0<>0<><>::uid://dmm5471qbes4g::::res://assets/audio/music/menu/main_menu.ogg<>uid://cak22pd7bfidv::::res://scripts/menu/menu_music_controller.gd
+::res://globals/::1747354375
+Menu_MusicController.tscn::PackedScene::645490038115521309::1747354375::0::1::::<><><>0<>0<><>::uid://dmm5471qbes4g::::res://assets/audio/music/menu/main_menu.ogg<>uid://cak22pd7bfidv::::res://scripts/menu/menu_music_controller.gd
 ::res://scenes/::1747184909
-::res://scenes/gameplay/::1747350560
-FallingQuestion.tscn::PackedScene::4799670012979703375::1747350560::0::1::::<><><>0<>0<><>::uid://cei62wjdxx6nf::::res://scripts/gameplay/FallingQuestion.gd
-mode_gameplay.tscn::PackedScene::7123318651552358002::1747353363::0::1::::<><><>0<>0<><>::uid://c3sl6jwbqyvyi::::res://scripts/gameplay/Show_operation.gd<>uid://c4ikplght8awa::::res://assets/Free Pixel Art Forest/Preview/Background.png<>uid://d1emvf3g8jpj::::res://scripts/gameplay/operation_generator.gd<>uid://cam84mvw4u5kt::::res://scenes/gameplay/FallingQuestion.tscn<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://b5bhjxjuu3u3a::::res://assets/audio/music/gameplay/Teste - MatC (6).mp3<>uid://b2mhui4d0mu71::::res://assets/audio/sfx/gameplay/hit_the_correct_answer.ogg<>uid://cuwa1qjt7g2yn::::res://assets/Player test/death.png<>uid://211we30a2e3o::::res://assets/Player test/idle.png<>uid://dm3fmi8xy28g0::::res://assets/audio/sfx/gameplay/wrong_question_or_miss.ogg<>uid://blui8uvbrxhcl::::res://assets/Player test/run.png<>uid://by1tdm6egnokm::::res://scripts/john_victor-player/PlayerController.gd
-::res://scenes/menu/::1747353247
-main_menu.tscn::PackedScene::63603913232959118::1747350560::0::1::::<><><>0<>0<><>::uid://d1fn784yati35::::res://scripts/menu/main_menu.gd<>uid://dxmyc4yt33l3b::::res://assets/Background_Menu/meme-sheldon-cooper_.png<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://yinuh86st0n::::res://assets/audio/sfx/menu/mouse_entered.ogg
-Selection_mode_menu.tscn::PackedScene::4899009676650730384::1747353247::0::1::::<><><>0<>0<><>::uid://duvib0msduhck::::res://scripts/menu/Selection_mode_menu.gd<>uid://dxmyc4yt33l3b::::res://assets/Background_Menu/meme-sheldon-cooper_.png<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://yinuh86st0n::::res://assets/audio/sfx/menu/mouse_entered.ogg
-::res://scenes/menu/config/::1747350560
+::res://scenes/gameplay/::1747354375
+FallingQuestion.tscn::PackedScene::4799670012979703375::1747354375::0::1::::<><><>0<>0<><>::uid://cei62wjdxx6nf::::res://scripts/gameplay/FallingQuestion.gd
+mode_gameplay.tscn::PackedScene::7123318651552358002::1747354375::0::1::::<><><>0<>0<><>::uid://c3sl6jwbqyvyi::::res://scripts/gameplay/mode_gameplay.gd<>uid://c4ikplght8awa::::res://assets/Free Pixel Art Forest/Preview/Background.png<>uid://d1emvf3g8jpj::::res://scripts/gameplay/operation_generator.gd<>uid://cam84mvw4u5kt::::res://scenes/gameplay/FallingQuestion.tscn<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://b5bhjxjuu3u3a::::res://assets/audio/music/gameplay/Teste - MatC (6).mp3<>uid://b2mhui4d0mu71::::res://assets/audio/sfx/gameplay/hit_the_correct_answer.ogg<>uid://cuwa1qjt7g2yn::::res://assets/Player test/death.png<>uid://211we30a2e3o::::res://assets/Player test/idle.png<>uid://dm3fmi8xy28g0::::res://assets/audio/sfx/gameplay/wrong_question_or_miss.ogg<>uid://blui8uvbrxhcl::::res://assets/Player test/run.png<>uid://by1tdm6egnokm::::res://scripts/john_victor-player/PlayerController.gd
+::res://scenes/menu/::1747354375
+main_menu.tscn::PackedScene::63603913232959118::1747354375::0::1::::<><><>0<>0<><>::uid://d1fn784yati35::::res://scripts/menu/main_menu.gd<>uid://dxmyc4yt33l3b::::res://assets/Background_Menu/meme-sheldon-cooper_.png<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://yinuh86st0n::::res://assets/audio/sfx/menu/mouse_entered.ogg
+Selection_mode_menu.tscn::PackedScene::4899009676650730384::1747354375::0::1::::<><><>0<>0<><>::uid://duvib0msduhck::::res://scripts/menu/Selection_mode_menu.gd<>uid://dxmyc4yt33l3b::::res://assets/Background_Menu/meme-sheldon-cooper_.png<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://yinuh86st0n::::res://assets/audio/sfx/menu/mouse_entered.ogg
+::res://scenes/menu/config/::1747354375
 h_slider.tscn::PackedScene/PackedScene::2810751329108812999::1747349818::0::1::::<><><>0<>0<><>::uid://bb0xsgkllvpx0::::res://scripts/menu/config/h_slider.gd
-options.tscn::PackedScene::664468616869526138::1747350560::0::1::::<><><>0<>0<><>::uid://ddhwumwo4l3tp::::res://scripts/menu/config/options.gd<>uid://dxmyc4yt33l3b::::res://assets/Background_Menu/meme-sheldon-cooper_.png<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://bgbswtjolbw28::::res://scenes/menu/config/h_slider.tscn<>uid://yinuh86st0n::::res://assets/audio/sfx/menu/mouse_entered.ogg
+options.tscn::PackedScene::664468616869526138::1747354375::0::1::::<><><>0<>0<><>::uid://ddhwumwo4l3tp::::res://scripts/menu/config/options.gd<>uid://dxmyc4yt33l3b::::res://assets/Background_Menu/meme-sheldon-cooper_.png<>uid://b27y8uwjrvonh::::res://assets/audio/sfx/menu/button_click.ogg<>uid://bgbswtjolbw28::::res://scenes/menu/config/h_slider.tscn<>uid://yinuh86st0n::::res://assets/audio/sfx/menu/mouse_entered.ogg
 ::res://scenes/player/::1747184909
 Player.tscn::PackedScene/PackedScene::8065483048430776481::1747184711::0::1::::<><><>0<>0<><>::uid://cn1sgu5njx66u::::res://scripts/john_victor-player/character_body_2d.gd<>uid://211we30a2e3o::::res://assets/Player test/idle.png<>uid://cuwa1qjt7g2yn::::res://assets/Player test/death.png<>uid://blui8uvbrxhcl::::res://assets/Player test/run.png
 ::res://scripts/::1747184909
-::res://scripts/gameplay/::1747350423
+::res://scripts/gameplay/::1747353884
 FallingQuestion.gd::GDScript/GDScript::5072043376766927619::1747349818::0::1::::<>CharacterBody2D<><>0<>0<><>::
+mode_gameplay.gd::GDScript::6776011542119301356::1747353884::0::1::::<>Node2D<><>0<>0<><>::
 operation_generator.gd::GDScript/GDScript::264505762013468883::1747349818::0::1::::<>Node<><>0<>0<><>::
-Show_operation.gd::GDScript::6776011542119301356::1747350423::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/john_victor-player/::1747353247
+::res://scripts/john_victor-player/::1747354813
 camera_2d.gd::GDScript/GDScript::2219570225882677530::1747349818::0::1::::<>Camera2D<><>0<>0<><>::
 character_body_2d.gd::GDScript/GDScript::5740074874334166806::1747349818::0::1::::<>CharacterBody2D<><>0<>0<><>::
-PlayerController.gd::GDScript::4125786411215135776::1747353363::0::1::::<>Node<><>0<>0<><>::
+PlayerController.gd::GDScript::4125786411215135776::1747354813::0::1::::<>Node<><>0<>0<><>::
 ::res://scripts/menu/::1747349818
 main_menu.gd::GDScript/GDScript::8995342119910454734::1747349818::0::1::::<>Control<><>0<>0<><>::
 menu_music_controller.gd::GDScript/GDScript::4795173514107067795::1747349818::0::1::::<>Node<><>0<>0<><>::

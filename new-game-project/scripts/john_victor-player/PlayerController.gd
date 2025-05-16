@@ -15,7 +15,7 @@ func register_failure():
 
 	# Incrementa o número de falhas
 	current_errors += 1
-	print("Falhas: ", current_errors,"/5")
+	print("Falhas: ", current_errors,"/", max_errors)
 
 	# Se o número de falhas atingir o máximo, emite o sinal de game over
 	if current_errors >= max_errors:

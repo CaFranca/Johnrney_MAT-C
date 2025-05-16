@@ -1,6 +1,6 @@
 # Johnrney - Jogo de Contas que Caem
 
-![Capa do projeto](https://user-images.githubusercontent.com/SeuUsuario/Johnrney/banner.png)  
+![Capa do projeto](assets/banner.png)
 *Jogo educativo e divertido inspirado em TuxMath, com operações matemáticas caindo do topo da tela para serem resolvidas antes que atinjam a zona de falha.*
 
 ---
