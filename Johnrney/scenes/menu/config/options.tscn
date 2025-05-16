@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://jp4x3nww16ck"]
 
 [ext_resource type="Script" uid="uid://ddhwumwo4l3tp" path="res://scripts/menu/config/options.gd" id="1_ib07x"]
-[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_Menu/meme-sheldon-cooper_.png" id="2_ffnc0"]
+[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_images/meme-sheldon-cooper_.png" id="2_ffnc0"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_dvmy2"]
 [ext_resource type="PackedScene" uid="uid://bgbswtjolbw28" path="res://scenes/menu/config/h_slider.tscn" id="3_ffnc0"]
 [ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_1exik"]

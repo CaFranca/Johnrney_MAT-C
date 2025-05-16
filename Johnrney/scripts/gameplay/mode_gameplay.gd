@@ -48,7 +48,7 @@ func generate_new_question():
 	active_questions.append(question)
 
 	animation.play("Run_Up")
-	print("Operação gerada")
+	#print("Operação gerada")
 	update_ui("Responda a operação correta!")
 
 func check_answer():
@@ -88,6 +88,7 @@ func check_answer():
 	input_field.grab_focus()
 
 	player_controller.register_failure()
+	animation.play("Run_Up")
 
 func update_ui(message: String):
 	question_label.text = message
@@ -97,7 +98,7 @@ func _on_submit_button_pressed():
 	check_answer()
 	input_field.grab_focus()
 
-func _on_input_field_for_answer_text_submitted(new_text):
+func _on_input_field_for_answer_text_submitted(_new_text):
 	check_answer()
 	input_field.grab_focus()
 
@@ -109,7 +110,9 @@ func _on_question_failed(question):
 func _on_fail_zone_body_entered(body):
 	animation.play("Fall")
 	wrong_or_miss.play()
-	print("Algo colidiu com a fail zone: ", body)
+	#print("Algo colidiu com a fail zone: ", body)
+
+	
 
 	if body is CharacterBody2D and body.has_method("fail"):
 		body.fail()

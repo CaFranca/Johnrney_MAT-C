@@ -3,7 +3,7 @@ extends CharacterBody2D  # Representa uma pergunta que se move na tela
 # Variáveis principais da pergunta
 var question = ""      # Texto da operação matemática (ex: "2 + 2")
 var answer = 0         # Resposta correta da pergunta
-var speed = 60.0       # Velocidade de queda da pergunta
+var speed = 70.0       # Velocidade de queda da pergunta
 var answered = false   # Indica se a pergunta já foi respondida
 
 # Sinal emitido quando a pergunta não for respondida a tempo
@@ -23,7 +23,7 @@ func initialize(new_question: String, new_answer: int):
 	if label:
 		label.text = question
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not answered:
 		# Move a pergunta para baixo enquanto não foi respondida
 		velocity = Vector2(0, speed)
@@ -36,5 +36,5 @@ func fail():
 		emit_signal("question_failed")  # Notifica que a pergunta falhou
 		queue_free()  # Remove a pergunta da cena
 
-func _exit_tree():
-	print("FallingQuestion removida:", self)
+#func _exit_tree():
+	#print("FallingQuestion removida:", self)
