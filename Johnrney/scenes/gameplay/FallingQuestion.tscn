@@ -15,7 +15,7 @@ offset_right = -2.0
 offset_bottom = -2.0
 scale = Vector2(2.13073, 2.13073)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Answerhitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(2.13073, 2.13073)
 shape = SubResource("RectangleShape2D_f1rf4")
-debug_color = Color(0, 0.6, 0.701961, 0.568627)
+debug_color = Color(0.76655, 0.166863, 1, 0.568627)
