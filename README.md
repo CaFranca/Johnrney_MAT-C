@@ -81,6 +81,6 @@ Este projeto está licenciado sob a licença MIT — veja o arquivo [LICENSE](LI
 
 Criado por **Caique**  
 YouTube: [CaVibezz](https://www.youtube.com/@CaVibezz)  
-Twitter: [@SeuTwitter](https://twitter.com/seutwitter)
+
 
 
