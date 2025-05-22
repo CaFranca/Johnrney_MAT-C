@@ -1,6 +1,10 @@
+HBoxContainer
+VBoxContainer
+MarginContainer
+ColorRect
+Button
 AnimationPlayer
 TextureRect
-HBoxContainer
 CanvasLayer
 AnimatedSprite2D
 CharacterBody2D
@@ -8,7 +12,3 @@ StaticBody2D
 Node2D
 Node
 AudioStreamPlayer2D
-AudioStreamPlayer
-Camera2D
-Label
-HSlider

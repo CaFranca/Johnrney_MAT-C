@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://t5q7rqvmqojg"]
+
+[ext_resource type="Shader" uid="uid://cxemmpseo7ops" path="res://scenes/menu/pause_menu.gdshader" id="1_n54lc"]
+[ext_resource type="Script" uid="uid://5gyovfi128nw" path="res://scripts/menu/pause_menu.gd" id="1_ux7g8"]
+[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_xtxec"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux7g8"]
+shader = ExtResource("1_n54lc")
+shader_parameter/amount = 3.0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ux7g8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ux7g8")
+layout_mode = 0
+offset_left = -2526.0
+offset_top = -1404.0
+offset_right = -2273.0
+offset_bottom = -1257.0
+scale = Vector2(21.355, 21.355)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -228.0
+offset_right = -91.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.80886, 4.80886)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="restart" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="."]
+process_priority = 1
+stream = ExtResource("3_xtxec")
+volume_db = -20.0
+bus = &"sfx"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dexvh4icngllv"
+path="res://.godot/imported/C418 - Sweden (Trap Remix) (mp3cut.net).ogg-efd622aeea8552e058212b1eb57f58b1.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg"
+dest_files=["res://.godot/imported/C418 - Sweden (Trap Remix) (mp3cut.net).ogg-efd622aeea8552e058212b1eb57f58b1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

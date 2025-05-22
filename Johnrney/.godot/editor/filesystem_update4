@@ -1,10 +1,8 @@
-res://scenes/menu/config/options.tscn
 res://scenes/gameplay/mode_gameplay.tscn
-res://scenes/menu/main_menu.tscn
-res://scenes/menu/Selection_mode_menu.tscn
-res://scenes/gameplay/FallingQuestion.tscn
-res://globals/Menu_MusicController.tscn
-res://scripts/gameplay/FallingQuestion.gd
 res://scripts/gameplay/mode_gameplay.gd
-res://scripts/john_victor-player/PlayerController.gd
-res://scripts/menu/Selection_mode_menu.gd
+res://scenes/menu/pause_menu.tscn
+res://scenes/menu/pause_menu.gdshader
+res://globals/Menu_MusicController.tscn
+res://scripts/menu/menu_music_controller.gd
+res://assets/audio/bus/default.tres
+res://scripts/menu/pause_menu.gd
