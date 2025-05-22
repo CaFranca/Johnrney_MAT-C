@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c8quaugkapyry"]
+[gd_scene load_steps=49 format=3 uid="uid://c8quaugkapyry"]
 
 [ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/gameplay/mode_gameplay.gd" id="1_0d5ff"]
 [ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/gameplay/operation_generator.gd" id="3_jcpkf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://blui8uvbrxhcl" path="res://assets/sprites/Player_sprites/run.png" id="8_lehme"]
 [ext_resource type="AudioStream" uid="uid://dm3fmi8xy28g0" path="res://assets/audio/sfx/gameplay/wrong_question_or_miss.ogg" id="10_1ey6o"]
 [ext_resource type="Texture2D" uid="uid://xtnj5wsyftux" path="res://assets/sprites/Player_sprites/heartsprite.png" id="12_3wsyr"]
+[ext_resource type="PackedScene" uid="uid://t5q7rqvmqojg" path="res://scenes/menu/pause_menu.tscn" id="12_4rrbf"]
 [ext_resource type="Script" uid="uid://by1tdm6egnokm" path="res://scripts/john_victor-player/PlayerController.gd" id="12_lehme"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l1v76"]
@@ -379,33 +380,35 @@ offset_bottom = 420.0
 scale = Vector2(0.254976, 0.254976)
 
 [node name="heart" type="AnimatedSprite2D" parent="PlayerController/healthbar/HBoxContainer"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
 
 [node name="heart2" type="AnimatedSprite2D" parent="PlayerController/healthbar/HBoxContainer"]
 position = Vector2(286.302, 0)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
 
 [node name="heart3" type="AnimatedSprite2D" parent="PlayerController/healthbar/HBoxContainer"]
 position = Vector2(564.759, 0)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
 
 [node name="heart4" type="AnimatedSprite2D" parent="PlayerController/healthbar/HBoxContainer"]
 position = Vector2(843.217, 0)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
 
 [node name="heart5" type="AnimatedSprite2D" parent="PlayerController/healthbar/HBoxContainer"]
 position = Vector2(1117.75, 0)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
+
+[node name="PauseMenu" parent="PlayerController/healthbar" instance=ExtResource("12_4rrbf")]
+visible = false
+offset_left = 482.0
+offset_top = 223.0
+offset_right = 482.0
+offset_bottom = 223.0
 
 [connection signal="text_submitted" from="InputField_for_answer" to="." method="_on_input_field_for_answer_text_submitted"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]

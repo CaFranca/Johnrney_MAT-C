@@ -32,6 +32,8 @@ func _ready():
 	generate_new_question()
 	spawn_timer.start()
 
+
+
 func set_mode(mode: String):
 	selected_mode = mode
 
