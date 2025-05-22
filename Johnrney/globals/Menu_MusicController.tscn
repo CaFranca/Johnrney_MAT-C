@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://jgxekmxrsyyn"]
+[gd_scene load_steps=2 format=3 uid="uid://jgxekmxrsyyn"]
 
 [ext_resource type="Script" uid="uid://cak22pd7bfidv" path="res://scripts/menu/menu_music_controller.gd" id="1_n7yh8"]
-[ext_resource type="AudioStream" uid="uid://ponkfll1fmyt" path="res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).wav" id="2_gtk41"]
 
 [node name="MusicController" type="Node"]
 script = ExtResource("1_n7yh8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_gtk41")
 volume_db = -10.0
 autoplay = true
 bus = &"music"

@@ -16,7 +16,7 @@ var music_list = [
 # Dicionário com trilhas fixas para outras cenas
 var music_tracks = {
 	#"menu": preload("res://assets/audio/music/menu/main_menu.ogg")
-	"menu": preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).wav")
+	"menu": preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg")
 }
 
 func _ready():

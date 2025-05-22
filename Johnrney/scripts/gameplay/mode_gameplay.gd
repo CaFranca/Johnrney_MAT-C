@@ -11,7 +11,8 @@ extends Node2D  # Cena principal do gameplay
 @onready var wrong_or_miss = $PlayerController/player_sprite/wrong
 @onready var animation = $PlayerController/player_sprite
 @onready var player_controller = $PlayerController
-
+@onready var pause_menu = $PlayerController/healthbar/PauseMenu
+var paused = false
 # Cena da pergunta que vai cair do topo
 var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
 
@@ -25,15 +26,27 @@ func _ready():
 	animation.play("Run_Up")
 	MusicController.play_music_for("gameplay")
 	randomize()
-
+	pause_menu.set_gameplay(self)
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	player_controller.game_over.connect(_on_game_over)
 
 	generate_new_question()
 	spawn_timer.start()
 
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		pauseMenu()
 
-
+func pauseMenu():
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else:
+		pause_menu.show()
+		Engine.time_scale = 0
+		
+	paused = !paused
+	
 func set_mode(mode: String):
 	selected_mode = mode
 
@@ -123,11 +136,35 @@ func _on_spawn_timer_timeout():
 	generate_new_question()
 
 func _on_return_to_menu_pressed() -> void:
+	Engine.time_scale = 1  # <-- Descongela o jogo
 	$buttonclick.play()
 	await $buttonclick.finished
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
+
+func restart_game():
+	Engine.time_scale = 1  # Garante que o jogo não fique pausado
+
+	var scene = preload("res://scenes/gameplay/mode_gameplay.tscn").instantiate()
+	scene.set_mode(selected_mode)  # Mantém o mesmo modo atual
+
+	get_tree().root.add_child(scene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = scene
+
+
 func _on_game_over():
+	Engine.time_scale = 1  # <-- Garante que descongela ao sair
 	update_ui("Game Over!")
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://scenes/menu/Selection_mode_menu.tscn")
+
+
+func _on_reiniciar_pressed() -> void:
+	Engine.time_scale = 1
+	get_tree().paused = false
+	restart_game()
+
+
+func _on_pause_pressed() -> void:
+	pauseMenu()
