@@ -12,6 +12,7 @@ extends Node2D  # Cena principal do gameplay
 @onready var animation = $PlayerController/player_sprite
 @onready var player_controller = $PlayerController
 @onready var pause_menu = $PlayerController/healthbar/PauseMenu
+@onready var gameOver = $PlayerController/player_sprite/GameOver
 var paused = false
 # Cena da pergunta que vai cair do topo
 var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
@@ -102,7 +103,7 @@ func check_answer():
 	await get_tree().process_frame
 	input_field.grab_focus()
 
-	player_controller.register_failure()
+	#player_controller.register_failure() #faz com que uma vida seja descontada se errar
 	animation.play("Run_Up")
 
 func update_ui(message: String):
@@ -154,6 +155,7 @@ func restart_game():
 
 
 func _on_game_over():
+	gameOver.play()
 	Engine.time_scale = 1  # <-- Garante que descongela ao sair
 	update_ui("Game Over!")
 	await get_tree().create_timer(1).timeout
