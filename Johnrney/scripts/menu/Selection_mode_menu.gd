@@ -1,63 +1,67 @@
 extends Control
 
-# Pré-carrega a cena principal de gameplay
+# Pré-carrega a cena principal do modo de gameplay (jogo matemático)
 var gameplay_scene = preload("res://scenes/gameplay/mode_gameplay.tscn")
 
-# Referência ao efeito sonoro de clique
+# Referência ao efeito sonoro do clique do botão
 @onready var button_click = $buttonclick
 
-# Executado ao iniciar a cena
+# Função chamada quando a cena é carregada e pronta
 func _ready():
-	await get_tree().process_frame  # Espera o primeiro frame para evitar conflitos
-	MusicController.play_music_for("menu")  # Toca a música correspondente à tela de seleção
+	# Espera um frame para garantir que a cena esteja estável antes de executar algo
+	await get_tree().process_frame
+	# Inicia a música relacionada ao menu de seleção
+	MusicController.play_music_for("menu")
 
-# Função que inicia o jogo com o modo matemático selecionado
+# Função que inicia a gameplay com o modo matemático selecionado
 func _start_game_with_mode(mode: String) -> void:
-	button_click.play()  # Toca o som de clique
-	await button_click.finished  # Espera o som terminar
+	button_click.play()  # Toca o som de clique para feedback
+	await button_click.finished  # Aguarda o término do som para evitar sobreposição
 
-	var scene_instance = gameplay_scene.instantiate()  # Cria uma instância da cena de gameplay
-	scene_instance.set_mode(mode)  # Define o modo de operação matemática (soma, subtração, etc.)
-	get_tree().root.add_child(scene_instance)  # Adiciona a nova cena ao nó raiz
-	get_tree().current_scene.queue_free()  # Remove a cena atual
-	get_tree().current_scene = scene_instance  # Define a nova cena como atual
+	# Instancia a cena do jogo
+	var scene_instance = gameplay_scene.instantiate()
+	# Define o modo do jogo (add, sub, mul, div, all) na cena de gameplay
+	scene_instance.set_mode(mode)
+	# Adiciona a nova cena ao nó raiz da árvore de cenas
+	get_tree().root.add_child(scene_instance)
+	# Remove a cena atual para liberar memória
+	get_tree().current_scene.queue_free()
+	# Atualiza a referência da cena atual para a nova instância
+	get_tree().current_scene = scene_instance
 
-# Chamado ao clicar no botão de soma
+# Funções chamadas quando cada botão correspondente a um modo é pressionado
 func _on_sum_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	_start_game_with_mode("add")  # Inicia o jogo no modo de adição
+	_start_game_with_mode("add")  # Inicia no modo soma
 
-# Chamado ao clicar no botão de subtração
 func _on_minus_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	_start_game_with_mode("sub")
+	_start_game_with_mode("sub")  # Inicia no modo subtração
 
-# Chamado ao clicar no botão de multiplicação
 func _on_times_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	_start_game_with_mode("mul")
+	_start_game_with_mode("mul")  # Inicia no modo multiplicação
 
-# Chamado ao clicar no botão de divisão
 func _on_div_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	_start_game_with_mode("div")
+	_start_game_with_mode("div")  # Inicia no modo divisão
 
-# Chamado ao clicar no botão de todos os modos misturados
 func _on_all_pressed() -> void:
 	button_click.play()
 	await button_click.finished
-	_start_game_with_mode("all")
+	_start_game_with_mode("all")  # Inicia com todos os modos misturados
 
-# Chamado ao clicar no botão de voltar ao menu principal
+# Função chamada ao pressionar o botão de voltar ao menu principal
 func _on_back_pressed() -> void:
 	button_click.play()
 	await button_click.finished
+	# Troca a cena para o menu principal
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
-# Comentado: opção para alternar a música
-#func _on_Musica_toggled(toggled_on: bool) -> void:
+# Comentado: exemplo de função para alternar música via botão toggle
+# func _on_Musica_toggled(toggled_on: bool) -> void:
 #	MusicController.toggle_music(toggled_on)
