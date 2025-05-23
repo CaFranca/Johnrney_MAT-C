@@ -1,76 +1,88 @@
 extends Node
 
-signal game_over  # Sinal emitido quando o jogo acaba (número máximo de erros atingido)
+# Sinal emitido quando o jogo acaba (quando o número máximo de erros é atingido)
+signal game_over
 
-var max_errors: int = 5  # Número máximo de erros permitidos
-var current_errors: int = 0  # Contador atual de erros cometidos
-var developer_mode := false  # Modo desenvolvedor que ignora falhas
+# Número máximo de erros permitidos antes do game over
+var max_errors: int = 5
+# Contador atual de erros cometidos pelo jogador
+var current_errors: int = 0
+# Modo desenvolvedor que ignora falhas para facilitar testes/debug
+var developer_mode := false
 
-@onready var hearts_container = $healthbar/HBoxContainer  # Container que guarda os corações (UI)
+# Referência ao container que guarda os corações na UI (barra de vida)
+@onready var hearts_container = $healthbar/HBoxContainer
 
 func _ready():
-	# Inicializa os corações na interface
+	# Inicializa a interface visual dos corações ao iniciar o nó
 	update_hearts()
 
+# Registra uma falha do jogador
 func register_failure():
-	# Se o modo desenvolvedor estiver ativo, ignora a falha
+	# Se modo desenvolvedor estiver ativado, ignora o registro da falha
 	if developer_mode:
 		return
 
-	# Incrementa a contagem de erros
+	# Incrementa o contador de erros
 	current_errors += 1
-	# Atualiza a interface com o estado dos corações
+	# Atualiza a barra de corações para refletir o novo número de erros
 	update_hearts()
 
-	# Se atingir o número máximo de erros, emite o sinal de game over
+	# Se o número de erros atingir o máximo, emite o sinal de game over
 	if current_errors >= max_errors:
 		emit_signal("game_over")
 
+# Reseta o contador de erros e restaura a UI dos corações
 func reset():
-	# Reseta o número de erros e deixa todos os corações visíveis (reset UI)
+	# Zera a contagem de erros
 	current_errors = 0
+	# Deixa todos os corações visíveis na interface
 	for i in range(max_errors):
 		var heart = hearts_container.get_child(i)
 		if heart is AnimatedSprite2D:
-			heart.visible = true  # Reaparece ao resetar
+			heart.visible = true  # Torna o coração visível novamente
+	# Atualiza a animação dos corações após o reset
 	update_hearts()
 
-# Função chamada após a animação do coração terminar
+# Função chamada quando a animação de um coração termina
 func _on_heart_animation_finished(heart: AnimatedSprite2D):
-	# Se a animação que terminou for a 'empty', oculta o coração
+	# Se a animação que terminou for a "empty" (coração vazio), oculta o coração
 	if heart.animation == "empty":
 		heart.visible = false
 
+# Atualiza a exibição dos corações de acordo com o número atual de erros
 func update_hearts():
-	# Verifica se o container dos corações ainda é válido
+	# Verifica se o container dos corações ainda existe (para evitar erros)
 	if not is_instance_valid(hearts_container):
 		return
 
 	var children_count = hearts_container.get_child_count()
 
-	# Atualiza cada coração de acordo com o número de erros
+	# Para cada coração, decide se ele deve estar cheio (idle) ou vazio (empty)
 	for i in range(max_errors):
 		if i >= children_count:
-			continue
+			continue  # Caso tenha menos corações no container do que o max_errors
 
 		var heart = hearts_container.get_child(i)
 		if heart is AnimatedSprite2D:
 			if i < max_errors - current_errors:
-				# Corações restantes ficam visíveis e com animação "idle"
+				# Corações restantes ficam visíveis e com animação "idle" (cheio)
 				heart.visible = true
 				heart.play("idle")
 			else:
-				# Apenas toca animação "empty" se o coração estiver visível
+				# Se o coração representa um erro, toca a animação "empty" e depois oculta
 				if heart.visible:
 					heart.play("empty")
-					# Aguarda a animação tocar por 0.5 segundos antes de ocultar
+					# Aguarda 0.5 segundos para a animação tocar antes de ocultar o coração
 					await get_tree().create_timer(0.5).timeout
 					_on_heart_animation_finished(heart)
 
-# Captura evento de teclado para ativar/desativar o modo desenvolvedor
+# Captura evento de teclado para ativar ou desativar o modo desenvolvedor com F12
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F12:
+		# Alterna o estado do modo desenvolvedor
 		developer_mode = !developer_mode
+		
 		if developer_mode:
 			print("Developer Mode ATIVADO")
 		else:
