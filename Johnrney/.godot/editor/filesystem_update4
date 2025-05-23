@@ -11,3 +11,4 @@ res://scenes/menu/config/options.tscn
 res://scripts/menu/menu_music_controller.gd
 res://scripts/menu/config/options.gd
 res://scripts/menu/config/h_slider.gd
+res://scripts/gameplay/mode_gameplay.gd
