@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://bi8yfkiql2x7s"
 [autoload]
 
 MusicController="*res://globals/Menu_MusicController.tscn"
+SaveManager="*res://globals/SaveManager.gd"
 
 [display]
 

@@ -1,23 +1,42 @@
-extends HSlider  # Esse script é anexado a um controle deslizante (HSlider), usado para ajustar o volume de um bus de áudio
+extends HSlider
 
-# Nome do bus de áudio (ex: "Master", "Music", "SFX")
-# Esse valor deve ser definido no Inspetor do Godot para que o slider controle o bus correto
-@export var bus_name: String
+@export var bus_name: String  # Nome do bus de áudio que esse slider controla
 
-# Índice numérico do bus, usado internamente pela AudioServer para acessar o bus mais rapidamente
 var bus_index: int
 
 func _ready() -> void:
-	# Ao iniciar, obtém o índice do bus de áudio pelo nome fornecido
-	# Caso o nome não exista, retorna -1 (convém validar se quiser evitar erros)
+	# Obtém o índice do bus de áudio baseado no nome
 	bus_index = AudioServer.get_bus_index(bus_name)
 	
-	# Define o valor do slider de acordo com o volume atual do bus
-	# Converte de decibéis (usado internamente pelo AudioServer) para escala linear (0.0 a 1.0), que o slider entende
-	value = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
+	# Inicializa o valor do slider com o valor salvo no SaveManager para esse bus
+	match bus_name:
+		"Master":
+			value = SaveManager.settings.master_volume
+		"music":
+			value = SaveManager.settings.music_volume
+		"sfx":
+			value = SaveManager.settings.sfx_volume
+		_:
+			# Se o bus_name não for reconhecido, pega o volume atual do AudioServer como fallback
+			value = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
+
+	# Aplica o volume inicial no AudioServer e mudo se o volume estiver quase zero
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	AudioServer.set_bus_mute(bus_index, value <= 0.01)
+
 
 func _on_value_changed(value: float) -> void:
-	# Este método deve estar conectado ao sinal 'value_changed' do próprio HSlider
-	# Quando o usuário mover o slider, convertemos o valor linear (0.0 a 1.0) de volta para decibéis
-	# e aplicamos esse volume no bus de áudio correspondente
+	# Atualiza o volume e mute no AudioServer conforme o valor do slider
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	AudioServer.set_bus_mute(bus_index, value <= 0.01)
+
+	# Atualiza o valor no SaveManager para salvar depois
+	match bus_name:
+		"Master":
+			SaveManager.settings.master_volume = value
+		"music":
+			SaveManager.settings.music_volume = value
+		"sfx":
+			SaveManager.settings.sfx_volume = value
+
+	SaveManager.save_settings()  # Salva as configurações alteradas
