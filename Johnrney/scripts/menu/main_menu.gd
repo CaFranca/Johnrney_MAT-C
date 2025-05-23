@@ -10,8 +10,10 @@ extends Control  # Script do menu principal do jogo
 
 
 func _ready() -> void:
-	# Toca a música de fundo do menu
 	MusicController.play_music_for("menu")
+	# Exemplo: ajustar volume conforme config salva
+	MusicController.set_volume(SaveManager.settings.music_volume)
+
 
 
 # ========================================= #

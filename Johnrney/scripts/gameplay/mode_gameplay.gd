@@ -56,6 +56,9 @@ func _ready() -> void:
 	# Conecta sinal de game over vindo do player_controller
 	player_controller.game_over.connect(_on_game_over)
 
+	# **Aqui você pode chamar sua função que aplica as configurações**
+	#apply_settings()
+
 	# Gera a primeira pergunta e inicia timer de spawn das próximas
 	generate_new_question()
 	spawn_timer.start()
@@ -65,6 +68,23 @@ func _process(delta: float) -> void:
 	# Detecta se tecla de pause foi pressionada
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
+
+
+#func apply_settings() -> void:
+	# Exemplo: carregar volume da música salvo nas configurações
+#	MusicController.set_volume(GlobalSettings.music_volume)
+
+	# Ajustar a dificuldade, que pode influenciar tempo do spawn, número de falhas, etc.
+#	selected_mode = GlobalSettings.difficulty_mode
+
+	# Exemplo: ajustar velocidade do spawn conforme dificuldade
+#	if selected_mode == "hard":
+#		spawn_timer.wait_time = 1.0
+#	else:
+#		spawn_timer.wait_time = 2.0
+
+	# Atualiza UI para mostrar modo selecionado
+#	update_ui("Modo: %s" % selected_mode)
 
 
 func pauseMenu() -> void:
@@ -114,45 +134,36 @@ func generate_new_question() -> void:
 func check_answer() -> void:
 	var text = input_field.text.strip_edges()
 
-	# Se campo vazio, não faz nada
 	if text == "":
 		return
 
-	# Verifica se o texto é um número inteiro válido
 	if not text.is_valid_int():
 		update_ui("Digite um número válido.")
 		return
 
 	var player_answer = int(text)
 
-	# Verifica todas as perguntas ativas para resposta correta
 	for q in active_questions:
 		if is_instance_valid(q) and not q.answered and player_answer == q.answer:
-			# Marca pergunta como respondida
 			q.answered = true
-
-			# Desativa colisão para evitar múltiplas respostas
 			q.collision_shape.disabled = true
-
-			# Remove pergunta da tela
 			q.queue_free()
-
-			# Remove da lista de perguntas ativas
 			active_questions.erase(q)
-
-			# Limpa campo e foca novamente para próximo input
 			input_field.text = ""
 			await get_tree().process_frame
 			input_field.grab_focus()
 
-			# Reproduz som de acerto e animação correspondente
 			correct_song.play()
 			animation.play("Run_Down")
 
 			update_ui("Correto!")
-			return
 
-	# Se nenhuma pergunta bateu com a resposta, é erro
+			# <-- Aqui, registra acerto no SaveManager
+			SaveManager.add_score(selected_mode)
+
+	return
+
+	# Se não acertou nenhuma operação:
 	animation.play("Fall")
 	wrong_or_miss.play()
 	update_ui("Nenhuma operação corresponde.")
@@ -160,8 +171,12 @@ func check_answer() -> void:
 	await get_tree().process_frame
 	input_field.grab_focus()
 
-	# Volta animação para corrida
+	# Registra erro no SaveManager
+	SaveManager.add_error()
+
 	animation.play("Run_Up")
+
+
 
 
 func update_ui(message: String) -> void:
@@ -185,12 +200,14 @@ func _on_input_field_for_answer_text_submitted(_new_text: String) -> void:
 
 
 func _on_question_failed(question) -> void:
-	# Remove pergunta da lista e atualiza UI
 	active_questions.erase(question)
 	update_ui("Uma conta caiu sem resposta!")
 
-	# Registra falha (ex: diminui vida)
+	# Registra falha no player_controller
 	player_controller.register_failure()
+
+	# Registra erro no SaveManager
+	SaveManager.add_error()
 
 
 func _on_fail_zone_body_entered(body) -> void:

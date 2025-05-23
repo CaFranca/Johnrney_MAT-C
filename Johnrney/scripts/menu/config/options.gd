@@ -1,44 +1,39 @@
-extends Control
+extends Control  # Esta cena herda de Control, um tipo de nó usado para interfaces gráficas
 
-# Referência ao efeito sonoro de clique do botão (nó AudioStreamPlayer)
+# Busca o node chamado "buttonclick" e guarda na variável button_click após a cena estar pronta
 @onready var button_click = $buttonclick
 
-# Executado quando a cena é carregada
 func _ready() -> void:
-	# Inicia a música correspondente à tela de menu
+	# Quando o nó estiver pronto, chama o MusicController para tocar a música do menu
 	MusicController.play_music_for("menu")
 
 # Função chamada quando o botão "voltar" é pressionado
 func _on_back_pressed() -> void:
-	button_click.play()  # Toca o som de clique
-	await button_click.finished  # Aguarda o término do som antes de continuar
+	button_click.play()        # Toca o som de clique
+	await button_click.finished  # Espera o som terminar para continuar
 	# Troca para a cena do menu principal
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
-# Função chamada quando o mouse entra na área do botão "voltar"
+# Função chamada quando o mouse entra sobre o botão "voltar"
 func _on_back_mouse_entered() -> void:
-	$mouse_entered.play()  # Toca som de hover
-	await $mouse_entered.finished  # Aguarda o término do som
+	$mouse_entered.play()         # Toca um som de mouse entrando no botão
+	await $mouse_entered.finished # Espera o som terminar antes de continuar (se necessário)
 
-# Função chamada quando o toggle de música é ativado/desativado
-#func _on_musics_toggled(toggled_on: bool) -> void:
-#	# Ativa ou desativa a música conforme o estado do toggle
-#	MusicController.toggle_music(toggled_on)
-
-# Função chamada quando o slider de volume é modificado
-func _on_music_volume_value_changed(value) -> void:
-	# Ajusta o volume da música com base no valor do slider (espera-se valor entre 0.0 e 1.0)
-	MusicController.slide_bar(value)
-
-# Função chamada quando um item de resolução é selecionado no menu suspenso
+# Função chamada quando um item da lista de resoluções é selecionado (index é a posição selecionada)
 func _on_resolution_item_selected(index: int) -> void:
 	match index:
 		0:
-			# Define a janela para resolução Full HD (1920x1080)
+			# Define a janela para resolução Full HD
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
+			SaveManager.settings.resolution = "1920x1080"  # Atualiza a configuração no SaveManager
 		1:
-			# Define a janela para resolução HD+ (1600x900)
+			# Define a janela para resolução 1600x900
 			DisplayServer.window_set_size(Vector2i(1600, 900))
+			SaveManager.settings.resolution = "1600x900"
 		2:
-			# Define a janela para resolução HD (1280x720)
+			# Define a janela para resolução HD
 			DisplayServer.window_set_size(Vector2i(1280, 720))
+			SaveManager.settings.resolution = "1280x720"
+
+	# Após alterar a resolução, salva as configurações atualizadas
+	SaveManager.save_settings()

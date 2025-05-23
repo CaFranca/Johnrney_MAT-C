@@ -66,6 +66,7 @@ grow_vertical = 2
 script = ExtResource("1_hbq5r")
 
 [node name="background" type="TextureRect" parent="."]
+visible = false
 layout_mode = 2
 offset_left = -19.9999
 offset_right = 1300.0
