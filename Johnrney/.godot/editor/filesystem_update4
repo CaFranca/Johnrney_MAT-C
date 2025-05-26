@@ -6,4 +6,4 @@ res://scripts/gameplay/mode_gameplay.gd
 res://scenes/menu/Selection_mode_menu.tscn
 res://scripts/menu/Selection_mode_menu.gd
 res://scripts/menu/config/options.gd
-res://scenes/menu/config/options.tscn
+
