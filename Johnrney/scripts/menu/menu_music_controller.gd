@@ -9,18 +9,48 @@ extends Node  # Controlador global de músicas do jogo
 var current_track_name := ""   # Nome da trilha atualmente tocando
 var music_enabled := true      # Controla se a música está ativada
 
-# 🎵 Lista de músicas aleatórias para gameplay
-var music_list = [
-	"res://assets/audio/music/gameplay/Teste - MatC (3).mp3",
-	"res://assets/audio/music/gameplay/Teste - MatC (4).mp3",
-	"res://assets/audio/music/gameplay/Teste - MatC (5).mp3",
-	"res://assets/audio/music/gameplay/Teste - MatC (6).mp3"
+# ---------------------------- #
+# Playlists de músicas por local/mode/dificuldade
+# ---------------------------- #
+
+# Exemplo: Playlist do menu (pode ter múltiplas músicas)
+var playlist_menu = [
+	preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg"),
+	# Adicione outras faixas aqui, preload para otimizar
 ]
 
-# 🎵 Dicionário de músicas fixas (ex.: menu)
-var music_tracks = {
-	"menu": preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg")
-}
+# Gameplay subdividido por modos com playlists específicas
+# var playlist_gameplay_soma = [
+# 	preload("res://assets/audio/music/soma/track1.ogg"),
+# 	preload("res://assets/audio/music/soma/track2.ogg")
+# ]
+
+# var playlist_gameplay_subtracao = [
+# 	preload("res://assets/audio/music/subtracao/track1.ogg"),
+# 	preload("res://assets/audio/music/subtracao/track2.ogg")
+# ]
+
+# var playlist_gameplay_multiplicacao = [
+# 	preload("res://assets/audio/music/multiplicacao/track1.ogg"),
+# 	preload("res://assets/audio/music/multiplicacao/track2.ogg")
+# ]
+
+# var playlist_gameplay_divisao = [
+# 	preload("res://assets/audio/music/divisao/track1.ogg"),
+# 	preload("res://assets/audio/music/divisao/track2.ogg")
+# ]
+
+
+# Se quiser, pode criar playlists para outras situações/dificuldades aqui
+# var playlist_gameplay_facil = [...]
+# var playlist_gameplay_medio = [...]
+# var playlist_gameplay_dificil = [...]
+
+# ============================== #
+# Variáveis para controle interno
+# ============================== #
+
+var current_mode := ""  # Exemplo: "menu", "gameplay_soma", "gameplay_subtracao", etc.
 
 # ============================== #
 # ====== FUNÇÕES DE CICLO ====== #
@@ -28,68 +58,97 @@ var music_tracks = {
 
 func _ready() -> void:
 	randomize()
+	player.connect("finished", Callable(self, "_on_music_finished"))
 
-# ================================================ #
-# ====== PEGA UMA MÚSICA RANDOM DE GAMEPLAY ====== #
-# ================================================ #
+# ============================== #
+# Função para obter playlist conforme o modo atual
+# ============================== #
 
-func get_random_music() -> AudioStream:
-	var index = randi() % music_list.size()
-	return load(music_list[index])
+func get_playlist_for_mode(mode: String) -> Array:
+	match mode:
+		"menu":
+			return playlist_menu
+# 		"gameplay_soma":
+# 			return playlist_gameplay_soma
+# 		"gameplay_subtracao":
+# 			return playlist_gameplay_subtracao
+# 		"gameplay_multiplicacao":
+# 			return playlist_gameplay_multiplicacao
+# 		"gameplay_divisao":
+# 			return playlist_gameplay_divisao
+ 		# Aqui você pode colocar mais modos, dificuldades, locais etc.
 
-# ===================================================== #
-# ====== FUNÇÃO CENTRAL PARA TOCAR A MÚSICA ========== #
-# ===================================================== #
+		_:
+			return []  # Vazio se não encontrar playlist
 
-func play_music_for(scene_name: String) -> void:
+# ============================== #
+# Função para pegar música aleatória da playlist
+# ============================== #
+
+func get_random_track_from_playlist(playlist: Array) -> AudioStream:
+	if playlist.size() == 0:
+		return null
+
+	var index = randi() % playlist.size()
+	return playlist[index]
+
+# ============================== #
+# Função para tocar música baseada no modo/local
+# ============================== #
+
+func play_music_for(mode: String) -> void:
 	if not music_enabled:
 		player.stop()
 		return
 
-	if current_track_name == scene_name and player.playing:
+	# Se já está tocando música para esse modo, não faz nada
+	if current_track_name == mode and player.playing:
 		return
 
-	var stream: AudioStream = null
-
-	if scene_name == "gameplay":
-		stream = get_random_music()
-	elif music_tracks.has(scene_name):
-		stream = music_tracks[scene_name]
-	else:
-		push_warning("⚠️ Música para '" + scene_name + "' não encontrada!")
+	var playlist = get_playlist_for_mode(mode)
+	if playlist.size() == 0:
+		push_warning("Playlist vazia ou modo '" + mode + "' desconhecido!")
+		player.stop()
 		return
 
-	player.stream = stream
+	var track = get_random_track_from_playlist(playlist)
+	if track == null:
+		push_warning("Falha ao carregar a música para o modo: " + mode)
+		player.stop()
+		return
 
-	if player.stream is AudioStream:
-		if player.stream.has_loop():
-			player.stream.set_loop(true)
-
+	player.stream = track
 	player.play()
-	current_track_name = scene_name
+	current_track_name = mode
+	current_mode = mode  # Guarda para reusar em _on_music_finished()
 
-# ======================================================= #
-# ==== ATIVA OU DESATIVA A MÚSICA (USADO EM OPÇÕES) ==== #
-# ======================================================= #
+# ============================== #
+# Quando a música termina, toca outra da mesma playlist (aleatório)
+# ============================== #
+
+func _on_music_finished() -> void:
+	if music_enabled and current_mode != "":
+		play_music_for(current_mode)
+
+# ============================== #
+# Ativa ou desativa música (ex: nas opções)
+# ============================== #
 
 func toggle_music(enabled: bool) -> void:
 	music_enabled = enabled
-
 	if enabled:
-		play_music_for(current_track_name)
+		play_music_for(current_mode)
 	else:
 		player.stop()
 
-# ========================================================== #
-# ================= CONTROLE DE VOLUME ===================== #
-# ========================================================== #
+# ============================== #
+# Controle de volume
+# ============================== #
 
 func set_volume(volume: float) -> void:
-	# Volume de 0.0 (mudo) até 1.0 (máximo)
 	var bus_index = AudioServer.get_bus_index("music")
 	if bus_index == -1:
-		push_error("Bus 'Music' não encontrado!")
+		push_error("Bus 'music' não encontrado!")
 		return
-
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(volume))
-	AudioServer.set_bus_mute(bus_index, volume <= 0.01)  # Opcional: muta se estiver muito baixo
+	AudioServer.set_bus_mute(bus_index, volume <= 0.01)

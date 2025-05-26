@@ -105,7 +105,9 @@ text = "       Adição \"+\"     "
 
 [node name="sum_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "soma rank"
+uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -119,7 +121,9 @@ text = "Subtração \"-\""
 
 [node name="minus_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "subtração rank"
+uppercase = true
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -132,7 +136,9 @@ text = "Multiplicação \"X\""
 
 [node name="times_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "multiplicacao rank"
+uppercase = true
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -146,7 +152,9 @@ text = "     Divisão \"/\"       "
 
 [node name="div_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "divisao rank"
+uppercase = true
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -160,7 +168,9 @@ text = "Todos"
 
 [node name="all_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "todas rank"
+uppercase = true
 
 [node name="back" type="Button" parent="."]
 layout_mode = 2
