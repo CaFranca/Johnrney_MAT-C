@@ -32,6 +32,8 @@ var active_questions: Array = []
 # Modo atual da operação matemática (exemplo: "add", "sub")
 var selected_mode: String = "add"
 
+var current_score: int = 0
+var current_errors: int = 0
 
 # ============================== #
 # ====== FUNÇÕES PRINCIPAIS ===== #
@@ -149,34 +151,34 @@ func check_answer() -> void:
 			q.collision_shape.disabled = true
 			q.queue_free()
 			active_questions.erase(q)
+
 			input_field.text = ""
 			await get_tree().process_frame
 			input_field.grab_focus()
 
 			correct_song.play()
+			current_score += 1
 			animation.play("Run_Down")
 
 			update_ui("Correto!")
+			if not player_controller.developer_mode:
+				SaveManager.add_score(selected_mode)
 
-			# <-- Aqui, registra acerto no SaveManager
-			SaveManager.add_score(selected_mode)
+			return  # Sai aqui porque acertou
 
-	return
-
-	# Se não acertou nenhuma operação:
+	# Se chegou aqui, não acertou nenhuma operação:
 	animation.play("Fall")
-	wrong_or_miss.play()
+	#wrong_or_miss.play()
 	update_ui("Nenhuma operação corresponde.")
+
 	input_field.text = ""
 	await get_tree().process_frame
 	input_field.grab_focus()
 
-	# Registra erro no SaveManager
-	SaveManager.add_error()
+	if not player_controller.developer_mode:
+		SaveManager.add_error(selected_mode)
 
 	animation.play("Run_Up")
-
-
 
 
 func update_ui(message: String) -> void:
@@ -202,15 +204,13 @@ func _on_input_field_for_answer_text_submitted(_new_text: String) -> void:
 func _on_question_failed(question) -> void:
 	active_questions.erase(question)
 	update_ui("Uma conta caiu sem resposta!")
-
-	# Registra falha no player_controller
-	player_controller.register_failure()
-
-	# Registra erro no SaveManager
-	SaveManager.add_error()
+	if not player_controller.developer_mode:
+		player_controller.register_failure()
+		SaveManager.add_error(selected_mode)
 
 
 func _on_fail_zone_body_entered(body) -> void:
+	current_errors += 1
 	animation.play("Fall")
 	wrong_or_miss.play()
 
@@ -247,12 +247,15 @@ func restart_game() -> void:
 
 
 func _on_game_over() -> void:
-	# Toca animação de game over, atualiza UI e troca de cena após delay
+	# Atualiza a pontuação final no SaveManager
+	SaveManager.add_high_score(current_score, current_errors, selected_mode)
+
 	gameOver.play()
 	Engine.time_scale = 1
 	update_ui("Game Over!")
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://scenes/menu/Selection_mode_menu.tscn")
+
 
 
 func _on_reiniciar_pressed() -> void:
