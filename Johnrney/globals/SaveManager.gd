@@ -16,15 +16,23 @@ var settings = {
 
 # Dicionário que mantém o progresso do jogador (pontuações e erros)
 var progress = {
-	"scores": {
-		"add": 0,   # Pontuação para adição
-		"sub": 0,   # Pontuação para subtração
-		"mul": 0,   # Pontuação para multiplicação
-		"div": 0,   # Pontuação para divisão
-		"all": 0    # Pontuação geral
+	"scores": {   # Acertos totais por operação
+		"add": 0,
+		"sub": 0,
+		"mul": 0,
+		"div": 0,
+		"all": 0
 	},
-	"errors": 0     # Contador de erros cometidos
+	"errors": {   # Erros totais por operação
+		"add": 0,
+		"sub": 0,
+		"mul": 0,
+		"div": 0,
+		"all": 0
+	},
+	"high_scores": []  # Lista dos 5 melhores jogos. Cada item é um dicionário com detalhes do jogo
 }
+
 
 func _ready():
 	# Carrega as configurações salvas
@@ -94,27 +102,30 @@ func load_progress():
 	var cfg = ConfigFile.new()
 	var err = cfg.load(progress_path)
 	if err == OK:
-		# Se o arquivo existir, carrega as pontuações e erros
 		for mode in progress.scores.keys():
 			progress.scores[mode] = int(cfg.get_value("scores", mode, 0))
-		progress.errors = int(cfg.get_value("game", "errors", 0))
+			progress.errors[mode] = int(cfg.get_value("errors", mode, 0))
+		# Carrega o top 5
+		progress.high_scores = cfg.get_value("high_scores", "list", [])
 		print("✅ Progresso carregado com sucesso.")
 	else:
-		# Se não existir, cria um novo arquivo com progresso zerado
 		print("⚠️ Arquivo de progresso não encontrado. Criando novo com valores padrão.")
 		save_progress()
 
-# Função para salvar o progresso atual do jogador no arquivo
+
 func save_progress():
 	var cfg = ConfigFile.new()
 	for mode in progress.scores.keys():
 		cfg.set_value("scores", mode, progress.scores[mode])
-	cfg.set_value("game", "errors", progress.errors)
+		cfg.set_value("errors", mode, progress.errors[mode])
+	cfg.set_value("high_scores", "list", progress.high_scores)
+	
 	var err = cfg.save(progress_path)
 	if err == OK:
-		print("💾 Progresso salvo com sucesso em:", ProjectSettings.globalize_path(progress_path))
+		print("💾 Progresso salvo com sucesso.")
 	else:
 		print("❌ Erro ao salvar progresso:", err)
+
 
 
 # ============================================ #
@@ -125,16 +136,46 @@ func save_progress():
 func add_score(mode: String, amount: int = 1):
 	if progress.scores.has(mode):
 		progress.scores[mode] += amount
-		print("➕ Pontuação adicionada em", mode, "Novo valor:", progress.scores[mode])
-		save_progress()  # Salva o progresso atualizado
+		print("➕ Pontuação adicionada em ", mode, " Novo valor: ", progress.scores[mode])
+		save_progress()
 	else:
 		print("❌ Modo de pontuação inválido:", mode)
 
+
 # Adiciona um erro ao contador e salva o progresso
-func add_error():
-	progress.errors += 1
-	print("❌ Erro adicionado. Total de erros:", progress.errors)
+func add_error(mode: String):
+	if progress.errors.has(mode):
+		progress.errors[mode] += 1
+		print("❌ Erro adicionado no modo ", mode, " Total: ", progress.errors[mode])
+		save_progress()
+	else:
+		print("❌ Modo inválido para erro:", mode)
+
+func add_high_score(score: int, errors: int, mode: String):
+
+	var dt = Time.get_datetime_dict_from_system(false)
+	
+	var formatted_date = "%02d/%02d/%04d %02d:%02d:%02d" % [
+		dt.day, dt.month, dt.year,
+		dt.hour, dt.minute, dt.second
+	]
+	var game_data = {
+		"score": score,
+		"errors": errors,
+		"mode": mode,
+		"timestamp": formatted_date  # Data formatada como string
+	}
+
+	progress.high_scores.append(game_data)
+	progress.high_scores.sort_custom(func(a, b): return b["score"] - a["score"])
+
+	if progress.high_scores.size() > 5:
+		progress.high_scores.resize(5)
+
 	save_progress()
+	print("🏆 Novo high score registrado:", game_data)
+
+
 
 
 # ============================================ #
@@ -169,3 +210,38 @@ func apply_audio_settings():
 		print("🔊 Volume sfx aplicado:", settings.sfx_volume)
 	else:
 		print("❌ Bus 'sfx' não encontrado!")
+
+func get_best_score_for_mode(mode: String) -> int:
+	var best_score = 0
+	for record in progress.high_scores:
+		if record.has("mode") and record["mode"] == mode:
+			if record.has("score") and record["score"] > best_score:
+				best_score = record["score"]
+	return best_score
+	
+func get_top_scores_for_mode(mode: String) -> Array:
+	var top_scores := []
+	
+	for record in progress.high_scores:
+		if record.has("mode") and record["mode"] == mode:
+			top_scores.append(record)
+	
+	# Ordena do maior para o menor score
+	top_scores.sort_custom(func(a, b): return b["score"] - a["score"])
+	
+	# Mantém no máximo 5
+	if top_scores.size() > 5:
+		top_scores.resize(5)
+	
+	return top_scores
+
+func clear_high_scores():
+	progress.high_scores = []
+	
+	# Zera os scores e erros de todos os modos
+	for mode in progress.scores.keys():
+		progress.scores[mode] = 0
+		progress.errors[mode] = 0
+	
+	save_progress()
+	print("🗑️ Todos os recordes, acertos e erros foram apagados.")

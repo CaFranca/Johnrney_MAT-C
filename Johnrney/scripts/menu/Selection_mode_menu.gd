@@ -5,13 +5,55 @@ var gameplay_scene = preload("res://scenes/gameplay/mode_gameplay.tscn")
 
 # Referência ao efeito sonoro do clique do botão
 @onready var button_click = $buttonclick
+# Referências aos Labels que mostram os melhores scores de cada modo
+@onready var add_score_label =$MarginContainer/HBoxContainer/VBoxContainer/sum_rank
+@onready var sub_score_label = $MarginContainer/HBoxContainer/VBoxContainer/minus_rank
+@onready var mul_score_label = $MarginContainer/HBoxContainer/VBoxContainer/times_rank
+@onready var div_score_label = $MarginContainer/HBoxContainer/VBoxContainer/div_rank
+@onready var all_score_label = $MarginContainer/HBoxContainer/VBoxContainer/all_rank
 
 # Função chamada quando a cena é carregada e pronta
 func _ready():
-	# Espera um frame para garantir que a cena esteja estável antes de executar algo
 	await get_tree().process_frame
-	# Inicia a música relacionada ao menu de seleção
 	MusicController.play_music_for("menu")
+	update_score_labels()
+
+func update_score_labels():
+	add_score_label.text = format_high_scores("add")
+	sub_score_label.text = format_high_scores("sub")
+	mul_score_label.text = format_high_scores("mul")
+	div_score_label.text = format_high_scores("div")
+	all_score_label.text = format_high_scores("all")
+
+func format_high_scores(mode: String) -> String:
+	var scores = SaveManager.get_top_scores_for_mode(mode)
+	var text = "Top 5 no modo: " + mode + "\n"
+
+	for i in range(min(scores.size(), 5)):
+		var entry = scores[i]
+		var acerto_palavra = "acerto" if entry["score"] == 1 else "acertos"
+		var erro_palavra = "erro" if entry["errors"] == 1 else "erros"
+
+		var timestamp = entry.get("timestamp", "")  # pega direto o timestamp
+
+		text += "%dº - %d %s (%d %s)" % [
+			i + 1, 
+			entry["score"], 
+			acerto_palavra, 
+			entry["errors"], 
+			erro_palavra
+		]
+
+		if timestamp != "":
+			text += " - " + timestamp
+
+		text += "\n"
+
+	if scores.size() == 0:
+		text += "Sem registros ainda."
+
+	return text
+
 
 # Função que inicia a gameplay com o modo matemático selecionado
 func _start_game_with_mode(mode: String) -> void:
@@ -61,6 +103,8 @@ func _on_back_pressed() -> void:
 	await button_click.finished
 	# Troca a cena para o menu principal
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+
+
 
 # Comentado: exemplo de função para alternar música via botão toggle
 # func _on_Musica_toggled(toggled_on: bool) -> void:

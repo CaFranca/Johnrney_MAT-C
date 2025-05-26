@@ -93,8 +93,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2000.0
-offset_right = -2000.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -169,7 +167,16 @@ popup/item_2/id = 2
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 
-[node name="back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="clear_data" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Limpar Dados"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+
+[node name="back2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "Voltar"
@@ -203,6 +210,8 @@ button_pressed = true
 text = "Musica Menu"
 
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/back" to="." method="_on_back_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/clear_data" to="." method="_on_clear_data_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/clear_data" to="." method="_on_clear_data_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/back2" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/back2" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="Musica" to="." method="_on_musica_toggled"]

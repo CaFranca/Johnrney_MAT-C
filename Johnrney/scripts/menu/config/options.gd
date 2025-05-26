@@ -37,3 +37,12 @@ func _on_resolution_item_selected(index: int) -> void:
 
 	# Após alterar a resolução, salva as configurações atualizadas
 	SaveManager.save_settings()
+
+
+func _on_clear_data_pressed() -> void:
+	SaveManager.clear_high_scores()
+
+
+func _on_clear_data_mouse_entered() -> void:
+	$mouse_entered.play()         # Toca um som de mouse entrando no botão
+	await $mouse_entered.finished # Espera o som terminar antes de continuar (se necessário)

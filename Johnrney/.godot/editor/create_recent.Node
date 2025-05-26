@@ -1,4 +1,8 @@
+ScrollContainer
+VScrollBar
 HBoxContainer
+HScrollBar
+Label
 VBoxContainer
 MarginContainer
 ColorRect
@@ -8,7 +12,3 @@ TextureRect
 CanvasLayer
 AnimatedSprite2D
 CharacterBody2D
-StaticBody2D
-Node2D
-Node
-AudioStreamPlayer2D
