@@ -16,7 +16,14 @@ var music_enabled := true      # Controla se a música está ativada
 # Exemplo: Playlist do menu (pode ter múltiplas músicas)
 var playlist_menu = [
 	preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg"),
+	preload("res://assets/audio/music/menu/It s Going Down Now.ogg")
 	# Adicione outras faixas aqui, preload para otimizar
+]
+
+var playlist_gameplay = [preload("res://assets/audio/music/gameplay/Teste - MatC (3).mp3"),
+ 	preload("res://assets/audio/music/gameplay/Teste - MatC (4).mp3"),
+ 	preload("res://assets/audio/music/gameplay/Teste - MatC (6).mp3"),
+ 	preload("res://assets/audio/music/gameplay/Teste - MatC (5).mp3")
 ]
 
 # Gameplay subdividido por modos com playlists específicas
@@ -68,6 +75,8 @@ func get_playlist_for_mode(mode: String) -> Array:
 	match mode:
 		"menu":
 			return playlist_menu
+		"gameplay":
+			return playlist_gameplay
 # 		"gameplay_soma":
 # 			return playlist_gameplay_soma
 # 		"gameplay_subtracao":
