@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c8quaugkapyry"]
+[gd_scene load_steps=51 format=3 uid="uid://c8quaugkapyry"]
 
 [ext_resource type="Script" uid="uid://c3sl6jwbqyvyi" path="res://scripts/gameplay/mode_gameplay.gd" id="1_0d5ff"]
 [ext_resource type="Script" uid="uid://d1emvf3g8jpj" path="res://scripts/gameplay/operation_generator.gd" id="3_jcpkf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://xtnj5wsyftux" path="res://assets/sprites/Player_sprites/heartsprite.png" id="12_3wsyr"]
 [ext_resource type="PackedScene" uid="uid://t5q7rqvmqojg" path="res://scenes/menu/pause_menu.tscn" id="12_4rrbf"]
 [ext_resource type="Script" uid="uid://by1tdm6egnokm" path="res://scripts/john_victor-player/PlayerController.gd" id="12_lehme"]
+[ext_resource type="PackedScene" uid="uid://wngwcrl8jp4b" path="res://scenes/gameplay/tipScreen.tscn" id="14_4rrbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1o26h"]
 size = Vector2(821.385, 46.8192)
@@ -431,6 +432,9 @@ animation = &"empty"
 position = Vector2(1117.75, 0)
 sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
+
+[node name="TipScreen" parent="PlayerController/healthbar" instance=ExtResource("14_4rrbf")]
+visible = false
 
 [node name="PauseMenu" parent="PlayerController/healthbar" instance=ExtResource("12_4rrbf")]
 visible = false

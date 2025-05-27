@@ -43,3 +43,18 @@ func _on_restart_pressed() -> void:
 	# Se a cena de gameplay estiver definida e possuir o método restart_game, chama para reiniciar o jogo
 	if gameplay_scene and gameplay_scene.has_method("restart_game"):
 		gameplay_scene.restart_game()
+
+
+func _on_forfeit_pressed() -> void:
+	button_click.play()
+	await button_click.finished
+	# Garantir que o jogo sai do estado de pausa
+	Engine.time_scale = 1
+	get_tree().paused = false
+
+	if gameplay_scene and gameplay_scene.player_controller:
+		gameplay_scene.player_controller.forfeit_game()
+	else:
+		push_error("Não foi possível acessar player_controller para forfeit_game()")
+
+	

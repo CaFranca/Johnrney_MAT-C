@@ -34,9 +34,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -161.0
-offset_top = -228.0
+offset_top = -319.0
 offset_right = -91.0
-offset_bottom = -127.0
+offset_bottom = -183.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4.80886, 4.80886)
@@ -49,6 +49,10 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = "Resume
 "
+
+[node name="forfeit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Desistir"
 
 [node name="restart" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -66,5 +70,6 @@ volume_db = -20.0
 bus = &"sfx"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/forfeit" to="." method="_on_forfeit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

@@ -152,23 +152,28 @@ func add_error(mode: String):
 		print("❌ Modo inválido para erro:", mode)
 
 func add_high_score(score: int, errors: int, mode: String):
+	if score <= 0:
+		print("⚠️ High score não registrado porque score é 0.")
+	return
 
 	var dt = Time.get_datetime_dict_from_system(false)
-	
 	var formatted_date = "%02d/%02d/%04d %02d:%02d:%02d" % [
-		dt.day, dt.month, dt.year,
-		dt.hour, dt.minute, dt.second
+		dt.day, dt.month, dt.year, dt.hour, dt.minute, dt.second
 	]
+	
 	var game_data = {
 		"score": score,
 		"errors": errors,
 		"mode": mode,
-		"timestamp": formatted_date  # Data formatada como string
+		"timestamp": formatted_date
 	}
 
 	progress.high_scores.append(game_data)
+	
+	# Ordena do maior para o menor baseado nos acertos
 	progress.high_scores.sort_custom(func(a, b): return b["score"] - a["score"])
 
+	# Mantém apenas os 5 melhores
 	if progress.high_scores.size() > 5:
 		progress.high_scores.resize(5)
 
@@ -223,10 +228,10 @@ func get_top_scores_for_mode(mode: String) -> Array:
 	var top_scores := []
 	
 	for record in progress.high_scores:
-		if record.has("mode") and record["mode"] == mode:
+		if record.get("mode", "") == mode:
 			top_scores.append(record)
 	
-	# Ordena do maior para o menor score
+	# Ordena do maior para o menor número de acertos
 	top_scores.sort_custom(func(a, b): return b["score"] - a["score"])
 	
 	# Mantém no máximo 5

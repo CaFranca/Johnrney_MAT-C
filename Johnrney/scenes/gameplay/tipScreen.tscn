@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://wngwcrl8jp4b"]
+
+[ext_resource type="Script" uid="uid://bpq3okwtd7d1r" path="res://scripts/gameplay/tip_screen.gd" id="1_xvsxk"]
+[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="2_sroed"]
+
+[node name="TipScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvsxk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.676
+anchor_top = 0.108
+anchor_right = 0.676
+anchor_bottom = 0.108
+offset_left = -855.176
+offset_top = -67.76
+offset_right = -777.176
+offset_bottom = -44.76
+grow_horizontal = 2
+scale = Vector2(4.81, 4.81)
+text = "Dica para:"
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.564
+anchor_right = 0.5
+anchor_bottom = 0.564
+offset_left = -596.0
+offset_top = -282.08
+offset_right = 588.0
+offset_bottom = 193.92
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="next" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 274.0
+offset_top = 152.0
+offset_right = 345.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.52, 4.52)
+text = "Avançar"
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="."]
+process_priority = 1
+stream = ExtResource("2_sroed")
+volume_db = -20.0
+bus = &"sfx"
+
+[connection signal="pressed" from="CanvasLayer/next" to="." method="_on_next_pressed"]
