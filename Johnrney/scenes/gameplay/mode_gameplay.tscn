@@ -434,7 +434,6 @@ sprite_frames = SubResource("SpriteFrames_4rrbf")
 animation = &"empty"
 
 [node name="TipScreen" parent="PlayerController/healthbar" instance=ExtResource("14_4rrbf")]
-visible = false
 
 [node name="PauseMenu" parent="PlayerController/healthbar" instance=ExtResource("12_4rrbf")]
 visible = false

@@ -36,7 +36,7 @@ var active_questions: Array = []
 var selected_mode: String = "add"
 
 var current_score: int = 0
-# var current_errors: int = 0  # REMOVIDO para usar player_controller.current_errors
+var current_errors: int = 0  # REMOVIDO para usar player_controller.current_errors
 
 # ============================== #
 # ====== FUNÇÕES PRINCIPAIS ===== #
@@ -47,8 +47,10 @@ func _ready() -> void:
 
 	hint_scene.hide_tip()  # Esconde a dica ao iniciar
 	hint_scene.set_gameplay(self)
-	hint_scene.connect("hint_closed", Callable(self, "_on_hint_closed"))
-
+	
+	current_score = 0
+	current_errors = 0
+	
 	MusicController.play_music_for("gameplay")
 	randomize()
 	pause_menu.set_gameplay(self)
@@ -164,6 +166,7 @@ func check_answer() -> void:
 	input_field.grab_focus()
 
 	if not player_controller.developer_mode:
+		current_errors += 1
 		SaveManager.add_error(selected_mode)
 
 	animation.play("Run_Up")
@@ -194,13 +197,16 @@ func _on_question_failed(question) -> void:
 		SaveManager.add_error(selected_mode)
 
 func _on_fail_zone_body_entered(body) -> void:
-	# Não precisa incrementar current_errors aqui, o PlayerController já cuida
 	animation.play("Fall")
 	wrong_or_miss.play()
 
-	# Se o corpo que colidiu for personagem com método fail, chama ele
 	if body is CharacterBody2D and body.has_method("fail"):
 		body.fail()
+
+	if not player_controller.developer_mode:
+		current_errors += 1
+		SaveManager.add_error(selected_mode)
+
 
 func _on_spawn_timer_timeout() -> void:
 	# Gera nova pergunta quando timer expira
@@ -214,22 +220,20 @@ func _on_return_to_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
 func restart_game() -> void:
-	# Garante que tempo está normal
 	Engine.time_scale = 1
 
-	# Carrega nova instância do gameplay mantendo o modo selecionado
 	var scene = preload("res://scenes/gameplay/mode_gameplay.tscn").instantiate()
 	scene.set_mode(selected_mode)
 
-	# Adiciona à raiz da árvore de cena, remove a atual e atualiza referência
 	get_tree().root.add_child(scene)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = scene
 
+
 func _on_game_over() -> void:
 	
 	gameOver.play()
-	SaveManager.add_high_score(current_score, player_controller.current_errors, selected_mode)
+	SaveManager.add_high_score(current_score, current_errors, selected_mode)
 	Engine.time_scale = 1
 	update_ui("Game Over!")
 
