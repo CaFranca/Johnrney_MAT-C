@@ -18,6 +18,10 @@ extends Node2D  # Cena principal do gameplay
 @onready var healthbar = $PlayerController/healthbar
 @onready var gameOver = $PlayerController/player_sprite/GameOver
 @onready var hint_scene = $PlayerController/healthbar/TipScreen
+@onready var score_label = $PlayerController/ScoreLabel
+@onready var combo_label = $PlayerController/ComboLabel
+
+
 # ============================== #
 # ========== VARIÁVEIS ========= #
 # ============================== #
@@ -36,7 +40,9 @@ var active_questions: Array = []
 var selected_mode: String = "add"
 
 var current_score: int = 0
-var current_errors: int = 0  # REMOVIDO para usar player_controller.current_errors
+var current_errors: int = 0 
+var current_combo: int = 0
+
 
 # ============================== #
 # ====== FUNÇÕES PRINCIPAIS ===== #
@@ -50,6 +56,7 @@ func _ready() -> void:
 	
 	current_score = 0
 	current_errors = 0
+	update_score_label() 
 	
 	MusicController.play_music_for("gameplay")
 	randomize()
@@ -123,6 +130,13 @@ func generate_new_question() -> void:
 	# Atualiza texto da UI para instruir o jogador
 	update_ui("Responda a operação correta!")
 
+func update_score_label() -> void:
+	score_label.text = "Acertos: %d" % current_score
+
+func update_combo_label() -> void:
+	combo_label.text = "Sequência: %d" % current_combo
+
+
 func check_answer() -> void:
 	var text = input_field.text.strip_edges()
 
@@ -148,6 +162,9 @@ func check_answer() -> void:
 
 			correct_song.play()
 			current_score += 1
+			current_combo += 1
+			update_combo_label()
+			update_score_label()
 			animation.play("Run_Down")
 
 			update_ui("Correto!")
@@ -160,6 +177,10 @@ func check_answer() -> void:
 	animation.play("Fall")
 	wrong_or_miss.play()
 	update_ui("Nenhuma operação corresponde.")
+	if not player_controller.developer_mode:
+		current_combo = 0
+		update_combo_label()
+
 
 	input_field.text = ""
 	await get_tree().process_frame
@@ -193,6 +214,8 @@ func _on_question_failed(question) -> void:
 		active_questions.erase(question)
 	update_ui("Uma conta caiu sem resposta!")
 	if not player_controller.developer_mode:
+		current_combo = 0
+		update_combo_label()
 		player_controller.register_failure()
 		SaveManager.add_error(selected_mode)
 
@@ -200,11 +223,14 @@ func _on_fail_zone_body_entered(body) -> void:
 	animation.play("Fall")
 	wrong_or_miss.play()
 
+
 	if body is CharacterBody2D and body.has_method("fail"):
 		body.fail()
 
 	if not player_controller.developer_mode:
 		current_errors += 1
+		current_combo = 0
+		update_combo_label()
 		SaveManager.add_error(selected_mode)
 
 

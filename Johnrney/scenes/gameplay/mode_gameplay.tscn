@@ -275,7 +275,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Main" type="Node2D"]
+[node name="Gameplay" type="Node2D"]
 script = ExtResource("1_0d5ff")
 
 [node name="OperationGenerator" type="Node2D" parent="."]
@@ -293,6 +293,7 @@ offset_top = 149.0
 offset_right = 1109.0
 offset_bottom = 172.0
 scale = Vector2(1.49, 1.49)
+text = "Informações"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -439,6 +440,23 @@ animation = &"empty"
 visible = false
 offset_left = 5.0
 offset_right = 5.0
+
+[node name="ScoreLabel" type="Label" parent="PlayerController"]
+offset_left = 859.0
+offset_top = 74.0
+offset_right = 1109.0
+offset_bottom = 97.0
+scale = Vector2(1.49, 1.49)
+text = "Acertos:"
+
+[node name="ComboLabel" type="Label" parent="PlayerController"]
+offset_left = 859.0
+offset_top = 108.0
+offset_right = 1109.0
+offset_bottom = 131.0
+scale = Vector2(1.49, 1.49)
+text = "Sequencia
+"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="text_submitted" from="InputField_for_answer" to="." method="_on_input_field_for_answer_text_submitted"]

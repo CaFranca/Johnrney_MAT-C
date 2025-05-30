@@ -1,10 +1,7 @@
 res://assets/audio/bus/default.tres
-res://scenes/menu/main_menu.tscn
+res://scenes/menu/config/options.tscn
 res://scenes/menu/config/pause_menu.gdshader
-res://globals/Menu_MusicController.tscn
+res://scripts/menu/config/options.gd
+res://globals/SettingsManager.gd
 res://scenes/gameplay/mode_gameplay.tscn
-res://scenes/gameplay/tipScreen.tscn
-res://scenes/menu/pause_menu.tscn
-res://scenes/menu/Selection_mode_menu.tscn
 res://scripts/gameplay/mode_gameplay.gd
-res://globals/SaveManager.gd
