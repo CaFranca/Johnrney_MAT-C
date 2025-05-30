@@ -95,6 +95,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="sum" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]

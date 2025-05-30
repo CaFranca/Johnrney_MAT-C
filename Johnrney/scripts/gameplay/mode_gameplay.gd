@@ -1,7 +1,7 @@
 extends Node2D  # Cena principal do gameplay
 
 # ============================== #
-# ==== REFERÊNCIAS AUTOMÁTICAS ====
+# ==== REFERÊNCIAS AUTOMÁTICAS ==== #
 # ============================== #
 
 @onready var generator = $OperationGenerator
@@ -15,13 +15,20 @@ extends Node2D  # Cena principal do gameplay
 @onready var animation = $PlayerController/player_sprite
 @onready var player_controller = $PlayerController
 @onready var pause_menu = $PlayerController/healthbar/PauseMenu
+@onready var healthbar = $PlayerController/healthbar
 @onready var gameOver = $PlayerController/player_sprite/GameOver
+@onready var hint_scene = $PlayerController/healthbar/TipScreen
+@onready var score_label = $PlayerController/ScoreLabel
+@onready var combo_label = $PlayerController/ComboLabel
+
 
 # ============================== #
 # ========== VARIÁVEIS ========= #
 # ============================== #
 
 var paused: bool = false  # Estado de pausa do jogo
+
+
 
 # Cena da pergunta que vai "cair" do topo da tela
 var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
@@ -33,35 +40,30 @@ var active_questions: Array = []
 var selected_mode: String = "add"
 
 var current_score: int = 0
-var current_errors: int = 0
+var current_errors: int = 0 
+var current_combo: int = 0
+
 
 # ============================== #
 # ====== FUNÇÕES PRINCIPAIS ===== #
 # ============================== #
 
 func _ready() -> void:
-	# Inicializa animação de corrida para cima
 	animation.play("Run_Up")
 
-	# Começa a tocar música do gameplay
+	hint_scene.hide_tip()  # Esconde a dica ao iniciar
+	hint_scene.set_gameplay(self)
+	
+	current_score = 0
+	current_errors = 0
+	update_score_label() 
+	
 	MusicController.play_music_for("gameplay")
-
-	# Garante aleatoriedade para geração das perguntas
 	randomize()
-
-	# Configura o menu de pausa com esta cena para controle
 	pause_menu.set_gameplay(self)
-
-	# Conecta o sinal de colisão na zona de falha para função local
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
-
-	# Conecta sinal de game over vindo do player_controller
 	player_controller.game_over.connect(_on_game_over)
 
-	# **Aqui você pode chamar sua função que aplica as configurações**
-	#apply_settings()
-
-	# Gera a primeira pergunta e inicia timer de spawn das próximas
 	generate_new_question()
 	spawn_timer.start()
 
@@ -70,7 +72,6 @@ func _process(delta: float) -> void:
 	# Detecta se tecla de pause foi pressionada
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
-
 
 #func apply_settings() -> void:
 	# Exemplo: carregar volume da música salvo nas configurações
@@ -88,7 +89,6 @@ func _process(delta: float) -> void:
 	# Atualiza UI para mostrar modo selecionado
 #	update_ui("Modo: %s" % selected_mode)
 
-
 func pauseMenu() -> void:
 	# Alterna o estado de pausa
 	if paused:
@@ -100,11 +100,9 @@ func pauseMenu() -> void:
 
 	paused = !paused
 
-
 func set_mode(mode: String) -> void:
 	# Atualiza o modo de operação matemática
 	selected_mode = mode
-
 
 func generate_new_question() -> void:
 	# Gera operação usando o gerador com base no modo selecionado
@@ -132,6 +130,12 @@ func generate_new_question() -> void:
 	# Atualiza texto da UI para instruir o jogador
 	update_ui("Responda a operação correta!")
 
+func update_score_label() -> void:
+	score_label.text = "Acertos: %d" % current_score
+
+func update_combo_label() -> void:
+	combo_label.text = "Sequência: %d" % current_combo
+
 
 func check_answer() -> void:
 	var text = input_field.text.strip_edges()
@@ -158,6 +162,9 @@ func check_answer() -> void:
 
 			correct_song.play()
 			current_score += 1
+			current_combo += 1
+			update_combo_label()
+			update_score_label()
 			animation.play("Run_Down")
 
 			update_ui("Correto!")
@@ -168,24 +175,27 @@ func check_answer() -> void:
 
 	# Se chegou aqui, não acertou nenhuma operação:
 	animation.play("Fall")
-	#wrong_or_miss.play()
+	wrong_or_miss.play()
 	update_ui("Nenhuma operação corresponde.")
+	if not player_controller.developer_mode:
+		current_combo = 0
+		update_combo_label()
+
 
 	input_field.text = ""
 	await get_tree().process_frame
 	input_field.grab_focus()
 
 	if not player_controller.developer_mode:
+		current_errors += 1
 		SaveManager.add_error(selected_mode)
 
 	animation.play("Run_Up")
-
 
 func update_ui(message: String) -> void:
 	# Atualiza texto na UI e foca campo de resposta
 	question_label.text = message
 	input_field.grab_focus()
-
 
 # ============================== #
 # ====== SIGNALS / HANDLERS ===== #
@@ -195,34 +205,38 @@ func _on_submit_button_pressed() -> void:
 	check_answer()
 	input_field.grab_focus()
 
-
 func _on_input_field_for_answer_text_submitted(_new_text: String) -> void:
 	check_answer()
 	input_field.grab_focus()
 
-
 func _on_question_failed(question) -> void:
-	active_questions.erase(question)
+	if question in active_questions:
+		active_questions.erase(question)
 	update_ui("Uma conta caiu sem resposta!")
 	if not player_controller.developer_mode:
+		current_combo = 0
+		update_combo_label()
 		player_controller.register_failure()
 		SaveManager.add_error(selected_mode)
 
-
 func _on_fail_zone_body_entered(body) -> void:
-	current_errors += 1
 	animation.play("Fall")
 	wrong_or_miss.play()
 
-	# Se o corpo que colidiu for personagem com método fail, chama ele
+
 	if body is CharacterBody2D and body.has_method("fail"):
 		body.fail()
+
+	if not player_controller.developer_mode:
+		current_errors += 1
+		current_combo = 0
+		update_combo_label()
+		SaveManager.add_error(selected_mode)
 
 
 func _on_spawn_timer_timeout() -> void:
 	# Gera nova pergunta quando timer expira
 	generate_new_question()
-
 
 func _on_return_to_menu_pressed() -> void:
 	# Retoma tempo e troca para cena de menu principal
@@ -231,30 +245,41 @@ func _on_return_to_menu_pressed() -> void:
 	await $buttonclick.finished
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
-
 func restart_game() -> void:
-	# Garante que tempo está normal
 	Engine.time_scale = 1
 
-	# Carrega nova instância do gameplay mantendo o modo selecionado
 	var scene = preload("res://scenes/gameplay/mode_gameplay.tscn").instantiate()
 	scene.set_mode(selected_mode)
 
-	# Adiciona à raiz da árvore de cena, remove a atual e atualiza referência
 	get_tree().root.add_child(scene)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = scene
 
 
 func _on_game_over() -> void:
-	# Atualiza a pontuação final no SaveManager
-	SaveManager.add_high_score(current_score, current_errors, selected_mode)
-
+	
 	gameOver.play()
+	SaveManager.add_high_score(current_score, current_errors, selected_mode)
 	Engine.time_scale = 1
 	update_ui("Game Over!")
+
 	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_file("res://scenes/menu/Selection_mode_menu.tscn")
+
+	show_hint_screen()
+
+
+
+func show_hint_screen() -> void:
+	pause_menu.hide()
+	healthbar.hide()
+	paused = false
+	Engine.time_scale = 0  # Pausa o jogo
+
+	hint_scene.show_hint_for_mode(selected_mode)
+
+	if not hint_scene.is_inside_tree():
+		get_tree().root.add_child(hint_scene)
+
 
 
 
@@ -262,7 +287,6 @@ func _on_reiniciar_pressed() -> void:
 	Engine.time_scale = 1
 	get_tree().paused = false
 	restart_game()
-
 
 func _on_pause_pressed() -> void:
 	pauseMenu()

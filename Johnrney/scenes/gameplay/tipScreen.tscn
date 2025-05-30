@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://wngwcrl8jp4b"]
+
+[ext_resource type="Script" uid="uid://bpq3okwtd7d1r" path="res://scripts/gameplay/tip_screen.gd" id="1_xvsxk"]
+[ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="2_sroed"]
+
+[node name="TipScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvsxk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.0
+offset_right = 242.0
+offset_bottom = 137.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.0035122, 0.127678, 1, 1)
+theme_override_font_sizes/font_size = 100
+text = "Dica para:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -223.0
+offset_right = 394.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/normal_font_size = 75
+text = "text here"
+horizontal_alignment = 1
+
+[node name="next" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 366.0
+offset_top = 218.0
+offset_right = 437.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.37996, 3.37996)
+text = "Avançar"
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="."]
+process_priority = 1
+stream = ExtResource("2_sroed")
+volume_db = -20.0
+bus = &"sfx"
+
+[connection signal="pressed" from="CanvasLayer/next" to="." method="_on_next_pressed"]

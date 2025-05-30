@@ -87,3 +87,14 @@ func _input(event):
 			print("Developer Mode ATIVADO")
 		else:
 			print("Developer Mode DESATIVADO")
+			
+# Função para desistir da partida instantaneamente
+func forfeit_game():
+	# Avisa que é uma falha fatal proposital
+	print("Jogador desistiu da partida!")
+	# Garante que zera a vida
+	current_errors = max_errors
+	# Atualiza os corações (animações e visuais)
+	update_hearts()
+	# Emite o sinal de game over
+	emit_signal("game_over")

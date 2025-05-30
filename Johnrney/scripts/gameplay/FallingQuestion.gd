@@ -42,3 +42,4 @@ func fail():
 # Código opcional para debug (ativar se quiser acompanhar quando a pergunta for removida)
 #func _exit_tree():
 #	print("FallingQuestion removida:", self)
+
