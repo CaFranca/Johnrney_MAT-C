@@ -5,3 +5,4 @@ res://scripts/menu/config/options.gd
 res://globals/SettingsManager.gd
 res://scenes/gameplay/mode_gameplay.tscn
 res://scripts/gameplay/mode_gameplay.gd
+res://scripts/gameplay/tip_screen.gd
