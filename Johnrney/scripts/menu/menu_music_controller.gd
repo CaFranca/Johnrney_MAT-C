@@ -15,8 +15,11 @@ var music_enabled := true      # Controla se a música está ativada
 
 # Exemplo: Playlist do menu (pode ter múltiplas músicas)
 var playlist_menu = [
-	preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg"),
-	preload("res://assets/audio/music/menu/It s Going Down Now.ogg")
+	#preload("res://assets/audio/music/menu/C418 - Sweden (Trap Remix) (mp3cut.net).ogg"),
+	preload("res://assets/audio/music/menu/main_menu_2.ogg"),
+	#preload("res://assets/audio/music/menu/main_menu.ogg"),
+	#preload("res://assets/audio/music/menu/Wet Hands.ogg")
+	
 	# Adicione outras faixas aqui, preload para otimizar
 ]
 
