@@ -1,8 +1,8 @@
+Sprite2D
 ColorRect
 CanvasLayer
 Node2D
 CanvasModulate
-Sprite2D
 TextureRect
 Panel
 Button
