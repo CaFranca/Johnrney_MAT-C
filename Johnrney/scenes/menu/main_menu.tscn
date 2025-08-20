@@ -1,9 +1,10 @@
-[gd_scene load_steps=191 format=3 uid="uid://52surrlki5s"]
+[gd_scene load_steps=193 format=3 uid="uid://52surrlki5s"]
 
 [ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/menu/main_menu.gd" id="1_kiqgm"]
-[ext_resource type="Texture2D" uid="uid://dxmyc4yt33l3b" path="res://assets/Background_images/meme-sheldon-cooper_.png" id="2_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://c5p513xbwdv8d" path="res://assets/menu/back/ifsp-spo3.png" id="2_1k4da"]
 [ext_resource type="Texture2D" uid="uid://ctgre8pb1o8lm" path="res://assets/Background_images/credits/t2-ezgif.com-gif-to-sprite-converter.png" id="3_isoef"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_xn6kt"]
+[ext_resource type="Texture2D" uid="uid://d37gi1xvlhtbx" path="res://assets/menu/concepts/principal.png" id="4_bbqo6"]
 [ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_isoef"]
 [ext_resource type="Texture2D" uid="uid://c6o7v22as7qkn" path="res://assets/Background_images/start/t1-ezgif.com-gif-to-sprite-converter.png" id="4_qgo02"]
 [ext_resource type="Texture2D" uid="uid://ddoid52dxkuyd" path="res://assets/Background_images/options/dancing-banana-ezgif.com-gif-to-sprite-converter.png" id="4_vovv2"]
@@ -349,6 +350,10 @@ region = Rect2(660, 3120, 220, 195)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vn2th"]
 atlas = ExtResource("3_isoef")
 region = Rect2(880, 3120, 220, 195)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erdwl"]
+atlas = ExtResource("4_bbqo6")
+region = Rect2(0, 0, 1280, 720)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6rx2d"]
 atlas = ExtResource("4_vovv2")
@@ -978,6 +983,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_erdwl")
+}],
+"loop": true,
+"name": &"idle_bg",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6rx2d")
 }, {
 "duration": 1.0,
@@ -1345,19 +1358,23 @@ script = ExtResource("1_kiqgm")
 [node name="background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-offset_left = -19.9999
-offset_right = 1300.0
-offset_bottom = 720.0
+offset_left = -1896.0
+offset_top = -838.0
+offset_right = -576.0
+offset_bottom = -118.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_kiqgm")
+scale = Vector2(3.84945, 3.00114)
+texture = ExtResource("2_1k4da")
 expand_mode = 2
 stretch_mode = 3
 
 [node name="BackgroundAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(847, 368)
+modulate = Color(1, 1, 1, 0.998107)
+position = Vector2(847, 468)
 sprite_frames = SubResource("SpriteFrames_6rx2d")
-animation = &"credits_bg"
+animation = &"idle_bg"
+autoplay = "idle_bg"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -1460,13 +1477,18 @@ button_pressed = true
 text = "Musica Menu"
 
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="toggled" from="Musica" to="." method="_on_musica_toggled"]
