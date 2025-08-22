@@ -1,8 +1,8 @@
 res://assets/audio/bus/default.tres
-res://scripts/menu/main_menu.gd
 res://scenes/menu/main_menu.tscn
 res://scenes/menu/config/pause_menu.gdshader
 res://scenes/gameplay/mode_gameplay.tscn
 res://scenes/gameplay/FallingQuestion.tscn
-res://scripts/menu/menu_music_controller.gd
 res://globals/Menu_MusicController.tscn
+res://scripts/menu/menu_music_controller.gd
+res://scripts/gameplay/FallingQuestion.gd

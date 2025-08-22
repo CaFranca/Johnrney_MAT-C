@@ -8,7 +8,7 @@ var answered = false
 # Configurações para aumento de velocidade
 const DEFAULT_SPEED = 50
 const MAX_SPEED = 300.0
-const SPEED_INCREMENT = 5.0
+const SPEED_INCREMENT = 0.50
 
 signal question_failed
 
