@@ -32,6 +32,7 @@ var paused: bool = false  # Estado de pausa do jogo
 
 # Cena da pergunta que vai "cair" do topo da tela
 var falling_question_scene = preload("res://scenes/gameplay/FallingQuestion.tscn")
+var reset = preload("res://scripts/gameplay/FallingQuestion.gd")
 
 # Lista que armazena as perguntas ativas (ainda na tela e aguardando resposta)
 var active_questions: Array = []
@@ -49,6 +50,7 @@ var current_combo: int = 0
 # ============================== #
 
 func _ready() -> void:
+	reset.reset_speed()
 	animation.play("Run_Up")
 
 	hint_scene.hide_tip()  # Esconde a dica ao iniciar
@@ -63,8 +65,9 @@ func _ready() -> void:
 	pause_menu.set_gameplay(self)
 	fail_zone.body_entered.connect(_on_fail_zone_body_entered)
 	player_controller.game_over.connect(_on_game_over)
-
+	
 	generate_new_question()
+
 	spawn_timer.start()
 
 

@@ -4,29 +4,40 @@ extends Control  # Script do menu principal do jogo
 # ======= VARIÁVEIS ========= #
 # ============================ #
 
-# Referência aos sons de clique e de hover
+# Sons
 @onready var button_click = $buttonclick
 @onready var hover_sound = $mouse_entered
 
+# Animação de fundo
+@onready var background_animation = $BackgroundAnimation # AnimatedSprite2D
+
+# Nome das animações do fundo para cada botão
+const BG_ANIMATIONS = {
+	"start": "start_bg",
+	"credits": "credits_bg",
+	"options": "options_bg",
+	"quit": "quit_bg",
+	"cavibezz": "youtube_bg",
+	"idle": "idle_bg"
+}
 
 func _ready() -> void:
 	MusicController.play_music_for("menu")
-	# Exemplo: ajustar volume conforme config salva
 	MusicController.set_volume(SaveManager.settings.music_volume)
 
+	# Inicia com idle
+
+	
 
 
 # ========================================= #
 # === FUNÇÕES GENÉRICAS PARA SONS ========= #
 # ========================================= #
 
-# Função para tocar som de clique de botão
 func play_click_sound() -> void:
 	button_click.play()
 	await button_click.finished
 
-
-# Função para tocar som ao passar o mouse sobre os botões
 func play_hover_sound() -> void:
 	hover_sound.play()
 	await hover_sound.finished
@@ -36,35 +47,30 @@ func play_hover_sound() -> void:
 # ============ BOTÕES DE AÇÃO ============= #
 # ========================================= #
 
-# Botão "Start" (Iniciar Jogo)
 func _on_start_pressed() -> void:
-	print("Botão start clicado")  # Feedback opcional no console
 	await play_click_sound()
+
 	get_tree().change_scene_to_file("res://scenes/menu/Selection_mode_menu.tscn")
 
-
-# Botão "Créditos"
 func _on_credits_pressed() -> void:
 	await play_click_sound()
-	# Ação dos créditos (adicionar aqui se desejar)
 
+	# ação créditos
 
-# Botão "Sair"
 func _on_quit_pressed() -> void:
 	await play_click_sound()
+
 	get_tree().quit()
 
-
-# Botão "Opções"
 func _on_options_pressed() -> void:
 	await play_click_sound()
+	
 	get_tree().change_scene_to_file("res://scenes/menu/config/options.tscn")
 
-
-# Botão do canal do YouTube
 func _on_cavibezz_pressed() -> void:
 	await play_click_sound()
-	OS.shell_open("https://www.youtube.com/@CaVibezz")  # Abre o navegador no canal
+	
+	OS.shell_open("https://www.youtube.com/@CaVibezz")
 
 
 # ============================================== #
@@ -73,27 +79,48 @@ func _on_cavibezz_pressed() -> void:
 
 func _on_start_mouse_entered() -> void:
 	await play_hover_sound()
+	background_animation.play(BG_ANIMATIONS["start"])
+	
+
+func _on_start_mouse_exited() -> void:
+	background_animation.play(BG_ANIMATIONS["idle"])
+	
 
 
 func _on_credits_mouse_entered() -> void:
 	await play_hover_sound()
+	background_animation.play(BG_ANIMATIONS["credits"])
+	
+
+func _on_credits_mouse_exited() -> void:
+	background_animation.play(BG_ANIMATIONS["idle"])
+
 
 
 func _on_quit_mouse_entered() -> void:
 	await play_hover_sound()
+	background_animation.play(BG_ANIMATIONS["quit"])
+
+
+func _on_quit_mouse_exited() -> void:
+	background_animation.play(BG_ANIMATIONS["idle"])
+	
 
 
 func _on_options_mouse_entered() -> void:
 	await play_hover_sound()
+	background_animation.play(BG_ANIMATIONS["options"])
+
+
+func _on_options_mouse_exited() -> void:
+	background_animation.play(BG_ANIMATIONS["idle"])
+
 
 
 func _on_cavibezz_mouse_entered() -> void:
 	await play_hover_sound()
+	background_animation.play(BG_ANIMATIONS["cavibezz"])
 
 
-# ======================================================== #
-# === OPÇÃO EXTRA - Alternar música (comentado) ========= #
-# ======================================================== #
-
-# func _on_musica_toggled(toggled_on: bool) -> void:
-# 	MusicController.toggle_music(toggled_on)
+func _on_cavibezz_mouse_exited() -> void:
+	background_animation.play(BG_ANIMATIONS["idle"])

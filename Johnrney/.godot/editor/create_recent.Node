@@ -1,8 +1,10 @@
+AnimatedSprite2D
+AnimationPlayer
+Sprite2D
 ColorRect
 CanvasLayer
 Node2D
 CanvasModulate
-Sprite2D
 TextureRect
 Panel
 Button
@@ -11,4 +13,3 @@ Label
 ScrollContainer
 VScrollBar
 HBoxContainer
-HScrollBar
