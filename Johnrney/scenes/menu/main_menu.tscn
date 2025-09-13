@@ -633,7 +633,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
-text = "Creditos
+text = "Créditos
 "
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
