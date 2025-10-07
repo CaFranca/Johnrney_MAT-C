@@ -66,7 +66,7 @@ grow_vertical = 2
 script = ExtResource("1_hbq5r")
 
 [node name="background" type="TextureRect" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = -19.9999
 offset_right = 1300.0
 offset_bottom = 720.0
@@ -80,7 +80,8 @@ anchors_preset = -1
 anchor_right = 0.42
 anchor_bottom = 1.0
 offset_left = -200.0
-offset_right = -200.0
+offset_right = 135.69958
+offset_bottom = -145.25244
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.999997, 0.99)
@@ -104,6 +105,27 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "       Adição \"+\"     "
 
+[node name="sum_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/sum"]
+layout_mode = 0
+offset_left = 423.00125
+offset_right = 834.00134
+offset_bottom = 77.00001
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Normal"
+
+[node name="sum_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/sum"]
+layout_mode = 0
+offset_left = 423.00128
+offset_top = 45.454544
+offset_right = 834.0012
+offset_bottom = 122.454544
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Difícil"
+
 [node name="sum_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -120,6 +142,28 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 50
 text = "Subtração \"-\""
 
+[node name="minus_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/minus"]
+layout_mode = 0
+offset_left = 426.00125
+offset_top = 0.16161823
+offset_right = 837.00134
+offset_bottom = 77.16162
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Normal"
+
+[node name="minus_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/minus"]
+layout_mode = 0
+offset_left = 426.0013
+offset_top = 45.616165
+offset_right = 837.00134
+offset_bottom = 122.616165
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Difícil"
+
 [node name="minus_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -134,6 +178,28 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Multiplicação \"X\""
+
+[node name="times_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/times"]
+layout_mode = 0
+offset_left = 426.00128
+offset_top = 0.3232422
+offset_right = 837.0014
+offset_bottom = 77.32324
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Normal"
+
+[node name="times_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/times"]
+layout_mode = 0
+offset_left = 426.00125
+offset_top = 40.72728
+offset_right = 837.0013
+offset_bottom = 117.72728
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Difícil"
 
 [node name="times_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -151,6 +217,28 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "     Divisão \"/\"       "
 
+[node name="div_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/div"]
+layout_mode = 0
+offset_left = 425.00125
+offset_top = 0.48485947
+offset_right = 836.00134
+offset_bottom = 77.48486
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Normal"
+
+[node name="div_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/div"]
+layout_mode = 0
+offset_left = 425.00128
+offset_top = 45.939407
+offset_right = 836.00134
+offset_bottom = 122.93941
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Difícil"
+
 [node name="div_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -167,6 +255,28 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 50
 text = "Todos"
 
+[node name="all_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/all"]
+layout_mode = 0
+offset_left = 426.00128
+offset_top = 2.6666822
+offset_right = 837.00134
+offset_bottom = 79.66668
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Normal"
+
+[node name="all_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/all"]
+layout_mode = 0
+offset_left = 426.00128
+offset_top = 49.131332
+offset_right = 837.00134
+offset_bottom = 126.13133
+scale = Vector2(0.5346707, 0.5346707)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Difícil"
+
 [node name="all_rank" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -174,11 +284,11 @@ text = "todas rank"
 uppercase = true
 
 [node name="back" type="Button" parent="."]
-layout_mode = 2
-offset_left = 771.0
-offset_top = 566.0
-offset_right = 1189.0
-offset_bottom = 643.0
+layout_mode = 0
+offset_left = 816.0
+offset_top = 599.0
+offset_right = 1234.0
+offset_bottom = 676.0
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 50
 text = "Voltar"
@@ -212,9 +322,19 @@ button_pressed = true
 text = "Musica Menu"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/sum" to="." method="_on_sum_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/sum/sum_normal" to="." method="_on_sum_normal_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/sum/sum_hard" to="." method="_on_sum_hard_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/minus" to="." method="_on_minus_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/minus/minus_normal" to="." method="_on_minus_normal_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/minus/minus_hard" to="." method="_on_minus_hard_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/times" to="." method="_on_times_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/times/times_normal" to="." method="_on_times_normal_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/times/times_hard" to="." method="_on_times_hard_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/div" to="." method="_on_div_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/div/div_normal" to="." method="_on_div_normal_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/div/div_hard" to="." method="_on_div_hard_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/all" to="." method="_on_all_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/all/all_normal" to="." method="_on_all_normal_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/all/all_hard" to="." method="_on_all_hard_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="Musica2" to="." method="_on_musica_2_toggled"]

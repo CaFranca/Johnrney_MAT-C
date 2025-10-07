@@ -115,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yenhi")
 }],
-"loop": true,
+"loop": false,
 "name": &"Fall",
 "speed": 5.0
 }, {
@@ -144,7 +144,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_toj5p")
 }],
-"loop": true,
+"loop": false,
 "name": &"Run_Down",
 "speed": 12.0
 }, {
@@ -383,9 +383,7 @@ texture_repeat = 1
 position = Vector2(418, 626)
 scale = Vector2(7.2, 7.2)
 sprite_frames = SubResource("SpriteFrames_3wsyr")
-animation = &"Fall"
-frame = 3
-frame_progress = 0.0285941
+animation = &"Run_Down"
 
 [node name="wrong" type="AudioStreamPlayer2D" parent="PlayerController/player_sprite"]
 stream = ExtResource("9_3wsyr")
