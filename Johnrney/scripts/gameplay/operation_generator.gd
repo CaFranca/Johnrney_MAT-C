@@ -10,63 +10,63 @@ func generate_operation(mode: String = "add") -> Dictionary:
 	match mode:
 		"add":
 			# Soma com números até 49
-			a = randi() % 50
+			a = randi_range(-10, 50)
 			b = randi() % 50
 			operation_type = "+"
 		"sub":
 			# Subtração com números até 49
-			a = randi() % 50
+			a = randi_range(-10, 50)
 			b = randi() % 50
 			operation_type = "-"
 		"mul":
 			# Multiplicação com números até 9 para facilitar
-			a = randi() % 10
+			a = randi_range(-10, 50)
 			b = randi() % 10
 			operation_type = "*"
 		"div":
 			# Divisão com números até 9, cuidado com divisão por zero depois
-			a = randi() % 10
+			a = randi_range(-10, 50)
 			b = randi() % 10
 			operation_type = "/"
-		"add_sub":
+		#"add_sub":
 			# Escolhe aleatoriamente entre soma e subtração
-			operation_type = ["+", "-"].pick_random()
-			a = randi() % 50
-			b = randi() % 50
-		"add_mul":
+		#	operation_type = ["+", "-"].pick_random()
+		#	a = randi_range(-10, 50)
+		#	b = randi() % 50
+		#"add_mul":
 			# Escolhe entre soma (números maiores) ou multiplicação (números menores)
-			operation_type = ["+", "*"].pick_random()
-			match operation_type:
-				"+":  
-					a = randi() % 50
-					b = randi() % 50
-				"*":  
-					a = randi() % 10
-					b = randi() % 10
-		"sub_div":
+		#	operation_type = ["+", "*"].pick_random()
+		#	match operation_type:
+		#		"+":  
+		#			a = randi() % 50
+		#			b = randi() % 50
+		#		"*":  
+		#			a = randi() % 10
+		#			b = randi() % 10
+		#"sub_div":
 			# Escolhe entre subtração ou divisão
-			operation_type = ["-", "/"].pick_random()
-			match operation_type:
-				"-":
-					a = randi() % 50
-					b = randi() % 50
-				"/":
-					a = randi() % 10
-					b = randi() % 10
-		"mul_div":
+		#	operation_type = ["-", "/"].pick_random()
+		#	match operation_type:
+		#		"-":
+		#			a = randi() % 50
+		#			b = randi() % 50
+		#		"/":
+		#			a = randi() % 10
+		#			b = randi() % 10
+		#"mul_div":
 			# Escolhe entre multiplicação ou divisão, ambos com números até 9
-			operation_type = ["*", "/"].pick_random()
-			a = randi() % 10
-			b = randi() % 10
+		#	operation_type = ["*", "/"].pick_random()
+		#	a = randi() % 10
+		#	b = randi() % 10
 		"all":
 			# Pode ser qualquer operação
 			operation_type = ["+", "-", "*", "/"].pick_random()
 			match operation_type:
 				"+", "-":
-					a = randi() % 50
+					a = randi_range(-10, 50)
 					b = randi() % 50
 				"*", "/":
-					a = randi() % 10
+					a = randi_range(-10, 50)
 					b = randi() % 10
 
 	var question = ""  # String que representa a operação para exibir ao jogador
@@ -77,12 +77,7 @@ func generate_operation(mode: String = "add") -> Dictionary:
 		"+":  # Soma
 			question = "%d + %d = ?" % [a, b]
 			answer = a + b
-		"-":  # Subtração
-			if a < b:
-				# Garante que a operação não resulte em número negativo, trocando a e b se necessário
-				var temp = a
-				a = b
-				b = temp  
+		"-":  # Subtração 
 			question = "%d - %d = ?" % [a, b]
 			answer = a - b
 		"*":  # Multiplicação

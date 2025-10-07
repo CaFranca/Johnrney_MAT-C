@@ -8,7 +8,7 @@ var answered = false
 # Configurações para aumento de velocidade
 const DEFAULT_SPEED = 50
 const MAX_SPEED = 300.0
-const SPEED_INCREMENT = 0.50
+const SPEED_INCREMENT = 2
 
 signal question_failed
 
@@ -33,6 +33,7 @@ func initialize(new_question: String, new_answer: int):
 
 	# Aumenta para a próxima pergunta
 	speed = min(speed + SPEED_INCREMENT, MAX_SPEED)
+	print(speed)
 
 func _physics_process(_delta):
 	if not answered:
