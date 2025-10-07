@@ -453,7 +453,7 @@ offset_top = 108.0
 offset_right = 1109.0
 offset_bottom = 131.0
 scale = Vector2(1.49, 1.49)
-text = "Sequencia
+text = "Sequência
 "
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

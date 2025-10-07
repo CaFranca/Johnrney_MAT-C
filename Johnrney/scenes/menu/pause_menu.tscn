@@ -47,8 +47,7 @@ size_flags_horizontal = 4
 
 [node name="resume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume
-"
+text = "Continuar"
 
 [node name="forfeit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -57,11 +56,11 @@ text = "Desistir"
 [node name="restart" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "Restart"
+text = "Reiniciar"
 
 [node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "Sair"
 
 [node name="buttonclick" type="AudioStreamPlayer" parent="."]
 process_priority = 1
