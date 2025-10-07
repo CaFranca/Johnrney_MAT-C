@@ -3,3 +3,6 @@ res://scripts/gameplay/operation_generator.gd
 res://scenes/gameplay/FallingQuestion.tscn
 res://scenes/menu/config/pause_menu.gdshader
 res://scripts/gameplay/FallingQuestion.gd
+res://scenes/menu/Selection_mode_menu.tscn
+res://scripts/menu/Selection_mode_menu.gd
+res://scripts/gameplay/mode_gameplay.gd

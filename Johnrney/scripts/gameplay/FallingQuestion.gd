@@ -5,10 +5,19 @@ var answer = 0
 
 var answered = false
 
-# Configurações para aumento de velocidade
-const DEFAULT_SPEED = 50
-const MAX_SPEED = 300.0
-const SPEED_INCREMENT = 2
+static var DEFAULT_SPEED = 50
+var MAX_SPEED = 300.0
+var SPEED_INCREMENT = 2
+
+func set_difficulty(difficulty:String):
+	match (difficulty):
+		"normal":
+			print("dificuldade:", difficulty)
+		"hard":
+			print("dificuldade:", difficulty)
+			DEFAULT_SPEED = 100
+			MAX_SPEED = 600.0
+			SPEED_INCREMENT = 5
 
 signal question_failed
 
@@ -29,8 +38,6 @@ func initialize(new_question: String, new_answer: int):
 		label.text = question
 
 	# Define a velocidade da pergunta
-
-
 	# Aumenta para a próxima pergunta
 	speed = min(speed + SPEED_INCREMENT, MAX_SPEED)
 	print(speed)

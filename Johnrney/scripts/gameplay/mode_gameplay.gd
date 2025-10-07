@@ -39,10 +39,11 @@ var active_questions: Array = []
 
 # Modo atual da operação matemática (exemplo: "add", "sub")
 var selected_mode: String = "add"
-
+var selected_difficulty: String = "normal"
 var current_score: int = 0
 var current_errors: int = 0 
 var current_combo: int = 0
+
 
 
 # ============================== #
@@ -106,13 +107,15 @@ func pauseMenu() -> void:
 func set_mode(mode: String) -> void:
 	# Atualiza o modo de operação matemática
 	selected_mode = mode
+	
+func set_difficulty(difficulty: String) -> void:
+	selected_difficulty = difficulty
 
 func generate_new_question() -> void:
 	# Gera operação usando o gerador com base no modo selecionado
 	var operation = generator.generate_operation(selected_mode)
-
-	# Instancia a pergunta que cairá na tela
 	var question = falling_question_scene.instantiate()
+	question.set_difficulty(selected_difficulty)
 
 	# Inicializa a pergunta com texto e resposta correta
 	question.initialize(operation["question"], operation["answer"])
@@ -253,7 +256,7 @@ func restart_game() -> void:
 
 	var scene = preload("res://scenes/gameplay/mode_gameplay.tscn").instantiate()
 	scene.set_mode(selected_mode)
-
+	scene.set_difficulty(selected_difficulty)
 	get_tree().root.add_child(scene)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = scene

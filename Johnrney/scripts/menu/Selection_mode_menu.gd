@@ -61,10 +61,11 @@ func format_high_scores(mode: String) -> String:
 	return text
 
 # Função que instancia o jogo no modo selecionado
-func _start_game_with_mode(mode: String) -> void:
+func _start_game_with_mode(mode: String, difficulty: String) -> void:
 	await _play_button_click()
 	var scene_instance = gameplay_scene.instantiate()
 	scene_instance.set_mode(mode)
+	scene_instance.set_difficulty(difficulty)
 	get_tree().root.add_child(scene_instance)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = scene_instance
@@ -75,20 +76,60 @@ func _play_button_click():
 	return button_click.finished
 
 # Funções dos botões de seleção de modo
+
+#SOMA
 func _on_sum_pressed() -> void:
-	await _start_game_with_mode("add")
+	pass
+	
+func _on_sum_normal_pressed() -> void:
+	await _start_game_with_mode("add","normal")
+	
+func _on_sum_hard_pressed() -> void:
+	await _start_game_with_mode("add","hard")
+	
+#Sub
 
 func _on_minus_pressed() -> void:
-	await _start_game_with_mode("sub")
+	pass
+	
+func _on_minus_normal_pressed() -> void:
+	await _start_game_with_mode("sub","normal")
 
+func _on_minus_hard_pressed() -> void:
+	await _start_game_with_mode("sub","hard")
+	
+#Mult
 func _on_times_pressed() -> void:
-	await _start_game_with_mode("mul")
+	pass
+	
+func _on_times_normal_pressed() -> void:
+	await _start_game_with_mode("mul","normal")
+
+func _on_times_hard_pressed() -> void:
+	await _start_game_with_mode("mul","hard")
+	
+#Div
 
 func _on_div_pressed() -> void:
-	await _start_game_with_mode("div")
+	pass
+
+func _on_div_normal_pressed() -> void:
+	await _start_game_with_mode("div","normal")
+
+
+func _on_div_hard_pressed() -> void:
+	await _start_game_with_mode("div","hard")
+	
+#Todos
 
 func _on_all_pressed() -> void:
-	await _start_game_with_mode("all")
+	pass
+	
+func _on_all_normal_pressed() -> void:
+	await _start_game_with_mode("all","normal")
+
+func _on_all_hard_pressed() -> void:
+	await _start_game_with_mode("all","hard")
 
 # Função do botão de voltar ao menu principal
 func _on_back_pressed() -> void:
