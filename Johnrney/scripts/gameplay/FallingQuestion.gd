@@ -5,27 +5,31 @@ var answer = 0
 
 var answered = false
 
-static var DEFAULT_SPEED = 50
+static var DEFAULT_SPEED
 var MAX_SPEED = 300.0
 var SPEED_INCREMENT = 2
-
-func set_difficulty(difficulty:String):
-	match (difficulty):
-		"normal":
-			print("dificuldade:", difficulty)
-		"hard":
-			print("dificuldade:", difficulty)
-			DEFAULT_SPEED = 100
-			MAX_SPEED = 600.0
-			SPEED_INCREMENT = 5
-
 signal question_failed
-
 @onready var label = $pergunta
 @onready var collision_shape = $Answerhitbox
 
 # Velocidade compartilhada para próximas perguntas
 static var speed = DEFAULT_SPEED
+
+func set_difficulty(difficulty:String):
+	match (difficulty):
+		"normal":
+			DEFAULT_SPEED = 50
+			MAX_SPEED = 300.0
+			SPEED_INCREMENT = 2
+		"hard":
+			DEFAULT_SPEED = 100
+			MAX_SPEED = 600.0
+			SPEED_INCREMENT = 5
+		_:
+			print("Dificuldade não encontrada:",difficulty)
+	speed = DEFAULT_SPEED
+	print("Dificuldade encontrada:",difficulty)
+	
 
 func _ready():
 	if question != "":
