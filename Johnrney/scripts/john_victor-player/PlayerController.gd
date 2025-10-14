@@ -12,6 +12,7 @@ var developer_mode := false
 
 # Referência ao container que guarda os corações na UI (barra de vida)
 @onready var hearts_container = $healthbar/HBoxContainer
+@onready var current_combo = $mode_gameplay/current_combo
 
 func _ready():
 	# Inicializa a interface visual dos corações ao iniciar o nó
@@ -98,3 +99,12 @@ func forfeit_game():
 	update_hearts()
 	# Emite o sinal de game over
 	emit_signal("game_over")
+	
+func addHeart_sequencia(current_combo):
+	if current_combo > 5:
+		if current_combo > 0:
+			current_errors -=1
+			print("Coração recuperado por combo! Erros agora:", current_errors)
+			update_hearts()
+		return true
+	return false

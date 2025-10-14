@@ -170,6 +170,11 @@ func check_answer() -> void:
 			current_score += 1
 			current_combo += 1
 			update_combo_label()
+			
+			if player_controller.addHeart_sequencia(current_combo):
+				current_combo = 0
+				update_combo_label()
+
 			update_score_label()
 			animation.play("Run_Down")
 

@@ -283,6 +283,7 @@ position = Vector2(469, 419.5)
 script = ExtResource("3_jcpkf")
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.3854925, 0.38549247, 0.38549247, 1)
 position = Vector2(413.999, 359.499)
 scale = Vector2(0.881468, 0.906685)
 texture = ExtResource("3_lehme")
