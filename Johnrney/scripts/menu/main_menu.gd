@@ -53,7 +53,7 @@ func _on_start_pressed() -> void:
 func _on_credits_pressed() -> void:
 	await play_click_sound()
 
-	get_tree().change_scene_to_file("res://scenes/menu/creditos.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/creditos_.tscn")
 
 func _on_quit_pressed() -> void:
 	await play_click_sound()

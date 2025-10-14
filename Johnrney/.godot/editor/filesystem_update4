@@ -1,4 +1,4 @@
-res://assets/audio/bus/default.tres
-res://scenes/menu/config/pause_menu.gdshader
+res://scenes/menu/creditos_.tscn
 res://scenes/menu/creditos.tscn
 res://scripts/menu/main_menu.gd
+res://scripts/menu/creditos.gd

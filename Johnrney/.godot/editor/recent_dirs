@@ -1,3 +1,4 @@
+res://scripts/menu
 res://scenes/menu
 D:/IFSP/Repositorios Git/Matematica_Computacional
 res://assets/menu/concepts
@@ -10,7 +11,6 @@ res://assets/Background_images/start
 res://globals
 res://scripts/gameplay
 res://assets/audio/bus
-res://scripts/menu
 res://assets/sprites/Player_sprites
 res://
 res://scripts/john_victor-player
