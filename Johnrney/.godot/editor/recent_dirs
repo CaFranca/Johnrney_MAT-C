@@ -1,3 +1,4 @@
+res://scenes/menu
 D:/IFSP/Repositorios Git/Matematica_Computacional
 res://assets/menu/concepts
 res://assets/Background_images/yt
@@ -8,7 +9,6 @@ res://assets/Background_images/credits
 res://assets/Background_images/start
 res://globals
 res://scripts/gameplay
-res://scenes/menu
 res://assets/audio/bus
 res://scripts/menu
 res://assets/sprites/Player_sprites

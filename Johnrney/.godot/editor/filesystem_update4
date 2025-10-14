@@ -1,5 +1,4 @@
 res://assets/audio/bus/default.tres
-res://scenes/gameplay/mode_gameplay.tscn
 res://scenes/menu/config/pause_menu.gdshader
-res://scripts/john_victor-player/PlayerController.gd
-res://scripts/gameplay/mode_gameplay.gd
+res://scenes/menu/creditos.tscn
+res://scripts/menu/main_menu.gd

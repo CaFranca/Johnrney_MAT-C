@@ -24,12 +24,10 @@ const BG_ANIMATIONS = {
 func _ready() -> void:
 	MusicController.play_music_for("menu")
 	MusicController.set_volume(SaveManager.settings.music_volume)
-
+	
 	# Inicia com idle
 
 	
-
-
 # ========================================= #
 # === FUNÇÕES GENÉRICAS PARA SONS ========= #
 # ========================================= #
@@ -55,7 +53,7 @@ func _on_start_pressed() -> void:
 func _on_credits_pressed() -> void:
 	await play_click_sound()
 
-	# ação créditos
+	get_tree().change_scene_to_file("res://scenes/menu/creditos.tscn")
 
 func _on_quit_pressed() -> void:
 	await play_click_sound()
@@ -124,3 +122,4 @@ func _on_cavibezz_mouse_entered() -> void:
 
 func _on_cavibezz_mouse_exited() -> void:
 	background_animation.play(BG_ANIMATIONS["idle"])
+	

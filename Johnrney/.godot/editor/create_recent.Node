@@ -1,6 +1,6 @@
+Sprite2D
 AnimatedSprite2D
 AnimationPlayer
-Sprite2D
 ColorRect
 CanvasLayer
 Node2D
@@ -12,4 +12,3 @@ RichTextLabel
 Label
 ScrollContainer
 VScrollBar
-HBoxContainer

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://blh118rb64a4q"]
+
+[ext_resource type="Texture2D" uid="uid://dtwjplxwm5ixu" path="res://assets/Background_images/credits/creditos.png" id="1_v6g5a"]
+
+[node name="Creditos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 359.5)
+scale = Vector2(1.5816832, 1.89267)
+texture = ExtResource("1_v6g5a")
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 599.0
+offset_right = 1234.0
+offset_bottom = 676.0
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Voltar"
