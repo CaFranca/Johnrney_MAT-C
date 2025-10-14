@@ -1,8 +1,7 @@
-res://assets/audio/bus/default.tres
-res://scripts/gameplay/operation_generator.gd
-res://scenes/gameplay/FallingQuestion.tscn
+res://scenes/gameplay/mode_gameplay.tscn
 res://scenes/menu/config/pause_menu.gdshader
-res://scripts/gameplay/FallingQuestion.gd
+res://scenes/gameplay/FallingQuestion.tscn
+res://scenes/menu/main_menu.tscn
+res://globals/Menu_MusicController.tscn
 res://scenes/menu/Selection_mode_menu.tscn
-res://scripts/menu/Selection_mode_menu.gd
-res://scripts/gameplay/mode_gameplay.gd
+res://scripts/john_victor-player/PlayerController.gd

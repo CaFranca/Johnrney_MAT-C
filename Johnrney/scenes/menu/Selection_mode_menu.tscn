@@ -80,8 +80,8 @@ anchors_preset = -1
 anchor_right = 0.42
 anchor_bottom = 1.0
 offset_left = -200.0
-offset_right = 135.69958
-offset_bottom = -145.25244
+offset_right = 135.7
+offset_bottom = -145.252
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.999997, 0.99)
@@ -107,21 +107,21 @@ text = "       Adição \"+\"     "
 
 [node name="sum_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/sum"]
 layout_mode = 0
-offset_left = 423.00125
-offset_right = 834.00134
-offset_bottom = 77.00001
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 423.001
+offset_right = 834.001
+offset_bottom = 77.0
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
 [node name="sum_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/sum"]
 layout_mode = 0
-offset_left = 423.00128
-offset_top = 45.454544
-offset_right = 834.0012
-offset_bottom = 122.454544
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 423.001
+offset_top = 45.4545
+offset_right = 834.001
+offset_bottom = 122.455
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
@@ -144,22 +144,22 @@ text = "Subtração \"-\""
 
 [node name="minus_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/minus"]
 layout_mode = 0
-offset_left = 426.00125
-offset_top = 0.16161823
-offset_right = 837.00134
-offset_bottom = 77.16162
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 426.001
+offset_top = 0.161618
+offset_right = 837.001
+offset_bottom = 77.1616
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
 [node name="minus_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/minus"]
 layout_mode = 0
-offset_left = 426.0013
-offset_top = 45.616165
-offset_right = 837.00134
-offset_bottom = 122.616165
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 426.001
+offset_top = 45.6162
+offset_right = 837.001
+offset_bottom = 122.616
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
@@ -181,22 +181,22 @@ text = "Multiplicação \"X\""
 
 [node name="times_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/times"]
 layout_mode = 0
-offset_left = 426.00128
-offset_top = 0.3232422
-offset_right = 837.0014
-offset_bottom = 77.32324
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 426.001
+offset_top = 0.323242
+offset_right = 837.001
+offset_bottom = 77.3232
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
 [node name="times_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/times"]
 layout_mode = 0
-offset_left = 426.00125
-offset_top = 40.72728
-offset_right = 837.0013
-offset_bottom = 117.72728
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 426.001
+offset_top = 40.7273
+offset_right = 837.001
+offset_bottom = 117.727
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
@@ -219,22 +219,22 @@ text = "     Divisão \"/\"       "
 
 [node name="div_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/div"]
 layout_mode = 0
-offset_left = 425.00125
-offset_top = 0.48485947
-offset_right = 836.00134
-offset_bottom = 77.48486
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 425.001
+offset_top = 0.484859
+offset_right = 836.001
+offset_bottom = 77.4849
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
 [node name="div_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/div"]
 layout_mode = 0
-offset_left = 425.00128
-offset_top = 45.939407
-offset_right = 836.00134
-offset_bottom = 122.93941
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 425.001
+offset_top = 45.9394
+offset_right = 836.001
+offset_bottom = 122.939
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
@@ -257,22 +257,22 @@ text = "Todos"
 
 [node name="all_normal" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/all"]
 layout_mode = 0
-offset_left = 426.00128
-offset_top = 2.6666822
-offset_right = 837.00134
-offset_bottom = 79.66668
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 426.001
+offset_top = 2.66668
+offset_right = 837.001
+offset_bottom = 79.6667
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
 [node name="all_hard" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/all"]
 layout_mode = 0
-offset_left = 426.00128
-offset_top = 49.131332
-offset_right = 837.00134
-offset_bottom = 126.13133
-scale = Vector2(0.5346707, 0.5346707)
+offset_left = 426.001
+offset_top = 49.1313
+offset_right = 837.001
+offset_bottom = 126.131
+scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
