@@ -93,6 +93,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2000.0
+offset_right = -2000.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -115,7 +117,7 @@ layout_mode = 2
 [node name="master" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Master"
+text = "Geral"
 horizontal_alignment = 1
 
 [node name="master_volume2" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_ffnc0")]
@@ -129,7 +131,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 [node name="Music" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Musica"
+text = "Música"
 horizontal_alignment = 1
 
 [node name="Music_volume" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_ffnc0")]
@@ -139,7 +141,7 @@ bus_name = "music"
 [node name="SFX" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "SFX"
+text = "Efeitos Sonoros"
 horizontal_alignment = 1
 
 [node name="sfx_volume3" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_ffnc0")]
