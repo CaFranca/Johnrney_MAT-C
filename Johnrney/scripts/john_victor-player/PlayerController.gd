@@ -100,11 +100,13 @@ func forfeit_game():
 	# Emite o sinal de game over
 	emit_signal("game_over")
 	
+var addHeart_cont = 1
 func addHeart_sequencia(current_combo):
-	if current_combo > 5:
+	if current_combo >= 1  * addHeart_cont:
 		if current_combo > 0:
 			current_errors -=1
 			print("Coração recuperado por combo! Erros agora:", current_errors)
 			update_hearts()
+			addHeart_cont+= 1
 		return true
 	return false
