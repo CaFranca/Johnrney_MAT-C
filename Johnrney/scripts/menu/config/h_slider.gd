@@ -11,11 +11,11 @@ func _ready() -> void:
 	# Inicializa o valor do slider com o valor salvo no SaveManager para esse bus
 	match bus_name:
 		"Master":
-			value = SaveManager.settings.master_volume
+			value = float(SaveManager.load_setting("master_volume", 1.0))
 		"music":
-			value = SaveManager.settings.music_volume
+			value = float(SaveManager.load_setting("music_volume", 1.0))
 		"sfx":
-			value = SaveManager.settings.sfx_volume
+			value = float(SaveManager.load_setting("sfx_volume", 1.0))
 		_:
 			# Se o bus_name não for reconhecido, pega o volume atual do AudioServer como fallback
 			value = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
@@ -31,12 +31,5 @@ func _on_value_changed(value: float) -> void:
 	AudioServer.set_bus_mute(bus_index, value <= 0.01)
 
 	# Atualiza o valor no SaveManager para salvar depois
-	match bus_name:
-		"Master":
-			SaveManager.settings.master_volume = value
-		"music":
-			SaveManager.settings.music_volume = value
-		"sfx":
-			SaveManager.settings.sfx_volume = value
-
-	SaveManager.save_settings()  # Salva as configurações alteradas
+	var setting_key = bus_name.to_lower() + "_volume"
+	SaveManager.save_setting(setting_key, value)

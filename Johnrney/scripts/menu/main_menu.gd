@@ -23,7 +23,7 @@ const BG_ANIMATIONS = {
 
 func _ready() -> void:
 	MusicController.play_music_for("menu")
-	MusicController.set_volume(SaveManager.settings.music_volume)
+	MusicController.set_volume(float(SaveManager.load_setting("music_volume", 1.0)))
 	
 	# Inicia com idle
 

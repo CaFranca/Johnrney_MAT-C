@@ -18,15 +18,13 @@ func _on_resolution_item_selected(index: int) -> void:
 	match index:
 		0:
 			SettingsManager.set_resolution(Vector2i(1920, 1080))
-			SaveManager.settings.resolution = "1920x1080"
+			SaveManager.save_setting("resolution", "1920x1080")
 		1:
 			SettingsManager.set_resolution(Vector2i(1600, 900))
-			SaveManager.settings.resolution = "1600x900"
+			SaveManager.save_setting("resolution", "1600x900")
 		2:
 			SettingsManager.set_resolution(Vector2i(1280, 720))
-			SaveManager.settings.resolution = "1280x720"
-
-	SaveManager.save_settings()
+			SaveManager.save_setting("resolution", "1280x720")
 
 func _on_clear_data_pressed() -> void:
 	SaveManager.clear_high_scores()
