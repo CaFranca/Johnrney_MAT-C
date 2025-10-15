@@ -1,298 +1,125 @@
 extends Node
 
-# Caminho para o arquivo que armazenará as configurações do usuário
-var settings_path := "user://user_settings.cfg"
-# Caminho para o arquivo que armazenará o progresso do jogador
-var progress_path := "user://user_progress.cfg"
-
-# Dicionário que mantém as configurações do jogo na memória com valores padrão
-var settings = {
-	"music_on": true,          # Música ligada ou desligada
-	"music_volume": 1.0,       # Volume da música (0.0 a 1.0)
-	"sfx_volume": 1.0,         # Volume dos efeitos sonoros (SFX)
-	"master_volume": 1.0,      # Volume geral do áudio
-	"resolution": "1280x720"   # Resolução da tela
-}
-
-# Dicionário que mantém o progresso do jogador (pontuações e erros)
-var progress = {
-	"scores": {   # Acertos totais por operação
-		"add": 0,
-		"sub": 0,
-		"mul": 0,
-		"div": 0,
-		"all": 0
-	},
-	"errors": {   # Erros totais por operação
-		"add": 0,
-		"sub": 0,
-		"mul": 0,
-		"div": 0,
-		"all": 0
-	},
-	"high_scores": []  # Lista dos 5 melhores jogos. Cada item é um dicionário com detalhes do jogo
-}
+var db_path := "user://game_data.db"
+var db
 
 func _ready():
-	# Carrega as configurações salvas
-	load_settings()
-	# Aplica as configurações de áudio carregadas
-	apply_audio_settings()
-	# Carrega o progresso salvo
-	load_progress()
-
-	# Exibe no console os caminhos dos arquivos para debug
-	print("============================================")
-	print("🗂️ Caminho dos arquivos de configuração:")
-	print("- Configurações:", ProjectSettings.globalize_path(settings_path))
-	print("- Progresso:", ProjectSettings.globalize_path(progress_path))
-	print("============================================")
-
-	# Se existir um node do tipo Label chamado "path_label", atualiza seu texto com os caminhos
-	var label = get_node_or_null("path_label")
-	if label:
-		label.text = "Settings path:\n" + ProjectSettings.globalize_path(settings_path) + "\n\n" + \
-		"Progress path:\n" + ProjectSettings.globalize_path(progress_path)
-
-# ============================================ #
-# ================= SETTINGS ================= #
-# ============================================ #
-
-# Função para carregar as configurações do arquivo .cfg para o dicionário settings
-func load_settings():
-	var cfg = ConfigFile.new()
-	var err = cfg.load(settings_path)  # Tenta carregar o arquivo
-	if err == OK:
-		# Se o arquivo existe, lê os valores e atualiza o dicionário
-		settings["music_on"] = cfg.get_value("audio", "music_on", true)       # CORRIGIDO: usar [] para acessar dicionário
-		settings["music_volume"] = cfg.get_value("audio", "music_volume", 1.0)
-		settings["sfx_volume"] = cfg.get_value("audio", "sfx_volume", 1.0)
-		settings["master_volume"] = cfg.get_value("audio", "master_volume", 1.0)
-		settings["resolution"] = cfg.get_value("display", "resolution", "1280x720")
-		print("✅ Configurações carregadas com sucesso.")
-	else:
-		# Se o arquivo não existir, cria um novo com valores padrão
-		print("⚠️ Arquivo de configurações não encontrado. Criando novo com valores padrão.")
-		save_settings()
-
-# Função para salvar as configurações do dicionário settings no arquivo .cfg
-func save_settings():
-	var cfg = ConfigFile.new()
-	cfg.set_value("audio", "music_on", settings["music_on"])                  # CORRIGIDO: usar [] para acessar dicionário
-	cfg.set_value("audio", "music_volume", settings["music_volume"])
-	cfg.set_value("audio", "sfx_volume", settings["sfx_volume"])              # Salva volume dos efeitos sonoros
-	cfg.set_value("audio", "master_volume", settings["master_volume"])        # Salva volume master
-	cfg.set_value("display", "resolution", settings["resolution"])
+	db = SQLite.new()
+	db.path = db_path
 	
-	var err = cfg.save(settings_path)  # Tenta salvar o arquivo
-	if err == OK:
-		print("💾 Configurações salvas com sucesso em:", ProjectSettings.globalize_path(settings_path))
-	else:
-		print("❌ Erro ao salvar configurações:", err)
+	if not db.open_db():
+		printerr("Erro: Não foi possível abrir o banco de dados em ", db_path)
+		return
+		
+	print("Banco de dados aberto com sucesso em: ", ProjectSettings.globalize_path(db_path))
+	
+	_initialize_database()
+	apply_audio_settings()
+
+func _initialize_database():
+	db.query("CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT);")
+	db.query("CREATE TABLE IF NOT EXISTS progress_summary (mode TEXT PRIMARY KEY, total_scores INTEGER DEFAULT 0, total_errors INTEGER DEFAULT 0);")
+	db.query("CREATE TABLE IF NOT EXISTS high_scores (id INTEGER PRIMARY KEY AUTOINCREMENT, score INTEGER, errors INTEGER, mode TEXT, timestamp TEXT);")
+	
+	var modes = ["add", "sub", "mul", "div", "all"]
+	for mode in modes:
+		# bindings são como uma peça que completa o quebra-cabeça da query --> values (?) recebe o modo vindo de [mode]
+		db.query_with_bindings("INSERT OR IGNORE INTO progress_summary (mode) VALUES (?);", [mode])
+
+# ============================================ #
+# =============== CONFIGURAÇÕES ============== #
+# ============================================ #
+
+func save_setting(key: String, value):
+	db.query_with_bindings("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?);", [key, str(value)])
+
+func load_setting(key: String, default_value):
+	var table = "settings"
+	var where_clause = "key = '%s'" % [key]
+	var columns = ["value"]
+	var result = db.select_rows(table, where_clause, columns)
+	# ordem estrutural do select_rows: 1- tabela onde pesquisar; 2- sentença where; 3- o que será retornado desse select
+	
+	if result.size() > 0:
+		return result[0]["value"]
+	return default_value
 
 # ============================================ #
 # ================= PROGRESS ================= #
 # ============================================ #
 
-# Função para carregar o progresso salvo do jogador
-func load_progress():
-	var cfg = ConfigFile.new()
-	var err = cfg.load(progress_path)
-	if err == OK:
-		for mode in progress["scores"].keys():
-			progress["scores"][mode] = int(cfg.get_value("scores", mode, 0))   # CORRIGIDO: usar [] para acessar dicionário
-			progress["errors"][mode] = int(cfg.get_value("errors", mode, 0))
-		# Carrega o top 5
-		progress["high_scores"] = cfg.get_value("high_scores", "list", [])
-		print("✅ Progresso carregado com sucesso.")
-	else:
-		print("⚠️ Arquivo de progresso não encontrado. Criando novo com valores padrão.")
-		save_progress()
-
-func save_progress():
-	var cfg = ConfigFile.new()
-	for mode in progress["scores"].keys():                                        # CORRIGIDO: usar [] para acessar dicionário
-		cfg.set_value("scores", mode, progress["scores"][mode])
-		cfg.set_value("errors", mode, progress["errors"][mode])
-	cfg.set_value("high_scores", "list", progress["high_scores"])
-	
-	var err = cfg.save(progress_path)
-	if err == OK:
-		print("💾 Progresso salvo com sucesso.")
-	else:
-		print("❌ Erro ao salvar progresso:", err)
-
-# ============================================ #
-# ========== MÉTODOS DE ATUALIZAÇÃO ========== #
-# ============================================ #
-
-# Adiciona uma pontuação para um modo específico e salva o progresso
 func add_score(mode: String, amount: int = 1):
-	if progress["scores"].has(mode):
-		progress["scores"][mode] += amount
-		print("➕ Pontuação adicionada em ", mode, " Novo valor: ", progress["scores"][mode])
-		save_progress()
-	else:
-		print("❌ Modo de pontuação inválido:", mode)
+	db.query_with_bindings("UPDATE progress_summary SET total_scores = total_scores + ? WHERE mode = ?;", [amount, mode])
+	print("Pontuação adicionada em ", mode)
 
-# Adiciona um erro ao contador e salva o progresso
-func add_error(mode: String):
-	if progress["errors"].has(mode):
-		progress["errors"][mode] += 1
-		print("❌ Erro adicionado no modo ", mode, " Total: ", progress["errors"][mode])
-		save_progress()
-	else:
-		print("❌ Modo inválido para erro:", mode)
+func add_error(mode: String, amount: int = 1):
+	db.query_with_bindings("UPDATE progress_summary SET total_errors = total_errors + ? WHERE mode = ?;", [amount, mode])
+	print("Erro adicionado no modo ", mode)
 
 func add_high_score(score: int, errors: int, mode: String):
-	if score <= 0:
-		print("⚠️ High score não registrado porque score é 0.")
-		return
+	if score <= 0: return
+	var date = Time.get_datetime_dict_from_system(false)
+	var formatted_date = "%04d-%02d-%02d %02d:%02d:%02d" % [date.year, date.month, date.day, date.hour, date.minute, date.second]
+	db.query_with_bindings("INSERT INTO high_scores (score, errors, mode, timestamp) VALUES (?, ?, ?, ?);", [score, errors, mode, formatted_date])
+	print("Novo high score registrado.")
+	_trim_high_scores(mode)
 
-	var dt = Time.get_datetime_dict_from_system(false)
-	var formatted_date = "%04d-%02d-%02d %02d:%02d:%02d" % [
-		dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second
-	]
-
-	var game_data = {
-		"score": score,
-		"errors": errors,
-		"mode": mode,
-		"timestamp": formatted_date
-	}
-
-	progress["high_scores"].append(game_data)   # CORRIGIDO: usar [] para acessar dicionário
-
-	# Filtra só os registros desse modo
-	var filtered: Array = progress["high_scores"].filter(func(r): return r["mode"] == mode)
-
-	# Ordena:
-	# 1. Maior score
-	# 2. Menor erro
-	# 3. Mais recente
-	filtered.sort_custom(func(a, b):
-		if a["score"] != b["score"]:
-			return b["score"] - a["score"]
-		if a["errors"] != b["errors"]:
-			return a["errors"] - b["errors"]
-		var time_a = Time.get_unix_time_from_datetime_string(a.get("timestamp", "1970-01-01 00:00:00"))
-		var time_b = Time.get_unix_time_from_datetime_string(b.get("timestamp", "1970-01-01 00:00:00"))
-		return int(time_b - time_a)  # Mais recente primeiro
-	)
-
-	# Mantém só os 5 melhores desse modo
-	if filtered.size() > 5:
-		filtered.resize(5)
-
-	# Remove todos os registros desse modo do high_scores atual
-	progress["high_scores"] = progress["high_scores"].filter(func(r): return r["mode"] != mode)
-
-	# Junta os registros desse modo (filtrados) com os dos outros modos
-	progress["high_scores"] += filtered
-
-	save_progress()
-	print("🏆 Novo high score registrado:", game_data)
-
-# ============================================ #
-# ============ APLICAR CONFIGURAÇÕES ========= #
-# ============================================ #
-
-# Aplica os volumes configurados às respectivas buses de áudio do Godot
-func apply_audio_settings():
-	# Ajusta volume e mute da bus "Master"
-	var master_index = AudioServer.get_bus_index("Master")
-	if master_index != -1:
-		AudioServer.set_bus_volume_db(master_index, linear_to_db(settings["master_volume"]))  # CORRIGIDO: usar [] para acessar dicionário
-		AudioServer.set_bus_mute(master_index, settings["master_volume"] <= 0.01)
-		print("🔊 Volume Master aplicado:", settings["master_volume"])
-	else:
-		print("❌ Bus 'Master' não encontrado!")
-
-	# Ajusta volume e mute da bus "music"
-	var music_index = AudioServer.get_bus_index("music")
-	if music_index != -1:
-		AudioServer.set_bus_volume_db(music_index, linear_to_db(settings["music_volume"]))
-		AudioServer.set_bus_mute(music_index, settings["music_volume"] <= 0.01)
-		print("🎶 Volume music aplicado:", settings["music_volume"])
-	else:
-		print("❌ Bus 'music' não encontrado!")
-
-	# Ajusta volume e mute da bus "sfx"
-	var sfx_index = AudioServer.get_bus_index("sfx")
-	if sfx_index != -1:
-		AudioServer.set_bus_volume_db(sfx_index, linear_to_db(settings["sfx_volume"]))
-		AudioServer.set_bus_mute(sfx_index, settings["sfx_volume"] <= 0.01)
-		print("🔊 Volume sfx aplicado:", settings["sfx_volume"])
-	else:
-		print("❌ Bus 'sfx' não encontrado!")
-
-func get_best_score_for_mode(mode: String) -> int:
-	var best_score = 0
-	for record in progress["high_scores"]:
-		if record.has("mode") and record["mode"] == mode:
-			if record.has("score") and record["score"] > best_score:
-				best_score = record["score"]
-	return best_score
+func _trim_high_scores(mode: String):
+	var table = "high_scores"
+	var where_clause = "mode = '%s' ORDER BY score DESC, errors ASC, timestamp DESC LIMIT 1 OFFSET 5" % [mode]
+	var columns = ["id"]
+	var result = db.select_rows(table, where_clause, columns)
 	
-func parse_date_to_timestamp(date_str: String) -> int:
-	# Tenta reconhecer os dois formatos e converter para unix timestamp
-	if date_str.find("/") != -1:
-		# Formato DD/MM/YYYY HH:MM:SS
-		var parts = date_str.split(" ")
-		if parts.size() < 2:
-			return 0
-		var date_parts = parts[0].split("/")
-		var time_parts = parts[1].split(":")
-		if date_parts.size() != 3 or time_parts.size() != 3:
-			return 0
-		var day = int(date_parts[0])
-		var month = int(date_parts[1])
-		var year = int(date_parts[2])
-		var hour = int(time_parts[0])
-		var minute = int(time_parts[1])
-		var second = int(time_parts[2])
-		var formatted = "%04d-%02d-%02d %02d:%02d:%02d" % [year, month, day, hour, minute, second]
-		return Time.get_unix_time_from_datetime_string(formatted)
-	else:
-		# Formato esperado YYYY-MM-DD HH:MM:SS
-		return Time.get_unix_time_from_datetime_string(date_str)
-
+	if result.size() > 0:
+		var delete_query = "DELETE FROM high_scores WHERE mode = ? AND id IN (SELECT id FROM high_scores WHERE mode = ? ORDER BY score DESC, errors ASC, timestamp DESC OFFSET 5);"
+		db.query_with_bindings(delete_query, [mode, mode])
+		print("Limpeza de scores baixos para o modo '", mode, "' concluída.")
 
 func get_top_scores_for_mode(mode: String) -> Array:
-	var top_scores := []
-	for record in progress["high_scores"]:
-		if record.get("mode", "") == mode:
-			top_scores.append(record)
-	top_scores.sort_custom(func(a, b):
-		if a["score"] != b["score"]:
-			return 1 if b["score"] > a["score"] else -1
-		if a["errors"] != b["errors"]:
-			return -1 if a["errors"] < b["errors"] else 1
-		var time_a = parse_date_to_timestamp(a.get("timestamp", "1970-01-01 00:00:00"))
-		var time_b = parse_date_to_timestamp(b.get("timestamp", "1970-01-01 00:00:00"))
-		return 1 if time_b > time_a else -1
-)
+	var table = "high_scores"
+	var where_clause = "mode = '%s' ORDER BY score DESC, errors ASC, timestamp DESC LIMIT 5" % [mode]
+	var columns = ["*"] # pega todas as colunas
+	var result = db.select_rows(table, where_clause, columns)
 
-	if top_scores.size() > 5:
-		top_scores.resize(5)
-
-	# PRINT dos maiores acertos na ordem
 	print("🏅 Top scores para o modo: ", mode)
-	for i in range(top_scores.size()):
-		var r = top_scores[i]
+	for i in range(result.size()):
+		var r = result[i]
 		print("%dº Lugar - Score: %d, Erros: %d, Data: %s" % [i+1, r["score"], r["errors"], r["timestamp"]])
-
-	return top_scores
-
-
+		
+	return result
 
 func clear_high_scores():
-	progress["high_scores"] = []
+	db.query("DELETE FROM high_scores;")
+	db.query("UPDATE progress_summary SET total_scores = 0, total_errors = 0;")
+	print("Todos os RECORDES, ACERTOS e ERROS foram apagados.")
 	
-	# Zera os scores e erros de todos os modos
-	for mode in progress["scores"].keys():
-		progress["scores"][mode] = 0
-		progress["errors"][mode] = 0
+
+func apply_audio_settings():
+	var master_volume = float(load_setting("master_volume", 1.0))
+	var music_volume = float(load_setting("music_volume", 1.0))
+	var sfx_volume = float(load_setting("sfx_volume", 1.0))
 	
-	save_progress()
-	print("🗑️ Todos os recordes, acertos e erros foram apagados.")
+	var master_index = AudioServer.get_bus_index("Master")
+	if master_index != -1: AudioServer.set_bus_volume_db(master_index, linear_to_db(master_volume))
+
+	var music_index = AudioServer.get_bus_index("music")
+	if music_index != -1: AudioServer.set_bus_volume_db(music_index, linear_to_db(music_volume))
+
+	var sfx_index = AudioServer.get_bus_index("sfx")
+	if sfx_index != -1: AudioServer.set_bus_volume_db(sfx_index, linear_to_db(sfx_volume))
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and db:
+		db.close_db()
+		print("Banco de dados fechado.")
+
+func delete_database_file():
+	if db: 
+		db.close_db()
+	
+	var dir = DirAccess.open("user://")
+	
+	if dir.file_exists("game_data.db"):
+		var err = dir.remove("game_data.db")
+		if err == OK: 
+			get_tree().reload_current_scene()
