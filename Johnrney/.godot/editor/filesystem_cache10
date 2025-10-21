@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1761090494
+::res://::1761090675
 export_presets.cfg::TextFile::-1::1758334472::0::1::::<><><>0<>0<><>::
 icon.ico::OtherFile::-1::1755720167::0::1::::<><><>0<>0<><>::
 icon.png::CompressedTexture2D/CompressedTexture2D::5835992074729974780::1755720167::1755720282::1::::<><><>0<>0<>57f5cba3505506fb5bbec3ab01ad11f6<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
@@ -9,7 +9,7 @@ gdsqlite.gdextension::GDExtension::4837341577405836572::1761079150::0::1::::<><>
 godot-sqlite.gd::GDScript::6354497535622739150::1761079150::0::1::::<>EditorPlugin<><>0<>1<><>::
 LICENSE.md::TextFile::-1::1761079147::0::1::::<><><>0<>0<><>::
 plugin.cfg::TextFile::-1::1761079150::0::1::::<><><>0<>0<><>::
-::res://addons/godot-sqlite/bin/::1761090489
+::res://addons/godot-sqlite/bin/::1761090669
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/::1761079147
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/ios-arm64/::1761079147
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/ios-arm64_x86_64-simulator/::1761079147
@@ -28,8 +28,8 @@ plugin.cfg::TextFile::-1::1761079150::0::1::::<><><>0<>0<><>::
 ::res://addons/godot-sqlite/bin/libgodot-cpp.ios.template_release.xcframework/ios-arm64_x86_64-simulator/::1761079149
 ::res://assets/::1755720428
 ::res://assets/audio/::1755720167
-::res://assets/audio/bus/::1761082171
-default.tres::AudioBusLayout::3017522573811944502::1761082171::0::1::::<><><>0<>0<><>::
+::res://assets/audio/bus/::1761090496
+default.tres::AudioBusLayout::3017522573811944502::1761090496::0::1::::<><><>0<>0<><>::
 ::res://assets/audio/music/::1755720167
 ::res://assets/audio/music/gameplay/::1755720282
 Teste - MatC (3).mp3::AudioStreamMP3/AudioStreamMP3::1755474466453739282::1755720166::1755720282::1::::<><><>0<>0<>b120e0e4b0d0b7e8012f1a8be120daed<>res://.godot/imported/Teste - MatC (3).mp3-1501a4f48f8c1c0a304af83bd8104400.mp3str::
