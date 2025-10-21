@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://52surrlki5s"]
+[gd_scene load_steps=72 format=3 uid="uid://52surrlki5s"]
 
 [ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/menu/main_menu.gd" id="1_kiqgm"]
 [ext_resource type="Texture2D" uid="uid://c5p513xbwdv8d" path="res://assets/menu/back/ifsp-spo3.png" id="2_1k4da"]
@@ -6,10 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="3_xn6kt"]
 [ext_resource type="Texture2D" uid="uid://d37gi1xvlhtbx" path="res://assets/menu/concepts/principal.png" id="4_bbqo6"]
 [ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_isoef"]
-[ext_resource type="Texture2D" uid="uid://ddoid52dxkuyd" path="res://assets/Background_images/options/dancing-banana-ezgif.com-gif-to-sprite-converter.png" id="4_vovv2"]
 [ext_resource type="Texture2D" uid="uid://dx6py8i3bvu4v" path="res://assets/Background_images/quit/static-assets-upload14161420613619775497-ezgif.com-gif-to-sprite-converter.png" id="5_1k4da"]
+[ext_resource type="Texture2D" uid="uid://dn3i71u8xuolh" path="res://assets/menu/concepts/options.png" id="5_bbqo6"]
 [ext_resource type="Texture2D" uid="uid://c51owy80lwamf" path="res://assets/menu/concepts/iniciar.png" id="7_1k4da"]
-[ext_resource type="Texture2D" uid="uid://bq8ybpqmp1xlv" path="res://assets/Background_images/yt/Screenshot 2025-08-19 at 08-32-28 (153) CaVibezz - YouTube.png" id="7_bbqo6"]
+[ext_resource type="Texture2D" uid="uid://dj3lnkp50y77l" path="res://assets/menu/concepts/youtube_bg.png" id="8_d4hu8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbqo6"]
 atlas = ExtResource("3_1k4da")
@@ -18,38 +18,6 @@ region = Rect2(0, 0, 1280, 720)
 [sub_resource type="AtlasTexture" id="AtlasTexture_erdwl"]
 atlas = ExtResource("4_bbqo6")
 region = Rect2(0, 0, 1280, 720)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6rx2d"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(0, 0, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ycrc4"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(220, 0, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dft7i"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(440, 0, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_earte"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(660, 0, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ee56a"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(880, 0, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3dqh"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(0, 234, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nhv2n"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(220, 234, 220, 234)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hhhis"]
-atlas = ExtResource("4_vovv2")
-region = Rect2(440, 234, 220, 234)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjdyq"]
 atlas = ExtResource("5_1k4da")
@@ -267,10 +235,6 @@ region = Rect2(738, 3700, 369, 370)
 atlas = ExtResource("7_1k4da")
 region = Rect2(0, 0, 1280, 720)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jj451"]
-atlas = ExtResource("7_bbqo6")
-region = Rect2(0, 0, 857, 212)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rx2d"]
 animations = [{
 "frames": [{
@@ -291,28 +255,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6rx2d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ycrc4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dft7i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_earte")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ee56a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k3dqh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nhv2n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hhhis")
+"texture": ExtResource("5_bbqo6")
 }],
 "loop": true,
 "name": &"options_bg",
@@ -492,7 +435,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jj451")
+"texture": ExtResource("8_d4hu8")
 }],
 "loop": true,
 "name": &"youtube_bg",
@@ -573,7 +516,7 @@ script = ExtResource("1_kiqgm")
 
 [node name="background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 2
+layout_mode = 0
 offset_left = -1896.0
 offset_top = -838.0
 offset_right = -576.0
@@ -589,7 +532,7 @@ stretch_mode = 3
 modulate = Color(1, 1, 1, 0.998107)
 position = Vector2(637, 361)
 sprite_frames = SubResource("SpriteFrames_6rx2d")
-animation = &"credits_bg"
+animation = &"youtube_bg"
 autoplay = "idle_bg"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -597,8 +540,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.086
 anchor_bottom = 1.0
-offset_left = -1700.0
-offset_right = -1447.0
+offset_left = -2000.0
+offset_right = -1747.0
 grow_vertical = 2
 scale = Vector2(1, 0.99)
 theme_override_constants/margin_left = -20

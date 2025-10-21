@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TuxMathGD"
+config/name="JOHNRNEY"
 run/main_scene="uid://52surrlki5s"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://cpe86373sxgpo"
