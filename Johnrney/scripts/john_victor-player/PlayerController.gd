@@ -102,14 +102,14 @@ func forfeit_game():
 	
 var n = 1
 func addHeart_sequencia(current_combo):
-	if max_errors + current_errors >= 5:
+	if max_errors - current_errors >= 5:
 		return false
 	else:
 		if current_combo >= 5*n:
 			if current_combo > 0:
 				current_errors -= 1
-				n += 1
 				print("Coração recuperado por combo! Erros agora:", current_errors)
 				update_hearts()
+				n += 1
 			return true
 		return false
