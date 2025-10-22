@@ -171,10 +171,10 @@ func check_answer() -> void:
 			current_combo += 1
 			update_combo_label()
 			
-			if player_controller.addHeart_sequencia(current_combo):
-				current_combo = 0
-				update_combo_label()
-
+			# ✅ CORREÇÃO: Não zerar o combo quando ganhar coração
+			player_controller.addHeart_sequencia(current_combo)
+			# ❌ REMOVER: current_combo = 0  (NÃO ZERE AQUI!)
+			
 			update_score_label()
 			animation.play("Run_Down")
 
@@ -189,17 +189,16 @@ func check_answer() -> void:
 	wrong_or_miss.play()
 	update_ui("Nenhuma operação corresponde.")
 	if not player_controller.developer_mode:
-		current_combo = 0
+		current_combo = 0  # ✅ Zerar combo só quando errar
+		player_controller.reset_combo_goal()  # ✅ Resetar meta de combo
 		update_combo_label()
-
 
 	input_field.text = ""
 	await get_tree().process_frame
 	input_field.grab_focus()
 
-	if not player_controller.developer_mode:
-		current_errors += 1
-		SaveManager.add_error(selected_mode)
+	# ❌ REMOVER: current_errors += 1  (já é tratado no register_failure)
+	# ❌ REMOVER: SaveManager.add_error(selected_mode)  (já é tratado no register_failure)
 
 	animation.play("Run_Up")
 

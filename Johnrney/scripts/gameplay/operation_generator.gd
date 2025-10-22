@@ -20,12 +20,12 @@ func generate_operation(mode: String = "add") -> Dictionary:
 			operation_type = "-"
 		"mul":
 			# Multiplicação com números até 9 para facilitar
-			a = randi_range(-10, 50)
+			a = randi_range(-10, 10)
 			b = randi() % 10
 			operation_type = "*"
 		"div":
 			# Divisão com números até 9, cuidado com divisão por zero depois
-			a = randi_range(-10, 50)
+			a = randi_range(-10, 10)
 			b = randi() % 10
 			operation_type = "/"
 		#"add_sub":
