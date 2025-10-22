@@ -1,0 +1,36 @@
+# Godot-specific files
+.import/
+export.cfg
+export_presets.cfg
+
+# Cache and temporary files
+*.import
+*.tmp
+*.log
+*.cache
+*.translation
+
+# Editor and user settings (local only)
+.editor_settings-3.tres
+.editor_settings-4.tres
+.editor_layout.cfg
+.editor_layout.tres
+config.cfg
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code / JetBrains IDE configs
+.vscode/
+.idea/
+
+# Build outputs (if you export your game)
+bin/
+build/
+exports/
+
+# Ignore user data, save files or debug info (if generated)
+user://*
+save_data/
