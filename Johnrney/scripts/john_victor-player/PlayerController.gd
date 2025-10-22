@@ -100,16 +100,27 @@ func forfeit_game():
 	# Emite o sinal de game over
 	emit_signal("game_over")
 	
-var n = 1
+var combo_threshold: int = 5  # Número de acertos para ganhar 1 coração
+var next_combo_goal: int = combo_threshold  # Próxima meta de combo
+
 func addHeart_sequencia(current_combo):
-	if max_errors - current_errors >= 5:
+	# Se já está com vida máxima, não pode recuperar mais
+	if current_errors <= 0:
 		return false
-	else:
-		if current_combo >= 5*n:
-			if current_combo > 0:
-				current_errors -= 1
-				print("Coração recuperado por combo! Erros agora:", current_errors)
-				update_hearts()
-				n += 1
-			return true
-		return false
+	
+	# Verifica se atingiu a meta de combo para recuperar coração
+	if current_combo >= next_combo_goal:
+		# Recupera UM coração
+		current_errors -= 1
+		# Define a próxima meta (aumenta a dificuldade)
+		next_combo_goal += combo_threshold
+		
+		print("Coração recuperado por combo! Erros agora: ", current_errors)
+		update_hearts()
+		return true
+	
+	return false
+
+func reset_combo_goal():
+	# Reseta a meta de combo quando o player erra
+	next_combo_goal = combo_threshold
