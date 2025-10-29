@@ -25,6 +25,13 @@ func _ready() -> void:
 	MusicController.play_music_for("menu")
 	MusicController.set_volume(float(SaveManager.load_setting("music_volume", 1.0)))
 	
+	if SaveManager.checked_tutorial_this_session:
+		return
+	
+	SaveManager.checked_tutorial_this_session = true
+	if SaveManager.is_tutorial_complete() == false:
+		print("Primeira vez! Iniciando tutorial...")
+		get_tree().change_scene_to_file("res://scenes/gameplay/Tutorial.tscn")
 	# Inicia com idle
 
 	
@@ -64,6 +71,11 @@ func _on_options_pressed() -> void:
 	await play_click_sound()
 	
 	get_tree().change_scene_to_file("res://scenes/menu/config/options.tscn")
+	
+func _on_tutorial_pressed() -> void:
+	await play_click_sound()
+	
+	get_tree().change_scene_to_file("res://scenes/gameplay/Tutorial.tscn")
 
 func _on_cavibezz_pressed() -> void:
 	await play_click_sound()
@@ -121,5 +133,13 @@ func _on_cavibezz_mouse_entered() -> void:
 
 
 func _on_cavibezz_mouse_exited() -> void:
+	background_animation.play(BG_ANIMATIONS["idle"])
+
+
+func _on_tutorial_mouse_entered() -> void:
+	pass # colocar o código pra inserir o sprite do tutorial
+
+
+func _on_tutorial_mouse_exited() -> void:
 	background_animation.play(BG_ANIMATIONS["idle"])
 	

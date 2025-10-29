@@ -532,7 +532,7 @@ stretch_mode = 3
 modulate = Color(1, 1, 1, 0.998107)
 position = Vector2(637, 361)
 sprite_frames = SubResource("SpriteFrames_6rx2d")
-animation = &"youtube_bg"
+animation = &"quit_bg"
 autoplay = "idle_bg"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -542,6 +542,7 @@ anchor_right = 0.086
 anchor_bottom = 1.0
 offset_left = -2000.0
 offset_right = -1747.0
+offset_bottom = 32.0
 grow_vertical = 2
 scale = Vector2(1, 0.99)
 theme_override_constants/margin_left = -20
@@ -590,6 +591,17 @@ theme_override_font_sizes/font_size = 70
 text = "Opções"
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+
+[node name="tutorial" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 70
+text = "Tutorial
+"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
 
@@ -644,6 +656,9 @@ text = "Musica Menu"
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/tutorial" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/tutorial" to="." method="_on_tutorial_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_pressed"]

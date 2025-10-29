@@ -43,7 +43,7 @@ var selected_difficulty: String = "normal"
 var current_score: int = 0
 var current_errors: int = 0 
 var current_combo: int = 0
-
+var tutorial_mode = false
 
 
 # ============================== #
@@ -110,9 +110,39 @@ func set_mode(mode: String) -> void:
 	
 func set_difficulty(difficulty: String) -> void:
 	selected_difficulty = difficulty
+	
+func set_tutorial_mode(is_tutorial: bool):
+	tutorial_mode = is_tutorial
+	
+	# Se o tutorial estiver começando, limpa qualquer conta que já exista
+	if is_tutorial:
+		spawn_timer.stop() 
+		
+		for q in active_questions:
+			if is_instance_valid(q):
+				q.queue_free()
+		active_questions.clear()
+		
+func spawn_tutorial_equation(question_text: String, answer_text: String, x_pos: int, difficulty: String):
+	var question = falling_question_scene.instantiate()
+	question.set_difficulty(difficulty)
+	question.initialize(question_text, str(answer_text)) 
+	question.position = Vector2(x_pos, 0) 
+
+	question.connect("question_failed", _on_question_failed.bind(question))
+
+	add_child(question)
+	active_questions.append(question)
+
+	if animation: # Checagem de segurança
+		animation.play("Run_Up")
+
+	print("Tutorial: Spawning '%s' com resposta '%s'" % [question_text, answer_text])
 
 func generate_new_question() -> void:
-	# Gera operação usando o gerador com base no modo selecionado
+	if tutorial_mode:
+		return
+		
 	var operation = generator.generate_operation(selected_mode)
 	var question = falling_question_scene.instantiate()
 	question.set_difficulty(selected_difficulty)
