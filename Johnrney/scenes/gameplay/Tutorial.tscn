@@ -1,7 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh1rlho508qgn"]
+[gd_scene load_steps=4 format=3 uid="uid://dh1rlho508qgn"]
 
 [ext_resource type="PackedScene" uid="uid://c8quaugkapyry" path="res://scenes/gameplay/mode_gameplay.tscn" id="1_x25me"]
+[ext_resource type="Script" uid="uid://dvxgs8hrbgjua" path="res://scripts/gameplay/Tutorial.gd" id="2_782gt"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x25me"]
 
 [node name="Tutorial" type="Node2D"]
 
 [node name="Gameplay" parent="." instance=ExtResource("1_x25me")]
+
+[node name="SubmitButton" parent="Gameplay" index="8"]
+icon = SubResource("ViewportTexture_x25me")
+
+[node name="Pause" parent="Gameplay" index="9"]
+icon = SubResource("ViewportTexture_x25me")
+
+[node name="Reiniciar" parent="Gameplay" index="10"]
+icon = SubResource("ViewportTexture_x25me")
+
+[node name="TutorialManager" type="Node" parent="." node_paths=PackedStringArray("spawner", "label", "botao", "input", "spawn_timer")]
+script = ExtResource("2_782gt")
+spawner = NodePath("../Gameplay")
+label = NodePath("../Gameplay/QuestionLabel")
+botao = NodePath("../Gameplay/SubmitButton")
+input = NodePath("../Gameplay/InputField_for_answer")
+spawn_timer = NodePath("../Gameplay/SpawnTimer")
+
+[editable path="Gameplay"]

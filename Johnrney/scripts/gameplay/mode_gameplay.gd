@@ -123,10 +123,10 @@ func set_tutorial_mode(is_tutorial: bool):
 				q.queue_free()
 		active_questions.clear()
 		
-func spawn_tutorial_equation(question_text: String, answer_text: String, x_pos: int, difficulty: String):
+func spawn_tutorial_equation(question_text: String, answer_int: int, x_pos: int, difficulty: String):
 	var question = falling_question_scene.instantiate()
 	question.set_difficulty(difficulty)
-	question.initialize(question_text, str(answer_text)) 
+	question.initialize(question_text, answer_int) 
 	question.position = Vector2(x_pos, 0) 
 
 	question.connect("question_failed", _on_question_failed.bind(question))
@@ -137,7 +137,7 @@ func spawn_tutorial_equation(question_text: String, answer_text: String, x_pos: 
 	if animation: # Checagem de segurança
 		animation.play("Run_Up")
 
-	print("Tutorial: Spawning '%s' com resposta '%s'" % [question_text, answer_text])
+	print("Tutorial: Spawning '%s' com resposta '%s'" % [question_text, answer_int])
 
 func generate_new_question() -> void:
 	if tutorial_mode:
@@ -233,7 +233,8 @@ func check_answer() -> void:
 	animation.play("Run_Up")
 
 func update_ui(message: String) -> void:
-	# Atualiza texto na UI e foca campo de resposta
+	if tutorial_mode:
+		return
 	question_label.text = message
 	input_field.grab_focus()
 

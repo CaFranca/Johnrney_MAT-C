@@ -66,7 +66,7 @@ func generate_operation(mode: String = "add") -> Dictionary:
 					a = randi_range(-10, 50)
 					b = randi() % 50
 				"*", "/":
-					a = randi_range(-10, 50)
+					a = randi_range(-10, 10)
 					b = randi() % 10
 
 	var question = ""  # String que representa a operação para exibir ao jogador
