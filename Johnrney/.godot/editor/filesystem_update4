@@ -1,7 +1,1 @@
-res://assets/audio/bus/default.tres
-res://scenes/gameplay/Tutorial.tscn
-res://Tutorial.gd
-res://scripts/gameplay/operation_generator.gd
-res://scripts/gameplay/Tutorial.gd
-res://scripts/gameplay/mode_gameplay.gd
-res://scenes/gameplay/mode_gameplay.tscn
+res://scenes/menu/main_menu.tscn

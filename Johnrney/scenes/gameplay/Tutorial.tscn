@@ -16,6 +16,7 @@ icon = SubResource("ViewportTexture_x25me")
 icon = SubResource("ViewportTexture_x25me")
 
 [node name="Reiniciar" parent="Gameplay" index="10"]
+visible = false
 icon = SubResource("ViewportTexture_x25me")
 
 [node name="TutorialManager" type="Node" parent="." node_paths=PackedStringArray("spawner", "label", "botao", "input", "spawn_timer")]

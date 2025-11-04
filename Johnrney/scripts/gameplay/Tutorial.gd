@@ -10,6 +10,9 @@ enum State {
 	ESPERA_RESPOSTA_2, # Aguarda o jogador acertar
 	AVISO, 
 	AVISO_2,
+	AVISO_3,
+	AVISO_4,
+	AVISO_5,
 	FINALIZAR       # Salva e sai
 }
 
@@ -60,7 +63,7 @@ func _mudar_estado(novo_estado):
 			
 			# Chama a nova função no spawner
 			# (Pergunta, Resposta, Posição X, Dificuldade)
-			spawner.spawn_tutorial_equation("2 + 2 = ?", 4, 300, "facil")
+			spawner.spawn_tutorial_equation("2 + 2 = ?", 4, 300, "facil", true)
 			
 			resposta_esperada = "4"
 			_mudar_estado(State.ESPERA_RESPOSTA_1)
@@ -81,25 +84,37 @@ func _mudar_estado(novo_estado):
 			input.show()
 			input.grab_focus()
 			
-			spawner.spawn_tutorial_equation("5 - 1 = ?", 4, 250, "facil") 
-			resposta_esperada = "4"
+			spawner.spawn_tutorial_equation("8 - 5 = ?", 3, 250, "facil", true)
+			resposta_esperada = "3"
 			_mudar_estado(State.ESPERA_RESPOSTA_2)
 
 		State.ESPERA_RESPOSTA_2:
 			pass
 
 		State.AVISO:
-			label.text = "O Johnrney conta com 5 modos: \nSoma, Subtração, Multiplicação, \nDivisão e Todos"
+			label.text = "O Johnrney conta com 5 modos \ndiferentes."
 			botao.show()
 			botao.text = "Continuar"
 			input.hide()
 			
 		State.AVISO_2:
-			label.text = "Você pode selecionar a dificuldade: \nFácil ou Difícil"
+			label.text = "São eles: Adição, Subtração, \nMultiplicação, Divisão e Todos."
 			botao.text = "Continuar"
 			
+		State.AVISO_3:
+			label.text = "Você pode selecionar a dificuldade: \nFácil ou Difícil."
+			botao.text = "Continuar"
+			
+		State.AVISO_4:
+			label.text = "Se você perder um coração, \nainda pode recuperá-lo!"
+			botao.text = "Continuar"
+			
+		State.AVISO_5:
+			label.text = "Acerte contas em sequência, \naumentando de 5 em 5!"
+			botao.text = "Continuar"
+		
 		State.FINALIZAR:
-			label.text = "Você pegou o jeito! \nDivirta-se e aprenda"
+			label.text = "Você pegou o jeito! \nDivirta-se e aprenda!"
 			botao.hide()
 			
 			
@@ -121,8 +136,19 @@ func _on_botao_continuar_pressed():
 		
 	elif current_state == State.AVISO:
 		_mudar_estado(State.AVISO_2)
+		
 	elif current_state == State.AVISO_2:
+		_mudar_estado(State.AVISO_3)
+		
+	elif current_state == State.AVISO_3:
+		_mudar_estado(State.AVISO_4)
+		
+	elif current_state == State.AVISO_4:
+		_mudar_estado(State.AVISO_5)
+		
+	elif current_state == State.AVISO_5:
 		_mudar_estado(State.FINALIZAR)
+	
 
 func _on_input_text_submitted(texto_digitado):
 	# Normaliza o texto (remove espaços)
