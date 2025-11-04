@@ -51,10 +51,6 @@ var tutorial_mode = false
 # ============================== #
 
 func _ready() -> void:
-	var temp_question = falling_question_scene.instantiate()
-	temp_question.set_difficulty(selected_difficulty)
-	temp_question.queue_free()
-	
 	reset.reset_speed()
 	animation.play("Run_Up")
 
@@ -81,6 +77,21 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
+#func apply_settings() -> void:
+	# Exemplo: carregar volume da música salvo nas configurações
+#	MusicController.set_volume(GlobalSettings.music_volume)
+
+	# Ajustar a dificuldade, que pode influenciar tempo do spawn, número de falhas, etc.
+#	selected_mode = GlobalSettings.difficulty_mode
+
+	# Exemplo: ajustar velocidade do spawn conforme dificuldade
+#	if selected_mode == "hard":
+#		spawn_timer.wait_time = 1.0
+#	else:
+#		spawn_timer.wait_time = 2.0
+
+	# Atualiza UI para mostrar modo selecionado
+#	update_ui("Modo: %s" % selected_mode)
 
 func pauseMenu() -> void:
 	# Alterna o estado de pausa
@@ -112,14 +123,11 @@ func set_tutorial_mode(is_tutorial: bool):
 				q.queue_free()
 		active_questions.clear()
 		
-func spawn_tutorial_equation(question_text: String, answer_int: int, x_pos: int, difficulty: String, stop_mid: bool = false):
+func spawn_tutorial_equation(question_text: String, answer_int: int, x_pos: int, difficulty: String):
 	var question = falling_question_scene.instantiate()
 	question.set_difficulty(difficulty)
-	question.initialize(question_text, answer_int, stop_mid)
-	question.position = Vector2(x_pos, 0)
-	
-	if not stop_mid:
-		question.connect("question_failed", _on_question_failed.bind(question))
+	question.initialize(question_text, answer_int) 
+	question.position = Vector2(x_pos, 0) 
 
 	question.connect("question_failed", _on_question_failed.bind(question))
 
@@ -137,6 +145,7 @@ func generate_new_question() -> void:
 		
 	var operation = generator.generate_operation(selected_mode)
 	var question = falling_question_scene.instantiate()
+	question.set_difficulty(selected_difficulty)
 
 	# Inicializa a pergunta com texto e resposta correta
 	question.initialize(operation["question"], operation["answer"])
