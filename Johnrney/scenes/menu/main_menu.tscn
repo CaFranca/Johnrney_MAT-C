@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://52surrlki5s"]
+[gd_scene load_steps=80 format=3 uid="uid://52surrlki5s"]
 
 [ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/menu/main_menu.gd" id="1_kiqgm"]
 [ext_resource type="Texture2D" uid="uid://c5p513xbwdv8d" path="res://assets/menu/back/ifsp-spo3.png" id="2_1k4da"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cvejo0t5bopj5" path="res://assets/menu/button_images/init_button.png" id="9_bbqo6"]
 [ext_resource type="Texture2D" uid="uid://b1g5ebe673uxi" path="res://assets/menu/button_images/other_pressed_button.png" id="10_d4hu8"]
 [ext_resource type="Texture2D" uid="uid://celrv4761dxxr" path="res://assets/menu/button_images/init_hover.png" id="11_p1nwe"]
+[ext_resource type="Texture2D" uid="uid://be5nkb1mp8gb4" path="res://logoJohn.png" id="19_vxdmp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbqo6"]
 atlas = ExtResource("3_1k4da")
@@ -747,6 +748,11 @@ offset_bottom = 508.0
 scale = Vector2(2.425, 2.425)
 button_pressed = true
 text = "Musica Menu"
+
+[node name="LogoJohn" type="Sprite2D" parent="."]
+position = Vector2(1154.0001, 590)
+scale = Vector2(0.7201393, 0.73402774)
+texture = ExtResource("19_vxdmp")
 
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_exited"]

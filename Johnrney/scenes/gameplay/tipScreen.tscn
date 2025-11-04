@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://wngwcrl8jp4b"]
 
 [ext_resource type="Script" uid="uid://bpq3okwtd7d1r" path="res://scripts/gameplay/tip_screen.gd" id="1_xvsxk"]
+[ext_resource type="Texture2D" uid="uid://oibn6deebru7" path="res://chiago.png" id="2_mf3k0"]
 [ext_resource type="AudioStream" uid="uid://b27y8uwjrvonh" path="res://assets/audio/sfx/menu/button_click.ogg" id="2_sroed"]
-[ext_resource type="Texture2D" uid="uid://donmbhhy3sgy6" path="res://assets/menu/back/imagemquadrada.jpg" id="3_mf3k0"]
 
 [node name="TipScreen" type="Control"]
 visible = false
@@ -72,14 +72,14 @@ grow_vertical = 2
 scale = Vector2(3.37996, 3.37996)
 text = "Avançar"
 
+[node name="Chiago" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(162, 593)
+scale = Vector2(0.87222224, 0.90555555)
+texture = ExtResource("2_mf3k0")
+
 [node name="buttonclick" type="AudioStreamPlayer" parent="."]
 process_priority = 1
 stream = ExtResource("2_sroed")
 volume_db = -20.0
-bus = &"sfx"
-
-[node name="Imagemquadrada" type="Sprite2D" parent="."]
-position = Vector2(233, 847)
-texture = ExtResource("3_mf3k0")
 
 [connection signal="pressed" from="CanvasLayer/next" to="." method="_on_next_pressed"]

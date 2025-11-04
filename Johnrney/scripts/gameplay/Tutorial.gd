@@ -102,7 +102,7 @@ func _mudar_estado(novo_estado):
 			botao.text = "Continuar"
 			
 		State.AVISO_3:
-			label.text = "Você pode selecionar a dificuldade: \nFácil ou Difícil."
+			label.text = "Você pode selecionar a dificuldade: \nNormal ou Difícil."
 			botao.text = "Continuar"
 			
 		State.AVISO_4:

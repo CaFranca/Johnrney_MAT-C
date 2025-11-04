@@ -1,1 +1,8 @@
 res://scenes/menu/main_menu.tscn
+res://scenes/menu/config/pause_menu.gdshader
+res://scenes/gameplay/Tutorial.tscn
+res://scripts/gameplay/Tutorial.gd
+res://scenes/menu/Selection_mode_menu.tscn
+res://scenes/gameplay/tipScreen.tscn
+res://scenes/gameplay/FallingQuestion.tscn
+res://scenes/gameplay/mode_gameplay.tscn

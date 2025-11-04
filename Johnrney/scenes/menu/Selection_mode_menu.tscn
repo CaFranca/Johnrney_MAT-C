@@ -80,8 +80,8 @@ anchors_preset = -1
 anchor_right = 0.42
 anchor_bottom = 1.0
 offset_left = -200.0
-offset_right = 135.7
-offset_bottom = -145.252
+offset_right = 135.70001
+offset_bottom = -145.25201
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.999997, 0.99)
@@ -112,6 +112,7 @@ offset_right = 834.001
 offset_bottom = 77.0
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.14492914, 0.828726, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
@@ -123,6 +124,7 @@ offset_right = 834.001
 offset_bottom = 122.455
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9619234, 0, 0.21288401, 1)
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
 
@@ -150,6 +152,7 @@ offset_right = 837.001
 offset_bottom = 77.1616
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.14509805, 0.81960785, 0.003921569, 1)
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
@@ -161,6 +164,7 @@ offset_right = 837.001
 offset_bottom = 122.616
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.93333334, 0.007843138, 0.21568628, 1)
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
 
@@ -187,6 +191,7 @@ offset_right = 837.001
 offset_bottom = 77.3232
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.14901961, 0.8117647, 0.007843138, 1)
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
@@ -198,6 +203,7 @@ offset_right = 837.001
 offset_bottom = 117.727
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.92156863, 0.015686275, 0.21960784, 1)
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
 
@@ -225,6 +231,7 @@ offset_right = 836.001
 offset_bottom = 77.4849
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.14901961, 0.8117647, 0.007843138, 1)
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
@@ -236,6 +243,7 @@ offset_right = 836.001
 offset_bottom = 122.939
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.87058824, 0.03137255, 0.22352941, 1)
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
 
@@ -263,6 +271,7 @@ offset_right = 837.001
 offset_bottom = 79.6667
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.14901961, 0.8117647, 0.007843138, 1)
 theme_override_font_sizes/font_size = 50
 text = "Normal"
 
@@ -274,6 +283,7 @@ offset_right = 837.001
 offset_bottom = 126.131
 scale = Vector2(0.534671, 0.534671)
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8509804, 0.043137256, 0.22745098, 1)
 theme_override_font_sizes/font_size = 50
 text = "Difícil"
 
@@ -303,12 +313,10 @@ autoplay = "reveal"
 process_priority = 1
 stream = ExtResource("3_4sgra")
 volume_db = -20.0
-bus = &"sfx"
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a86st")
 volume_db = -20.0
-bus = &"sfx"
 
 [node name="Musica2" type="CheckButton" parent="."]
 visible = false
