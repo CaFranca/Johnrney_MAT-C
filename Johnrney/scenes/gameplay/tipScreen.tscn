@@ -81,5 +81,6 @@ texture = ExtResource("2_mf3k0")
 process_priority = 1
 stream = ExtResource("2_sroed")
 volume_db = -20.0
+bus = &"sfx"
 
 [connection signal="pressed" from="CanvasLayer/next" to="." method="_on_next_pressed"]
