@@ -313,10 +313,12 @@ autoplay = "reveal"
 process_priority = 1
 stream = ExtResource("3_4sgra")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a86st")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="Musica2" type="CheckButton" parent="."]
 visible = false
