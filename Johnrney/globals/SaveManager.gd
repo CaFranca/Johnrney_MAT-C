@@ -2,6 +2,7 @@ extends Node
 
 var db_path := "user://game_data.db"
 var db
+var checked_tutorial_this_session: bool = false
 
 func _ready():
 	db = SQLite.new()
@@ -123,3 +124,14 @@ func delete_database_file():
 		var err = dir.remove("game_data.db")
 		if err == OK: 
 			get_tree().reload_current_scene()
+
+### TUTORIAL ###
+
+func save_tutorial_complete():
+	save_setting("tutorial_concluido", true) 
+	print("Tutorial concluído")
+
+func is_tutorial_complete() -> bool:
+	var result = load_setting("tutorial_concluido", false)
+	var result_str = str(result)
+	return (result_str == "true")

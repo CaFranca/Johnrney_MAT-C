@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://52surrlki5s"]
+[gd_scene load_steps=79 format=3 uid="uid://52surrlki5s"]
 
 [ext_resource type="Script" uid="uid://d1fn784yati35" path="res://scripts/menu/main_menu.gd" id="1_kiqgm"]
 [ext_resource type="Texture2D" uid="uid://c5p513xbwdv8d" path="res://assets/menu/back/ifsp-spo3.png" id="2_1k4da"]
@@ -8,8 +8,16 @@
 [ext_resource type="AudioStream" uid="uid://yinuh86st0n" path="res://assets/audio/sfx/menu/mouse_entered.ogg" id="4_isoef"]
 [ext_resource type="Texture2D" uid="uid://dx6py8i3bvu4v" path="res://assets/Background_images/quit/static-assets-upload14161420613619775497-ezgif.com-gif-to-sprite-converter.png" id="5_1k4da"]
 [ext_resource type="Texture2D" uid="uid://dn3i71u8xuolh" path="res://assets/menu/concepts/options.png" id="5_bbqo6"]
+[ext_resource type="FontFile" uid="uid://cbstoyl6d68i7" path="res://assets/Font/jersey-10_5.2.8/ttf/jersey-10-latin-400-normal.ttf" id="6_41tvm"]
+[ext_resource type="Texture2D" uid="uid://cwwu8hboejbfc" path="res://assets/menu/button_images/other_button.png" id="6_pstia"]
 [ext_resource type="Texture2D" uid="uid://c51owy80lwamf" path="res://assets/menu/concepts/iniciar.png" id="7_1k4da"]
+[ext_resource type="Texture2D" uid="uid://chgy1oq3dro3b" path="res://assets/menu/button_images/other_hover.png" id="7_41tvm"]
 [ext_resource type="Texture2D" uid="uid://dj3lnkp50y77l" path="res://assets/menu/concepts/youtube_bg.png" id="8_d4hu8"]
+[ext_resource type="Texture2D" uid="uid://bbk0wbxl0cbld" path="res://assets/menu/button_images/tutorial_button.png" id="8_vxdmp"]
+[ext_resource type="Texture2D" uid="uid://cr2odam7hk0cc" path="res://assets/menu/button_images/tutorial_hover.png" id="9_3h20m"]
+[ext_resource type="Texture2D" uid="uid://cvejo0t5bopj5" path="res://assets/menu/button_images/init_button.png" id="9_bbqo6"]
+[ext_resource type="Texture2D" uid="uid://b1g5ebe673uxi" path="res://assets/menu/button_images/other_pressed_button.png" id="10_d4hu8"]
+[ext_resource type="Texture2D" uid="uid://celrv4761dxxr" path="res://assets/menu/button_images/init_hover.png" id="11_p1nwe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbqo6"]
 atlas = ExtResource("3_1k4da")
@@ -442,8 +450,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
-
 [sub_resource type="Animation" id="Animation_bqqt6"]
 length = 0.3
 tracks/0/type = "value"
@@ -521,91 +527,200 @@ offset_left = -1896.0
 offset_top = -838.0
 offset_right = -576.0
 offset_bottom = -118.0
-grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(3.84945, 3.00114)
 texture = ExtResource("2_1k4da")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="BackgroundAnimation" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.998107)
-position = Vector2(637, 361)
-sprite_frames = SubResource("SpriteFrames_6rx2d")
-animation = &"youtube_bg"
-autoplay = "idle_bg"
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.086
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -2000.0
-offset_right = -1747.0
-grow_vertical = 2
+offset_left = -2640.0
+offset_top = -720.0
+offset_right = -2290.0
+offset_bottom = 6.2625732
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1, 0.99)
-theme_override_constants/margin_left = -20
-theme_override_constants/margin_right = -20
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
 
 [node name="game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="start" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 95
+size_flags_vertical = 4
 toggle_mode = true
-text = "Iniciar"
+texture_normal = ExtResource("9_bbqo6")
+texture_pressed = ExtResource("10_d4hu8")
+texture_hover = ExtResource("11_p1nwe")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
-
-[node name="credits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_41tvm")
 theme_override_font_sizes/font_size = 70
-text = "Créditos
-"
+text = "Iniciar"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="tutorial2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("8_vxdmp")
+texture_pressed = ExtResource("10_d4hu8")
+texture_hover = ExtResource("9_3h20m")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/tutorial2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_41tvm")
+theme_override_font_sizes/font_size = 70
+text = "Tutorial"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="credits2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("6_pstia")
+texture_pressed = ExtResource("10_d4hu8")
+texture_hover = ExtResource("7_41tvm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/credits2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_41tvm")
+theme_override_font_sizes/font_size = 70
+text = "Créditos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="options2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("6_pstia")
+texture_pressed = ExtResource("10_d4hu8")
+texture_hover = ExtResource("7_41tvm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/options2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_41tvm")
 theme_override_font_sizes/font_size = 70
 text = "Opções"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="cavibezz2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("6_pstia")
+texture_pressed = ExtResource("10_d4hu8")
+texture_hover = ExtResource("7_41tvm")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="cavibezz" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/cavibezz2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_41tvm")
 theme_override_font_sizes/font_size = 70
 text = "Canal"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="quit2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_l6cm7")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("6_pstia")
+texture_pressed = ExtResource("10_d4hu8")
+texture_hover = ExtResource("7_41tvm")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/quit2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_41tvm")
 theme_override_font_sizes/font_size = 70
 text = "Sair"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundAnimation" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.998107)
+position = Vector2(637, 361)
+sprite_frames = SubResource("SpriteFrames_6rx2d")
+animation = &"quit_bg"
+autoplay = "idle_bg"
 
 [node name="Animação" type="AnimationPlayer" parent="."]
 libraries = {
@@ -617,12 +732,10 @@ autoplay = "reveal"
 process_priority = 1
 stream = ExtResource("3_xn6kt")
 volume_db = -20.0
-bus = &"sfx"
 
 [node name="mouse_entered" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_isoef")
 volume_db = -20.0
-bus = &"sfx"
 
 [node name="Musica" type="CheckButton" parent="."]
 visible = false
@@ -638,16 +751,19 @@ text = "Musica Menu"
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz" to="." method="_on_cavibezz_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/tutorial2" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/tutorial2" to="." method="_on_tutorial_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/tutorial2" to="." method="_on_tutorial_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/credits2" to="." method="_on_credits_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/credits2" to="." method="_on_credits_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits2" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/options2" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/options2" to="." method="_on_options_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/options2" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz2" to="." method="_on_cavibezz_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz2" to="." method="_on_cavibezz_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/cavibezz2" to="." method="_on_cavibezz_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/quit2" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/quit2" to="." method="_on_quit_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit2" to="." method="_on_quit_pressed"]
 [connection signal="toggled" from="Musica" to="." method="_on_musica_toggled"]

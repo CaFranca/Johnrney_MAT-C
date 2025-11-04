@@ -43,7 +43,7 @@ var selected_difficulty: String = "normal"
 var current_score: int = 0
 var current_errors: int = 0 
 var current_combo: int = 0
-
+var tutorial_mode = false
 
 
 # ============================== #
@@ -51,6 +51,10 @@ var current_combo: int = 0
 # ============================== #
 
 func _ready() -> void:
+	var temp_question = falling_question_scene.instantiate()
+	temp_question.set_difficulty(selected_difficulty)
+	temp_question.queue_free()
+	
 	reset.reset_speed()
 	animation.play("Run_Up")
 
@@ -77,21 +81,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
-#func apply_settings() -> void:
-	# Exemplo: carregar volume da música salvo nas configurações
-#	MusicController.set_volume(GlobalSettings.music_volume)
-
-	# Ajustar a dificuldade, que pode influenciar tempo do spawn, número de falhas, etc.
-#	selected_mode = GlobalSettings.difficulty_mode
-
-	# Exemplo: ajustar velocidade do spawn conforme dificuldade
-#	if selected_mode == "hard":
-#		spawn_timer.wait_time = 1.0
-#	else:
-#		spawn_timer.wait_time = 2.0
-
-	# Atualiza UI para mostrar modo selecionado
-#	update_ui("Modo: %s" % selected_mode)
 
 func pauseMenu() -> void:
 	# Alterna o estado de pausa
@@ -110,12 +99,44 @@ func set_mode(mode: String) -> void:
 	
 func set_difficulty(difficulty: String) -> void:
 	selected_difficulty = difficulty
+	
+func set_tutorial_mode(is_tutorial: bool):
+	tutorial_mode = is_tutorial
+	
+	# Se o tutorial estiver começando, limpa qualquer conta que já exista
+	if is_tutorial:
+		spawn_timer.stop() 
+		
+		for q in active_questions:
+			if is_instance_valid(q):
+				q.queue_free()
+		active_questions.clear()
+		
+func spawn_tutorial_equation(question_text: String, answer_int: int, x_pos: int, difficulty: String, stop_mid: bool = false):
+	var question = falling_question_scene.instantiate()
+	question.set_difficulty(difficulty)
+	question.initialize(question_text, answer_int, stop_mid)
+	question.position = Vector2(x_pos, 0)
+	
+	if not stop_mid:
+		question.connect("question_failed", _on_question_failed.bind(question))
+
+	question.connect("question_failed", _on_question_failed.bind(question))
+
+	add_child(question)
+	active_questions.append(question)
+
+	if animation: # Checagem de segurança
+		animation.play("Run_Up")
+
+	print("Tutorial: Spawning '%s' com resposta '%s'" % [question_text, answer_int])
 
 func generate_new_question() -> void:
-	# Gera operação usando o gerador com base no modo selecionado
+	if tutorial_mode:
+		return
+		
 	var operation = generator.generate_operation(selected_mode)
 	var question = falling_question_scene.instantiate()
-	question.set_difficulty(selected_difficulty)
 
 	# Inicializa a pergunta com texto e resposta correta
 	question.initialize(operation["question"], operation["answer"])
@@ -203,7 +224,8 @@ func check_answer() -> void:
 	animation.play("Run_Up")
 
 func update_ui(message: String) -> void:
-	# Atualiza texto na UI e foca campo de resposta
+	if tutorial_mode:
+		return
 	question_label.text = message
 	input_field.grab_focus()
 

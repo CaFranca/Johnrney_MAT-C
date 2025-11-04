@@ -1,3 +1,6 @@
+Label
+TextureButton
+Node
 Sprite2D
 AnimatedSprite2D
 AnimationPlayer
@@ -9,6 +12,3 @@ TextureRect
 Panel
 Button
 RichTextLabel
-Label
-ScrollContainer
-VScrollBar
