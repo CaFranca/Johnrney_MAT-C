@@ -31,7 +31,6 @@ SettingsManager="*res://globals/SettingsManager.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 
 [editor_plugins]

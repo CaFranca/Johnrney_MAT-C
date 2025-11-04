@@ -6,10 +6,8 @@ var answer = 0
 var answered = false
 
 static var DEFAULT_SPEED
-static var MAX_SPEED = 300.0
-static var SPEED_INCREMENT = 2
-var parar_questaoteste: bool = false
-var y_stop_position = 350
+var MAX_SPEED = 300.0
+var SPEED_INCREMENT = 2
 signal question_failed
 @onready var label = $pergunta
 @onready var collision_shape = $Answerhitbox
@@ -22,13 +20,14 @@ func set_difficulty(difficulty:String):
 		"normal":
 			DEFAULT_SPEED = 50
 			MAX_SPEED = 300.0
-			SPEED_INCREMENT = 5
+			SPEED_INCREMENT = 2
 		"hard":
 			DEFAULT_SPEED = 100
 			MAX_SPEED = 600.0
-			SPEED_INCREMENT = 10
+			SPEED_INCREMENT = 5
 		_:
 			print("Dificuldade não encontrada:",difficulty)
+	speed = DEFAULT_SPEED
 	print("Dificuldade encontrada:",difficulty)
 	
 
@@ -36,35 +35,21 @@ func _ready():
 	if question != "":
 		label.text = question
 
-func initialize(new_question: String, new_answer: int, stop: bool = false):
+func initialize(new_question: String, new_answer: int):
 	question = new_question
 	answer = new_answer
 	if label:
 		label.text = question
 
-	self.parar_questaoteste = stop
-
+	# Define a velocidade da pergunta
+	# Aumenta para a próxima pergunta
 	speed = min(speed + SPEED_INCREMENT, MAX_SPEED)
-	print("Velocidade: ", speed)
+	print(speed)
 
 func _physics_process(_delta):
-	# Se já foi respondida, para tudo.
-	if answered:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
-
-	if parar_questaoteste:
-		if position.y >= y_stop_position:
-			velocity = Vector2.ZERO
-			position.y = y_stop_position 
-		else:
-			velocity = Vector2(0, speed)
-	else:
+	if not answered:
 		velocity = Vector2(0, speed)
-
-	# move o corpo apenas 1 vez, depois de toda a validação
-	move_and_slide()
+		move_and_slide()
 
 func fail():
 	if not answered:
@@ -74,3 +59,9 @@ func fail():
 
 static func reset_speed():
 	speed = DEFAULT_SPEED
+
+
+
+# Código opcional para debug (ativar se quiser acompanhar quando a pergunta for removida)
+#func _exit_tree():
+#	print("FallingQuestion removida:", self)
